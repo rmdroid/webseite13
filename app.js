@@ -826,9 +826,47 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
     sendMessage(label);
   }
 
+  function getChromeVersion() {
+    const m = navigator.userAgent.match(/Chrome\/(\d+)/);
+    return m ? parseInt(m[1]) : 0;
+  }
+
+  function isChromeBrowser() {
+    return /Chrome/.test(navigator.userAgent) && !/Edg\/|OPR\/|Brave/.test(navigator.userAgent);
+  }
+
+  function showActivationGuide() {
+    const flagUrl = "chrome://flags/#prompt-api-for-gemini-nano";
+    addMsg(
+      `Gemini Nano ist fast bereit – noch ein kurzer Schritt:<br><br>` +
+      `<span style="display:flex;align-items:center;gap:8px;background:#f3f4f6;padding:7px 10px;border-radius:7px;font-family:monospace;font-size:11px;word-break:break-all;">` +
+      `${flagUrl}` +
+      `<button onclick="navigator.clipboard.writeText('${flagUrl}').then(()=>{this.textContent='✓ Kopiert'})" ` +
+      `style="flex-shrink:0;border:none;background:#4f46e5;color:#fff;padding:3px 9px;border-radius:4px;cursor:pointer;font-size:11px;font-family:sans-serif;">Kopieren</button>` +
+      `</span><br>` +
+      `→ In Chrome-Adresszeile eingeben &rarr; Dropdown auf <strong>Enabled</strong> stellen &rarr; Chrome neu starten &rarr; Seite neu laden`,
+      "bot"
+    );
+    const retryBtn = document.createElement("button");
+    retryBtn.className = "chat-chip";
+    retryBtn.textContent = "↺ Nochmal versuchen";
+    retryBtn.addEventListener("click", async () => {
+      chipsEl.innerHTML = "";
+      msgsEl.querySelectorAll(".chat-bubble").forEach((el) => el.remove());
+      initialized = false;
+      boot();
+    });
+    chipsEl.appendChild(retryBtn);
+  }
+
   async function boot() {
+    if (!isChromeBrowser()) { fallback("other"); return; }
+
+    const version = getChromeVersion();
+    if (version > 0 && version < 127) { fallback("outdated", version); return; }
+
     const LM = window.LanguageModel || window.ai?.languageModel || window.ai?.assistant;
-    if (!LM) { fallback(); return; }
+    if (!LM) { showActivationGuide(); return; }
 
     let avail;
     try {
@@ -837,7 +875,7 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
         : ((await LM.capabilities?.())?.available ?? "no");
     } catch { avail = "no"; }
 
-    if (avail === "no") { fallback(); return; }
+    if (avail === "no") { showActivationGuide(); return; }
 
     if (avail === "after-download") {
       addMsg("Gemini Nano wird einmalig heruntergeladen – einen Moment…", "system");
@@ -879,11 +917,15 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
     } catch { fallback(); }
   }
 
-  function fallback() {
+  function fallback(reason = "other", version = 0) {
     isFallback = true;
     inputEl.disabled = false;
     inputEl.placeholder = "/kontakt oder Frage wählen…";
-    addMsg("Der KI-Assistent nutzt Gemini Nano direkt in Chrome – Ihr Browser unterstützt das noch nicht. Hier die häufigsten Fragen:", "system");
+    const messages = {
+      outdated: `Ihr Chrome (Version ${version}) ist zu alt. Gemini Nano benötigt Chrome 127 oder neuer. Bitte Chrome aktualisieren – danach läuft der KI-Assistent automatisch.`,
+      other: "Der KI-Assistent nutzt Gemini Nano direkt in Chrome – Ihr Browser unterstützt das leider nicht. Hier die häufigsten Fragen:"
+    };
+    addMsg(messages[reason] || messages.other, "system");
     showHint();
     chipsEl.innerHTML = "";
     FAQ_FALLBACK.forEach(({ q, a }) => {
