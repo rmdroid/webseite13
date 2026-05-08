@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">13 percent check method map</title>
+  <desc id="desc">Four-part method map for risk, data, process and code.</desc>
+  <rect width="900" height="620" rx="18" fill="#fffdf8"/>
+  <rect x="28" y="28" width="844" height="564" rx="16" fill="#f2efe7" stroke="#d8d0c2"/>
+  <circle cx="450" cy="310" r="170" fill="none" stroke="#d8d0c2" stroke-width="2"/>
+  <path d="M450 126v368M266 310h368" stroke="#d8d0c2" stroke-width="2"/>
+  <circle cx="450" cy="310" r="94" fill="#191713"/>
+  <text x="450" y="296" text-anchor="middle" fill="#fffdf8" font-family="Georgia,serif" font-size="54" font-weight="700">13%</text>
+  <text x="450" y="336" text-anchor="middle" fill="#d8d0c2" font-family="Menlo,monospace" font-size="18">CHECK</text>
+  <g font-family="Inter,Arial,sans-serif" font-weight="700" font-size="28" fill="#171512">
+    <rect x="96" y="78" width="230" height="128" rx="14" fill="#fffdf8" stroke="#d8d0c2"/>
+    <text x="128" y="132">Risk</text>
+    <text x="128" y="166" font-size="15" font-weight="500" fill="#6f685e">AI Act, Datenschutz,</text>
+    <text x="128" y="188" font-size="15" font-weight="500" fill="#6f685e">Verantwortung</text>
+    <rect x="574" y="78" width="230" height="128" rx="14" fill="#fffdf8" stroke="#d8d0c2"/>
+    <text x="606" y="132">Data</text>
+    <text x="606" y="166" font-size="15" font-weight="500" fill="#6f685e">Qualitaet, Zugriff,</text>
+    <text x="606" y="188" font-size="15" font-weight="500" fill="#6f685e">Systemgrenzen</text>
+    <rect x="96" y="414" width="230" height="128" rx="14" fill="#fffdf8" stroke="#d8d0c2"/>
+    <text x="128" y="468">Process</text>
+    <text x="128" y="502" font-size="15" font-weight="500" fill="#6f685e">Uebergaben, Routine,</text>
+    <text x="128" y="524" font-size="15" font-weight="500" fill="#6f685e">Entscheidung</text>
+    <rect x="574" y="414" width="230" height="128" rx="14" fill="#fffdf8" stroke="#d8d0c2"/>
+    <text x="606" y="468">Code</text>
+    <text x="606" y="502" font-size="15" font-weight="500" fill="#6f685e">Workflow, Prototyp,</text>
+    <text x="606" y="524" font-size="15" font-weight="500" fill="#6f685e">Kontrollpunkte</text>
+  </g>
+  <path d="M326 142c62-34 186-34 248 0M326 478c62 34 186 34 248 0" fill="none" stroke="#a85d32" stroke-width="4" stroke-linecap="round"/>
+</svg>

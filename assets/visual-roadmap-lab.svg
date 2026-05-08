@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">Interaktive Roadmap</title>
+  <desc id="desc">Roadmap Labor mit vier Phasen und Entscheidungsmetriken</desc>
+  <defs>
+    <style>
+      .bg{fill:#fffdf8}.paper{fill:#f2efe7}.ink{fill:#191713}.muted{fill:#6f685e}.accent{fill:#a85d32}.line{stroke:#d8d0c2;stroke-width:2}.dark{fill:#191713}.light{fill:#fffdf8}
+      text{font-family:Inter,Arial,sans-serif}.mono{font-family:Menlo,Consolas,monospace;font-size:17px;letter-spacing:0}.label{font-size:24px;font-weight:760}.small{font-size:17px}
+    </style>
+  </defs>
+  <rect width="760" height="520" rx="10" class="bg"/>
+  <text x="48" y="70" class="mono muted">ROADMAP LAB</text>
+  <text x="48" y="108" class="label ink">Von unklarer Idee zu belastbarer Umsetzung.</text>
+  <g transform="translate(52 160)">
+    <path d="M52 82h552" fill="none" stroke="#191713" stroke-width="3"/>
+    <g>
+      <circle cx="52" cy="82" r="42" class="dark"/><text x="35" y="90" class="label light">01</text><text x="16" y="154" class="small ink">Assessment</text>
+    </g>
+    <g>
+      <circle cx="236" cy="82" r="42" class="paper" stroke="#d8d0c2" stroke-width="2"/><text x="219" y="90" class="label ink">02</text><text x="204" y="154" class="small ink">Strategy</text>
+    </g>
+    <g>
+      <circle cx="420" cy="82" r="42" class="paper" stroke="#d8d0c2" stroke-width="2"/><text x="403" y="90" class="label ink">03</text><text x="370" y="154" class="small ink">Implementation</text>
+    </g>
+    <g>
+      <circle cx="604" cy="82" r="42" class="accent"/><text x="587" y="90" class="label light">04</text><text x="564" y="154" class="small ink">Innovation</text>
+    </g>
+  </g>
+  <g transform="translate(52 360)">
+    <rect width="656" height="100" rx="14" class="paper" stroke="#d8d0c2" stroke-width="2"/>
+    <text x="28" y="38" class="mono muted">DECISION INPUT</text>
+    <rect x="28" y="58" width="172" height="12" rx="6" fill="#d8d0c2"/><rect x="28" y="58" width="132" height="12" rx="6" class="accent"/>
+    <rect x="242" y="58" width="172" height="12" rx="6" fill="#d8d0c2"/><rect x="242" y="58" width="96" height="12" rx="6" class="accent"/>
+    <rect x="456" y="58" width="172" height="12" rx="6" fill="#d8d0c2"/><rect x="456" y="58" width="118" height="12" rx="6" class="accent"/>
+    <text x="28" y="90" class="small muted">Impact</text><text x="242" y="90" class="small muted">Daten</text><text x="456" y="90" class="small muted">Risiko</text>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">n8n workflow visual</title>
+  <desc id="desc">Workflow sketch from input through AI step to human control and output.</desc>
+  <rect width="760" height="520" rx="18" fill="#fffdf8"/>
+  <rect x="46" y="44" width="668" height="432" rx="16" fill="#191713"/>
+  <text x="86" y="94" font-family="Menlo,monospace" font-size="16" fill="#a85d32">WORKFLOW SKETCH</text>
+  <g fill="none" stroke="#d8d0c2" stroke-width="3" stroke-linecap="round">
+    <path d="M170 250h96M340 250h96M510 250h82"/>
+    <path d="m254 238 14 12-14 12M424 238l14 12-14 12M580 238l14 12-14 12"/>
+  </g>
+  <g font-family="Inter,Arial,sans-serif" font-weight="700">
+    <rect x="82" y="190" width="116" height="120" rx="14" fill="#fffdf8"/>
+    <text x="140" y="246" text-anchor="middle" font-size="18" fill="#171512">Input</text>
+    <text x="140" y="274" text-anchor="middle" font-size="13" fill="#6f685e">trigger</text>
+    <rect x="266" y="190" width="116" height="120" rx="14" fill="#fffdf8"/>
+    <text x="324" y="246" text-anchor="middle" font-size="18" fill="#171512">AI Step</text>
+    <text x="324" y="274" text-anchor="middle" font-size="13" fill="#6f685e">classify</text>
+    <rect x="438" y="190" width="116" height="120" rx="14" fill="#fffdf8"/>
+    <text x="496" y="246" text-anchor="middle" font-size="18" fill="#171512">Human</text>
+    <text x="496" y="274" text-anchor="middle" font-size="13" fill="#6f685e">control</text>
+    <rect x="594" y="190" width="84" height="120" rx="14" fill="#a85d32"/>
+    <text x="636" y="246" text-anchor="middle" font-size="18" fill="#fffdf8">Out</text>
+    <text x="636" y="274" text-anchor="middle" font-size="13" fill="#f2efe7">log</text>
+  </g>
+</svg>

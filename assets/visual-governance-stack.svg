@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">Governance Stack</title>
+  <desc id="desc">EU AI Act Governance Architektur mit Risiko, Daten, Mensch und Workflow</desc>
+  <defs>
+    <style>
+      .bg{fill:#fffdf8}.ink{fill:#191713}.muted{fill:#6f685e}.line{stroke:#d8d0c2;stroke-width:2}.accent{fill:#a85d32}.panel{fill:#f2efe7;stroke:#d8d0c2;stroke-width:2}.dark{fill:#191713}.light{fill:#fffdf8}
+      text{font-family:Inter,Arial,sans-serif}.mono{font-family:Menlo,Consolas,monospace;font-size:18px;letter-spacing:0}.label{font-size:23px;font-weight:760}.small{font-size:17px}
+    </style>
+  </defs>
+  <rect width="760" height="520" rx="10" class="bg"/>
+  <rect x="48" y="44" width="664" height="432" rx="18" class="panel"/>
+  <text x="84" y="94" class="mono muted">EU AI ACT GOVERNANCE</text>
+  <text x="84" y="132" class="label ink">Kontrolle wird vor dem Prototyp geplant.</text>
+  <g transform="translate(84 176)">
+    <rect width="592" height="62" rx="10" class="dark"/>
+    <circle cx="32" cy="31" r="10" class="accent"/>
+    <text x="60" y="39" class="label light">Risikoklasse und Zweck</text>
+  </g>
+  <g transform="translate(84 254)">
+    <rect width="592" height="62" rx="10" class="bg" stroke="#d8d0c2" stroke-width="2"/>
+    <circle cx="32" cy="31" r="10" class="accent"/>
+    <text x="60" y="39" class="label ink">Datenlage und Rechtsgrundlage</text>
+  </g>
+  <g transform="translate(84 332)">
+    <rect width="592" height="62" rx="10" class="bg" stroke="#d8d0c2" stroke-width="2"/>
+    <circle cx="32" cy="31" r="10" class="accent"/>
+    <text x="60" y="39" class="label ink">Human Oversight und Dokumentation</text>
+  </g>
+  <g transform="translate(84 410)">
+    <rect width="592" height="62" rx="10" class="bg" stroke="#d8d0c2" stroke-width="2"/>
+    <circle cx="32" cy="31" r="10" class="accent"/>
+    <text x="60" y="39" class="label ink">Workflow, Monitoring, Freigabe</text>
+  </g>
+  <path d="M648 170v302" class="line"/>
+  <path d="M634 458l14 14 14-14" fill="none" stroke="#a85d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

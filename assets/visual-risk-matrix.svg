@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">AI Act risk matrix visual</title>
+  <desc id="desc">Risk matrix for AI Act and data quality assessment.</desc>
+  <rect width="760" height="520" rx="18" fill="#fffdf8"/>
+  <rect x="48" y="48" width="664" height="424" rx="16" fill="#f2efe7" stroke="#d8d0c2"/>
+  <text x="84" y="96" font-family="Menlo,monospace" font-size="16" fill="#a85d32">RISK / DATA MATRIX</text>
+  <g transform="translate(104 128)">
+    <rect width="480" height="280" rx="10" fill="#fffdf8" stroke="#d8d0c2"/>
+    <path d="M160 0v280M320 0v280M0 93.3h480M0 186.6h480" stroke="#d8d0c2"/>
+    <rect x="320" y="0" width="160" height="93.3" fill="#a85d32" opacity=".22"/>
+    <rect x="160" y="93.3" width="160" height="93.3" fill="#a85d32" opacity=".12"/>
+    <rect x="0" y="186.6" width="160" height="93.3" fill="#3c7a5f" opacity=".16"/>
+    <circle cx="376" cy="54" r="18" fill="#a85d32"/>
+    <circle cx="244" cy="146" r="18" fill="#b1812e"/>
+    <circle cx="78" cy="230" r="18" fill="#3c7a5f"/>
+  </g>
+  <text x="105" y="436" font-family="Inter,Arial,sans-serif" font-size="16" fill="#6f685e">low data risk</text>
+  <text x="542" y="436" font-family="Inter,Arial,sans-serif" font-size="16" fill="#6f685e">high AI risk</text>
+</svg>

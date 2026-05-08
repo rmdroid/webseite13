@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">AI decision brief visual</title>
+  <desc id="desc">A structured decision brief with recommendation and evidence rows.</desc>
+  <rect width="760" height="520" rx="18" fill="#fffdf8"/>
+  <rect x="46" y="42" width="668" height="436" rx="16" fill="#f2efe7" stroke="#d8d0c2"/>
+  <rect x="88" y="82" width="584" height="356" rx="10" fill="#fffdf8" stroke="#d8d0c2"/>
+  <text x="118" y="126" font-family="Menlo,monospace" font-size="16" fill="#a85d32">DECISION BRIEF</text>
+  <text x="118" y="178" font-family="Georgia,serif" font-size="46" font-weight="700" fill="#171512">Build / Hold / Stop</text>
+  <rect x="118" y="212" width="214" height="42" rx="21" fill="#191713"/>
+  <text x="225" y="239" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#fffdf8">Recommendation</text>
+  <g fill="none" stroke="#d8d0c2" stroke-width="2">
+    <path d="M118 294h524"/>
+    <path d="M118 348h524"/>
+    <path d="M118 402h524"/>
+  </g>
+  <g font-family="Inter,Arial,sans-serif" font-size="18" fill="#6f685e">
+    <text x="118" y="278">Evidence</text>
+    <text x="118" y="332">Risk</text>
+    <text x="118" y="386">Next step</text>
+  </g>
+  <g fill="#a85d32">
+    <circle cx="615" cy="272" r="10"/>
+    <circle cx="615" cy="326" r="10"/>
+    <circle cx="615" cy="380" r="10"/>
+  </g>
+</svg>

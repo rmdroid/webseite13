@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">Robert Meyer Arbeitsmodell</title>
+  <desc id="desc">Arbeitsmodell Code statt PowerPoints mit Diagnose, Compliance, Workflow und Schulung</desc>
+  <defs>
+    <style>
+      .bg{fill:#fffdf8}.paper{fill:#f2efe7}.ink{fill:#191713}.muted{fill:#6f685e}.accent{fill:#a85d32}.line{stroke:#d8d0c2;stroke-width:2}.dark{fill:#191713}.light{fill:#fffdf8}
+      text{font-family:Inter,Arial,sans-serif}.mono{font-family:Menlo,Consolas,monospace;font-size:17px;letter-spacing:0}.label{font-size:24px;font-weight:760}.small{font-size:17px}
+    </style>
+  </defs>
+  <rect width="760" height="520" rx="10" class="bg"/>
+  <rect x="48" y="44" width="664" height="432" rx="18" class="paper" stroke="#d8d0c2" stroke-width="2"/>
+  <text x="84" y="92" class="mono muted">ARBEITSMODELL</text>
+  <text x="84" y="130" class="label ink">Code statt PowerPoints</text>
+  <g transform="translate(270 176)">
+    <circle cx="110" cy="110" r="104" class="dark"/>
+    <text x="46" y="100" class="small light">13%-Check</text>
+    <text x="31" y="134" class="label light">Entscheidbar</text>
+  </g>
+  <g transform="translate(78 188)">
+    <rect width="170" height="80" rx="12" class="bg" stroke="#d8d0c2" stroke-width="2"/>
+    <text x="22" y="34" class="mono muted">01</text><text x="22" y="62" class="small ink">Diagnose</text>
+  </g>
+  <g transform="translate(512 188)">
+    <rect width="170" height="80" rx="12" class="bg" stroke="#d8d0c2" stroke-width="2"/>
+    <text x="22" y="34" class="mono muted">02</text><text x="22" y="62" class="small ink">Compliance</text>
+  </g>
+  <g transform="translate(78 338)">
+    <rect width="170" height="80" rx="12" class="bg" stroke="#d8d0c2" stroke-width="2"/>
+    <text x="22" y="34" class="mono muted">03</text><text x="22" y="62" class="small ink">Workflow</text>
+  </g>
+  <g transform="translate(512 338)">
+    <rect width="170" height="80" rx="12" class="bg" stroke="#d8d0c2" stroke-width="2"/>
+    <text x="22" y="34" class="mono muted">04</text><text x="22" y="62" class="small ink">Training</text>
+  </g>
+  <path d="M248 228h60M452 228h60M248 378h74M438 378h74" class="line"/>
+  <circle cx="380" cy="286" r="5" class="accent"/>
+</svg>
