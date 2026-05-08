@@ -511,6 +511,605 @@ function initBriefLab() {
   render();
 }
 
+function initChatWidget() {
+  const NAV_MAP = [
+    { kw: ["roadmap", "assessment", "phasen", "phase", "implementation", "innovation"], page: "roadmap.html", label: "→ Roadmap ansehen" },
+    { kw: ["ki-beratung", "ki beratung", "beratungsleistung"], page: "ki-beratung.html", label: "→ KI-Beratung" },
+    { kw: ["eu ai act", "ai act", "compliance", "regulat", "governance"], page: "eu-ai-act-beratung.html", label: "→ EU AI Act Beratung" },
+    { kw: ["n8n", "automatisierung", "workflow", "prototyp"], page: "n8n-automatisierung.html", label: "→ n8n Automatisierung" },
+    { kw: ["verwaltung", "schulung", "öffentlich", "behörde"], page: "ki-schulung-verwaltung.html", label: "→ KI-Schulung Verwaltung" },
+    { kw: ["mittelstand", "strategisch", "ki-strategie"], page: "ki-strategie-mittelstand.html", label: "→ KI-Strategie Mittelstand" },
+    { kw: ["services", "leistungen", "angebote", "pakete", "übersicht"], page: "services.html", label: "→ Alle Services" },
+    { kw: ["profil", "über robert", "wer ist robert", "erfahrung", "werdegang"], page: "about.html", label: "→ Profil ansehen" },
+    { kw: ["ökosystem", "projekte", "tools", "produkte"], page: "oekosystem.html", label: "→ Ökosystem" },
+  ];
+
+  const PROACTIVE = {
+    "index.html": "Haben Sie eine Frage zu KI-Transformation?",
+    "": "Haben Sie eine Frage zu KI-Transformation?",
+    "roadmap.html": "Welcher Einstieg passt zu Ihrem Vorhaben?",
+    "ki-beratung.html": "Wie kann ich Ihnen bei der KI-Beratung helfen?",
+    "eu-ai-act-beratung.html": "Fragen zum EU AI Act oder Compliance?",
+    "n8n-automatisierung.html": "Interesse an Prozessautomatisierung mit n8n?",
+    "ki-schulung-verwaltung.html": "Fragen zur KI-Schulung für Verwaltungen?",
+    "ki-strategie-mittelstand.html": "Wie weit ist Ihre KI-Strategie?",
+    "services.html": "Welcher Service passt zu Ihrem Vorhaben?",
+    "about.html": "Fragen zu Roberts Profil oder Ansatz?",
+    "oekosystem.html": "Fragen zu den Projekten im Ökosystem?",
+  };
+
+
+  const SYSTEM_PROMPT = `Du bist der Assistent von Robert Meyer, KI-Berater auf ki13prozent.de. Antworte ausschließlich zu Roberts Arbeit und dem Inhalt der aktuellen Seite. Niemals zu anderen Themen.
+
+WICHTIG – DAS IST DER 13%-ANSATZ: Nur 13% der Beschäftigten nutzen KI aktiv. 87% des Potenzials liegt brach. Das hat nichts mit Finanzen zu tun – es geht ausschließlich um KI-Nutzung in Unternehmen und Verwaltungen.
+
+INHALT DER AKTUELLEN SEITE ({{PAGE}}):
+{{CONTENT}}
+
+KONTAKT (exakt, niemals andere URLs erfinden):
+E-Mail: rm@kostenmanager.net
+LinkedIn: linkedin.com/in/robert-meyer-666b39315
+Webseite: ki13prozent.de
+Erstgespräch: kostenlos, 30 Minuten, über das Formular auf ki13prozent.de anfragen
+
+Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzählungszeichen, keine eckigen Klammern, konkrete Kontaktdaten nennen wenn gefragt, eine Rückfrage am Ende.`;
+
+  const INITIAL_PROMPTS = [
+    {
+      role: "user",
+      content: "Was ist der 13%-Ansatz?"
+    },
+    {
+      role: "assistant",
+      content: "Studien zeigen: Nur 13% der Beschäftigten nutzen KI wirklich aktiv im Arbeitsalltag – 87% des Potenzials liegt ungenutzt brach. Robert Meyer hilft Unternehmen und Verwaltungen, genau diesen Vorsprung jetzt zu erschließen, bevor es die Konkurrenz tut. Trifft das auf Ihre Organisation zu?"
+    },
+    {
+      role: "user",
+      content: "Wie kann mir Robert helfen?"
+    },
+    {
+      role: "assistant",
+      content: "Das hängt von Ihrer Situation ab. Wenn noch unklar ist, wo KI bei Ihnen Sinn macht, ist der 13%-Check der richtige Einstieg: 30 Tage, drei priorisierte Use Cases, klarer Entscheidungsbrief für die Führungsebene. Falls konkrete Prozesse zu langsam sind, baut Robert einen n8n-Automatisierungsprototyp. Was ist Ihre aktuell größte Herausforderung – Orientierung, Umsetzung oder Compliance?"
+    },
+    {
+      role: "user",
+      content: "Was kostet das?"
+    },
+    {
+      role: "assistant",
+      content: "Der 13%-Check startet ab 2.500 EUR und dauert 30 Tage. Das Erstgespräch ist kostenlos und unverbindlich – dort schauen wir gemeinsam, ob und welcher Einstieg für Sie passt. Größere Projekte werden individuell kalkuliert. Soll ich direkt ein Erstgespräch für Sie vormerken?"
+    },
+    {
+      role: "user",
+      content: "Wie kann ich Robert erreichen?"
+    },
+    {
+      role: "assistant",
+      content: "Am schnellsten per E-Mail: rm@kostenmanager.net. Alternativ können Sie das Erstgespräch direkt über ki13prozent.de anfragen – kostenlos, 30 Minuten, unverbindlich. Auf LinkedIn finden Sie ihn unter linkedin.com/in/robert-meyer-666b39315. Soll ich das Erstgespräch gleich hier für Sie vorbereiten?"
+    }
+  ];
+
+  const FAQ_FALLBACK = [
+    { q: "Was ist der 13%-Ansatz?", a: "Nur 13% der Beschäftigten nutzen KI aktiv – 87% des Potenzials liegt brach. Wer das jetzt erschließt, gewinnt einen messbaren Wettbewerbsvorsprung.\n\nWas beschäftigt Sie – eher Strategie, Umsetzung oder Compliance?" },
+    { q: "Welche Services gibt es?", a: "Der Einstieg ist meist der 13%-Check: 30 Tage, klarer Entscheidungsbrief. Daneben: KI-Strategie, EU AI Act Compliance, n8n Automatisierung und Schulungen für Verwaltungen.\n\nWelches Thema trifft Ihre Situation am ehesten?" },
+    { q: "Wie läuft ein Erstgespräch ab?", a: "30 Minuten, kostenlos, kein Verkaufsgespräch. Wir schauen gemeinsam, ob KI bei Ihnen Sinn macht und was ein sinnvoller erster Schritt wäre.\n\nHaben Sie ein konkretes Vorhaben im Kopf?" },
+    { q: "Für wen ist die Beratung?", a: "Mittelstand und Verwaltungen ab ~50 Mitarbeitern, die KI ernsthaft einsetzen wollen – ohne Hype, mit Substanz.\n\nIn welchem Umfeld arbeiten Sie?" },
+    { q: "Was kostet es?", a: "Das Erstgespräch ist kostenlos und unverbindlich. Die Projektkosten hängen von Scope und Umfang ab und werden individuell kalkuliert.\n\nMöchten Sie ein Erstgespräch anfragen?" }
+  ];
+
+  const widget = document.createElement("div");
+  widget.className = "chat-widget";
+  widget.innerHTML = `
+    <div class="chat-panel" role="dialog" aria-modal="true" aria-label="KI-Assistent von Robert Meyer">
+      <div class="chat-header">
+        <div class="chat-avatar">RM</div>
+        <div class="chat-header-info">
+          <strong>KI-Assistent</strong>
+          <span>Robert Meyer · ki13prozent.de</span>
+        </div>
+        <div class="chat-status-dot" aria-hidden="true"></div>
+      </div>
+      <div class="chat-progress-bar" id="chat-pb" hidden><span id="chat-pb-fill"></span></div>
+      <div class="chat-messages" id="chat-msgs" role="log" aria-live="polite"></div>
+      <div class="chat-chips" id="chat-chips"></div>
+      <div class="chat-input-row">
+        <textarea class="chat-input" id="chat-input" placeholder="Ihre Frage…" rows="1" aria-label="Nachricht eingeben"></textarea>
+        <button class="chat-send" id="chat-send" aria-label="Senden" disabled>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2L2 8l5 2 2 5 5-12z"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="chat-trigger" id="chat-trigger" aria-label="KI-Assistent öffnen" aria-expanded="false" data-tooltip="Gemini Nano · läuft lokal · nur Chrome">
+      <svg class="icon-chat" width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <svg class="icon-close" width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4L4 14M4 4l10 10"/></svg>
+    </button>
+  `;
+  document.body.appendChild(widget);
+
+  const trigger = widget.querySelector("#chat-trigger");
+  const msgsEl = widget.querySelector("#chat-msgs");
+  const chipsEl = widget.querySelector("#chat-chips");
+  const inputEl = widget.querySelector("#chat-input");
+  const sendBtn = widget.querySelector("#chat-send");
+  const pb = widget.querySelector("#chat-pb");
+  const pbFill = widget.querySelector("#chat-pb-fill");
+
+  let session = null;
+  let questionCount = 0;
+  let contactState = null;
+  let contactData = {};
+  let aiReady = false;
+  let isFallback = false;
+  let initialized = false;
+
+  trigger.addEventListener("click", () => {
+    const open = widget.classList.toggle("open");
+    trigger.setAttribute("aria-expanded", String(open));
+    if (open && !initialized) { initialized = true; boot(); }
+    if (open) setTimeout(() => { if (!isFallback) inputEl.focus(); }, 240);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && widget.classList.contains("open")) {
+      widget.classList.remove("open");
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.focus();
+    }
+  });
+
+  async function typeMsg(text, type, speed = 16) {
+    const el = document.createElement("div");
+    el.className = `chat-bubble ${type}`;
+    msgsEl.appendChild(el);
+    for (let i = 1; i <= text.length; i++) {
+      el.innerHTML = renderMd(text.slice(0, i));
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+      await new Promise((r) => setTimeout(r, speed));
+    }
+    return el;
+  }
+
+  function showHint() {
+    const el = document.createElement("div");
+    el.className = "chat-bubble system chat-hint";
+    el.textContent = "/kontakt · /services · /hilfe";
+    msgsEl.appendChild(el);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
+
+  function renderMd(text) {
+    return text
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/^[ \t]*[-*+][ \t]+/gm, "")
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.+?)\*/g, "<em>$1</em>")
+      .replace(/`(.+?)`/g, "<code>$1</code>")
+      .replace(/\n/g, "<br>");
+  }
+
+  function addMsg(text, type) {
+    const el = document.createElement("div");
+    el.className = `chat-bubble ${type}`;
+    if (type === "user") {
+      el.textContent = text;
+    } else {
+      el.innerHTML = renderMd(text);
+    }
+    msgsEl.appendChild(el);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+    return el;
+  }
+
+  function addTyping() {
+    const el = document.createElement("div");
+    el.className = "chat-typing";
+    el.setAttribute("aria-label", "Assistent schreibt…");
+    el.innerHTML = "<span></span><span></span><span></span>";
+    msgsEl.appendChild(el);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+    return el;
+  }
+
+  function setInput(enabled) {
+    inputEl.disabled = !enabled;
+    sendBtn.disabled = !enabled || !inputEl.value.trim();
+  }
+
+  function setChips(labels) {
+    chipsEl.innerHTML = "";
+    labels.forEach((label) => {
+      const btn = document.createElement("button");
+      btn.className = "chat-chip";
+      btn.textContent = label;
+      btn.addEventListener("click", () => { chipsEl.innerHTML = ""; chipHandler(label); });
+      chipsEl.appendChild(btn);
+    });
+  }
+
+  function extractPageContent() {
+    const main = document.querySelector("main");
+    if (!main) return "";
+    const clone = main.cloneNode(true);
+    clone.querySelectorAll("script, style, svg, .chat-widget, .modal-backdrop, .cookie-banner, .scroll-top, [data-contact-modal]").forEach((el) => el.remove());
+    return clone.textContent
+      .replace(/\t/g, " ")
+      .replace(/ {2,}/g, " ")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim()
+      .slice(0, 4000);
+  }
+
+  function checkNavigation(userText) {
+    const lower = userText.toLowerCase();
+    const current = location.pathname.split("/").pop() || "index.html";
+    const match = NAV_MAP.find(({ kw, page }) => page !== current && kw.some((k) => lower.includes(k)));
+    if (!match) return;
+    const btn = document.createElement("button");
+    btn.className = "chat-chip chat-nav-chip";
+    btn.textContent = match.label;
+    btn.addEventListener("click", () => { window.location.href = match.page; });
+    chipsEl.appendChild(btn);
+  }
+
+  function saveHistory() {
+    try {
+      const bubbles = [...msgsEl.querySelectorAll(".chat-bubble:not(.chat-form-bubble)")];
+      const data = bubbles.slice(-24).map((el) => ({
+        c: el.classList.contains("user") ? el.textContent : el.innerHTML,
+        t: el.classList.contains("user") ? "user" : el.classList.contains("system") ? "system" : "bot"
+      }));
+      sessionStorage.setItem("rmChat", JSON.stringify(data));
+    } catch {}
+  }
+
+  function loadHistory() {
+    try {
+      const data = JSON.parse(sessionStorage.getItem("rmChat") || "[]");
+      if (!data.length) return false;
+      data.forEach(({ c, t }) => {
+        const el = document.createElement("div");
+        el.className = `chat-bubble ${t}`;
+        if (t === "user") el.textContent = c; else el.innerHTML = c;
+        msgsEl.appendChild(el);
+      });
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+      return true;
+    } catch { return false; }
+  }
+
+  function initVoiceInput() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return;
+    const micBtn = document.createElement("button");
+    micBtn.className = "chat-mic";
+    micBtn.setAttribute("aria-label", "Spracheingabe starten");
+    micBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="9" y1="22" x2="15" y2="22"/></svg>`;
+    const inputRow = widget.querySelector(".chat-input-row");
+    inputRow.insertBefore(micBtn, sendBtn);
+    const rec = new SR();
+    rec.lang = "de-DE";
+    rec.continuous = false;
+    rec.interimResults = false;
+    let listening = false;
+    micBtn.addEventListener("click", () => { if (listening) { rec.stop(); return; } try { rec.start(); } catch {} });
+    rec.onstart = () => { listening = true; micBtn.classList.add("listening"); };
+    rec.onend = () => { listening = false; micBtn.classList.remove("listening"); };
+    rec.onerror = () => { listening = false; micBtn.classList.remove("listening"); };
+    rec.onresult = (e) => {
+      const text = e.results[0][0].transcript.trim();
+      if (!text) return;
+      inputEl.value = text;
+      sendBtn.disabled = false;
+      setTimeout(() => handleSend(), 80);
+    };
+  }
+
+  function initProactiveBubble() {
+    const page = location.pathname.split("/").pop() || "index.html";
+    const msg = PROACTIVE[page] || "Haben Sie eine Frage zu KI-Transformation?";
+    setTimeout(() => {
+      if (initialized) return;
+      const el = document.createElement("div");
+      el.className = "chat-proactive";
+      el.textContent = msg;
+      widget.insertBefore(el, trigger);
+      el.addEventListener("click", () => { trigger.click(); el.remove(); });
+      requestAnimationFrame(() => el.classList.add("visible"));
+      setTimeout(() => { el.classList.remove("visible"); setTimeout(() => el.remove(), 700); }, 8000);
+    }, 30000);
+  }
+
+  function chipHandler(label) {
+    if (label === "Erstgespräch anfragen" || label === "Ja, gerne") { startContact(); return; }
+    if (label === "Noch eine Frage") { setInput(true); inputEl.focus(); return; }
+    sendMessage(label);
+  }
+
+  async function boot() {
+    const LM = window.LanguageModel || window.ai?.languageModel || window.ai?.assistant;
+    if (!LM) { fallback(); return; }
+
+    let avail;
+    try {
+      avail = typeof LM.availability === "function"
+        ? await LM.availability()
+        : ((await LM.capabilities?.())?.available ?? "no");
+    } catch { avail = "no"; }
+
+    if (avail === "no") { fallback(); return; }
+
+    if (avail === "after-download") {
+      addMsg("Gemini Nano wird einmalig heruntergeladen – einen Moment…", "system");
+      pb.hidden = false;
+    }
+
+    try {
+      const pageName = location.pathname.split("/").pop() || "index.html";
+      const pageCtx = `${document.title} (${pageName})`;
+      const pageContent = extractPageContent();
+      const prompt = SYSTEM_PROMPT
+        .replace("{{PAGE}}", pageCtx)
+        .replace("{{CONTENT}}", pageContent);
+      const opts = { systemPrompt: prompt, initialPrompts: INITIAL_PROMPTS };
+      if (avail === "after-download") {
+        opts.monitor = (m) => {
+          m.addEventListener("downloadprogress", (e) => {
+            if (e.total > 0) pbFill.style.width = `${Math.round((e.loaded / e.total) * 100)}%`;
+          });
+        };
+      }
+      session = await LM.create({ ...opts });
+      pb.hidden = true;
+      msgsEl.querySelector(".chat-bubble.system")?.remove();
+      aiReady = true;
+      setInput(true);
+      const hasHistory = loadHistory();
+      if (hasHistory) {
+        addMsg("Willkommen zurück – Ihr Gespräch wurde wiederhergestellt.", "system");
+        showHint();
+      } else {
+        const greeting = await typeMsg("Guten Tag! Ich bin der KI-Assistent von Robert Meyer – für Fragen zu KI-Transformation, dem 13%-Ansatz und den Services.\n\nWas beschäftigt Sie?", "bot");
+        greeting.style.transition = "opacity 800ms ease";
+        setTimeout(() => { greeting.style.opacity = "0"; }, 8000);
+        setTimeout(() => { greeting.style.maxHeight = "0"; greeting.style.padding = "0"; greeting.style.margin = "0"; greeting.style.overflow = "hidden"; }, 8800);
+        showHint();
+      }
+      setChips(["Was ist der 13%-Ansatz?", "Welche Services gibt es?", "Erstgespräch anfragen"]);
+    } catch { fallback(); }
+  }
+
+  function fallback() {
+    isFallback = true;
+    inputEl.disabled = false;
+    inputEl.placeholder = "/kontakt oder Frage wählen…";
+    addMsg("Der KI-Assistent nutzt Gemini Nano direkt in Chrome – Ihr Browser unterstützt das noch nicht. Hier die häufigsten Fragen:", "system");
+    showHint();
+    chipsEl.innerHTML = "";
+    FAQ_FALLBACK.forEach(({ q, a }) => {
+      const btn = document.createElement("button");
+      btn.className = "chat-chip";
+      btn.textContent = q;
+      btn.addEventListener("click", () => {
+        chipsEl.innerHTML = "";
+        addMsg(q, "user");
+        addMsg(a, "bot");
+        questionCount++;
+        if (questionCount >= 2) setTimeout(() => setChips(["Erstgespräch anfragen", "Weitere Frage"]), 500);
+      });
+      chipsEl.appendChild(btn);
+    });
+    sendBtn.disabled = false;
+  }
+
+  async function sendMessage(text) {
+    if (!text.trim() || !aiReady) return;
+    chipsEl.innerHTML = "";
+    addMsg(text, "user");
+    setInput(false);
+    inputEl.value = "";
+    inputEl.style.height = "auto";
+    questionCount++;
+
+    const typing = addTyping();
+    try {
+      let response;
+      if (typeof session.prompt === "function") {
+        response = await session.prompt(text);
+      } else {
+        const stream = session.promptStreaming(text);
+        for await (const chunk of stream) response = chunk;
+      }
+      typing.remove();
+      addMsg(response || "Keine Antwort – bitte erneut versuchen.", "bot");
+    } catch {
+      typing.remove();
+      addMsg("Entschuldigung, da ist etwas schiefgelaufen. Bitte erneut versuchen.", "bot");
+    }
+
+    setInput(true);
+    inputEl.focus();
+    checkNavigation(text);
+    saveHistory();
+
+    if (questionCount === 4) {
+      setTimeout(() => {
+        addMsg("Klingt nach einem konkreten Vorhaben – soll ich direkt ein Erstgespräch für Sie vormerken?", "system");
+        setChips(["Ja, gerne", "Noch eine Frage"]);
+      }, 400);
+    } else if (questionCount >= 5 && questionCount % 2 === 1) {
+      setTimeout(() => setChips(["Erstgespräch anfragen", "Noch eine Frage"]), 400);
+    }
+  }
+
+  function startContact() {
+    chipsEl.innerHTML = "";
+    contactState = "name";
+    addMsg("Super – das dauert nur 30 Sekunden. Wie heißen Sie?", "bot");
+    inputEl.placeholder = "Ihr Name…";
+    setInput(true);
+    inputEl.focus();
+  }
+
+  async function handleContact(text) {
+    addMsg(text, "user");
+    setInput(false);
+
+    if (contactState === "name") {
+      contactData.name = text;
+      contactState = "email";
+      addMsg(`${text.split(" ")[0]}, danke. Ihre E-Mail-Adresse?`, "bot");
+      inputEl.placeholder = "ihre@email.de";
+      setInput(true);
+
+    } else if (contactState === "email") {
+      if (!text.includes("@") || !text.includes(".")) {
+        addMsg("Das sieht nicht wie eine gültige E-Mail aus – bitte nochmal?", "bot");
+        setInput(true);
+        return;
+      }
+      contactData.email = text;
+      contactState = "date";
+      addMsg("Haben Sie einen Wunschtermin? (Optional – einfach leer lassen und Enter drücken)", "bot");
+      inputEl.placeholder = "z.B. nächste Woche, oder leer lassen…";
+      setInput(true);
+
+    } else if (contactState === "date") {
+      contactData.date = text;
+      contactState = "done";
+      inputEl.placeholder = "Ihre Frage…";
+
+      const typing = addTyping();
+      const msgBody = `ANFRAGE via Chat-Assistent (ki13prozent.de)
+
+Name: ${contactData.name}
+E-Mail: ${contactData.email}
+Wunschtermin: ${contactData.date || "Nicht angegeben"}
+Seite: ${location.href}
+Zeit: ${new Date().toLocaleString("de-DE")}`;
+
+      try {
+        await fetch("https://n8n.top-beraternetzwerk.de/webhook/teamschat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user: contactData.name, message: msgBody })
+        });
+        typing.remove();
+        addMsg(`Perfekt! Die Anfrage ist angekommen, ${contactData.name.split(" ")[0]}. Robert meldet sich in der Regel innerhalb von 24 Stunden. Bis dann!`, "bot");
+        if (window.umami) window.umami.track("chat-contact-submit");
+      } catch {
+        typing.remove();
+        addMsg("Anfrage konnte nicht gesendet werden. Bitte schreiben Sie direkt an rm@kostenmanager.net", "bot");
+      }
+    }
+  }
+
+  function showContactForm() {
+    const bubble = document.createElement("div");
+    bubble.className = "chat-bubble bot chat-form-bubble";
+    bubble.innerHTML = `
+      <strong>Erstgespräch anfragen</strong>
+      <form class="chat-inline-form">
+        <input name="name" placeholder="Ihr Name *" required autocomplete="name">
+        <input name="email" type="email" placeholder="E-Mail *" required autocomplete="email">
+        <input name="date" placeholder="Wunschtermin (optional)">
+        <button class="chat-form-submit" type="submit">Anfrage senden</button>
+        <span class="chat-form-status"></span>
+      </form>
+    `;
+    msgsEl.appendChild(bubble);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+    bubble.querySelector("input[name='name']").focus();
+
+    bubble.querySelector("form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
+      if (!data.name || !data.email) return;
+      const submitBtn = e.target.querySelector(".chat-form-submit");
+      const statusEl = e.target.querySelector(".chat-form-status");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Wird gesendet…";
+      const msgBody = `ANFRAGE via /kontakt (ki13prozent.de)\n\nName: ${data.name}\nE-Mail: ${data.email}\nWunschtermin: ${data.date || "Nicht angegeben"}\nSeite: ${location.href}\nZeit: ${new Date().toLocaleString("de-DE")}`;
+      try {
+        await fetch("https://n8n.top-beraternetzwerk.de/webhook/teamschat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user: data.name, message: msgBody })
+        });
+        e.target.innerHTML = `<span class="chat-form-success">Danke, ${data.name.split(" ")[0]}! Robert meldet sich innerhalb von 24 Stunden bei Ihnen.</span>`;
+        if (window.umami) window.umami.track("chat-command-kontakt");
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Anfrage senden";
+        statusEl.textContent = "Fehler – bitte rm@kostenmanager.net nutzen.";
+      }
+    });
+  }
+
+  function executeCommand(cmd) {
+    addMsg("/" + cmd, "user");
+    if (cmd === "kontakt") {
+      addMsg("Hier direkt das Formular:", "bot");
+      showContactForm();
+      saveHistory();
+      return;
+    }
+    if (cmd === "services" || cmd === "service") {
+      addMsg("Welchen Service möchten Sie vertiefen?", "bot");
+      setChips(["13%-Check", "n8n Automatisierung", "EU AI Act Beratung", "KI-Schulung Verwaltung", "Erstgespräch anfragen"]);
+      saveHistory();
+      return;
+    }
+    if (cmd === "hilfe" || cmd === "help") {
+      addMsg("/kontakt – Formular im Chat\n/services – Services anzeigen\n/roadmap · /n8n · /aiact · /verwaltung · /mittelstand – direkt zur Seite\n/hilfe – diese Übersicht", "bot");
+      saveHistory();
+      return;
+    }
+    const navMatch = NAV_MAP.find(({ page }) => {
+      const slug = page.replace(".html", "").replace("ki-", "").replace("-beratung", "").replace("-automatisierung", "").replace("-verwaltung", "").replace("-mittelstand", "");
+      return cmd === slug || cmd === page.replace(".html", "") || page.replace(".html","").includes(cmd);
+    });
+    if (navMatch) {
+      addMsg(`Ich leite Sie weiter zu: ${navMatch.label.replace("→ ", "")}`, "bot");
+      setTimeout(() => { window.location.href = navMatch.page; }, 1000);
+      return;
+    }
+    addMsg("Unbekannter Befehl. Tippen Sie /hilfe für eine Übersicht.", "bot");
+  }
+
+  function handleSend() {
+    const text = inputEl.value.trim();
+    if (!text || inputEl.disabled) return;
+    inputEl.value = "";
+    inputEl.style.height = "auto";
+    if (text.startsWith("/")) {
+      executeCommand(text.slice(1).toLowerCase().trim());
+      return;
+    }
+    if (isFallback) return;
+    if (contactState && contactState !== "done") {
+      handleContact(text);
+    } else {
+      sendMessage(text);
+    }
+  }
+
+  inputEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); }
+  });
+
+  inputEl.addEventListener("input", () => {
+    sendBtn.disabled = !inputEl.value.trim() || inputEl.disabled;
+    inputEl.style.height = "auto";
+    inputEl.style.height = `${Math.min(80, inputEl.scrollHeight)}px`;
+  });
+
+  sendBtn.addEventListener("click", handleSend);
+
+  initVoiceInput();
+  initProactiveBubble();
+}
+
 function initScrollTop() {
   const btn = document.createElement("button");
   btn.className = "scroll-top";
@@ -582,6 +1181,7 @@ initDiagnoseTool();
 initPriorityBoard();
 initBriefLab();
 initScrollTop();
+initChatWidget();
 initTestimonialRotator();
 initActiveNav();
 const _page = location.pathname.split("/").pop() || "index.html";
