@@ -752,7 +752,7 @@ body.nav-open .site-header {
 
 .portrait-block {
   display: grid;
-  grid-template-columns: minmax(220px, 0.28fr) minmax(0, 1fr);
+  grid-template-columns: minmax(260px, 0.36fr) minmax(0, 1fr);
   gap: clamp(24px, 5vw, 56px);
   align-items: center;
 }
