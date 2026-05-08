@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KI-Beratung Pakete - 13%-Check, AI Act Sprint und n8n Workflow</title>
+  <meta name="description" content="Konkrete KI-Beratungspakete von Robert Meyer: 13%-Check, AI Act Risiko-Sprint, n8n Workflow-Prototyp und Executive KI-Schulung.">
+  <link rel="canonical" href="https://ki13prozent.de/services.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* === 30-TAGE-TIMELINE === */
+    .timeline-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: hidden;
+      margin-top: 28px;
+    }
+
+    .timeline-step {
+      padding: 20px 18px;
+      border-right: 1px solid var(--border);
+    }
+
+    .timeline-step:last-child { border-right: 0; }
+
+    .timeline-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .timeline-step h4 {
+      font-size: 14px;
+      font-weight: 730;
+      margin: 0 0 8px;
+      line-height: 1.25;
+    }
+
+    .timeline-step p { font-size: 13px; color: var(--muted); }
+
+    .timeline-connector {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 4px;
+      margin-bottom: 22px;
+    }
+
+    .timeline-connector span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .timeline-connector-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      margin: 0 8px;
+    }
+
+    /* === WIZARD STYLES (kopiert für Konsistenz) === */
+    .modal-wide { width: min(660px, 100%); }
+    .wizard-steps { display: flex; align-items: center; gap: 8px; }
+    .wiz-step {
+      width: 30px; height: 30px; display: grid; place-items: center;
+      border: 1px solid var(--border); border-radius: 50%;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      transition: background 200ms, border-color 200ms, color 200ms;
+    }
+    .wiz-step.active { background: var(--surface-strong); color: var(--surface); border-color: var(--surface-strong); }
+    .wiz-divider { width: 28px; height: 1px; background: var(--border); }
+    .service-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+    .service-choice {
+      display: grid; gap: 6px; text-align: left;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px; background: var(--surface);
+      transition: border-color 140ms, background 140ms;
+    }
+    .service-choice strong { font-size: 15px; }
+    .service-choice span { color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .service-choice:hover { border-color: var(--fg); background: color-mix(in oklch, var(--accent) 5%, var(--surface)); }
+    .service-choice.selected { border-color: var(--accent); background: color-mix(in oklch, var(--accent) 9%, var(--surface)); }
+    .wiz-questions { display: grid; gap: 14px; margin-top: 20px; }
+    .wiz-fieldset { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin: 0; }
+    .wiz-fieldset legend { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 0 4px; }
+    .radio-group { display: grid; gap: 8px; margin-top: 12px; }
+    .radio-group label { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+    .wiz-nav { display: flex; gap: 10px; margin-top: 22px; justify-content: flex-end; }
+
+    @media (max-width: 700px) {
+      .timeline-strip { grid-template-columns: 1fr 1fr; }
+      .timeline-step:nth-child(2) { border-right: 0; }
+      .timeline-step:nth-child(3),
+      .timeline-step:nth-child(4) { border-top: 1px solid var(--border); }
+      .timeline-step:nth-child(4) { border-right: 0; }
+    }
+
+    @media (max-width: 440px) {
+      .timeline-strip { grid-template-columns: 1fr; }
+      .timeline-step { border-right: 0 !important; }
+      .timeline-step + .timeline-step { border-top: 1px solid var(--border); }
+      .service-choices { grid-template-columns: 1fr; }
+    }
+
+    /* === LAYOUT OVERRIDES === */
+    .offer-stack { grid-template-columns: repeat(3, 1fr); }
+
+    .package-card { overflow: visible; }
+
+    .package-card.featured {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      grid-template-columns: 1fr minmax(240px, 0.6fr);
+      grid-template-rows: 1fr auto;
+      column-gap: 36px;
+    }
+    .package-card.featured > div:first-child { grid-column: 1; grid-row: 1; }
+    .package-card.featured .package-graphic {
+      grid-column: 2; grid-row: 1 / 3;
+      margin: 0; min-height: 0; align-self: center;
+    }
+    .package-card.featured .card-footer { grid-column: 1; grid-row: 2; align-self: end; }
+
+    .package-card.featured .timeline-strip {
+      background: color-mix(in oklch, var(--surface) 7%, var(--surface-strong));
+      border-color: color-mix(in oklch, var(--surface) 18%, transparent);
+    }
+    .package-card.featured .timeline-step {
+      border-color: color-mix(in oklch, var(--surface) 18%, transparent);
+    }
+    .package-card.featured .timeline-step h4 { color: var(--surface); }
+    .package-card.featured .timeline-step p {
+      color: color-mix(in oklch, var(--surface) 62%, transparent);
+    }
+    .package-card.featured .timeline-tag { color: var(--accent); }
+
+    .package-card.featured .pill {
+      border-color: color-mix(in oklch, var(--surface) 28%, transparent);
+      color: color-mix(in oklch, var(--surface) 72%, transparent);
+    }
+
+    @media (max-width: 980px) {
+      .offer-stack { grid-template-columns: 1fr; }
+      .package-card.featured {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        column-gap: 0;
+      }
+      .package-card.featured > div:first-child { grid-column: 1; grid-row: auto; }
+      .package-card.featured .package-graphic { grid-column: 1; grid-row: auto; min-height: 240px; }
+      .package-card.featured .card-footer { grid-column: 1; grid-row: auto; }
+    }
+  </style>
+  <script defer src="https://cv.rm-on.de/script.js" data-website-id="077fc84e-d4f1-4861-a26e-9604ad4954e3"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a>
+      <nav class="primary-nav" aria-label="Hauptnavigation">
+        <a href="index.html">Start</a>
+        <a href="services.html">Services</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="about.html">Profil</a>
+        <a href="oekosystem.html">Ökosystem</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-primary" type="button" data-open-contact>Erstgespräch</button>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Pakete</p>
+        <h1>Welche KI-Investition lohnt sich wirklich?</h1>
+        <p>Jedes Paket beantwortet eine konkrete Entscheidungsfrage: investieren, absichern, automatisieren oder Teams handlungsfähig machen.</p>
+      </div>
+    </section>
+
+    <section class="section" id="pakete">
+      <div class="container offer-stack">
+
+        <!-- 13%-CHECK mit Timeline -->
+        <article class="package-card featured">
+          <div>
+            <p class="kicker">Signature · 30 Tage</p>
+            <h2>13%-Check</h2>
+            <p>Die KI-Umsetzungsprüfung für Entscheider, bevor Budget freigegeben wird.</p>
+            <ul>
+              <li>Use-Case-Schärfung und wirtschaftliche Relevanz</li>
+              <li>AI-Act- und Datenschutz-Risikoscan</li>
+              <li>Datenlage, Prozesswirkung und Umsetzungshürde</li>
+              <li>30/60/90-Tage-Entscheidungsplan</li>
+            </ul>
+
+            <p class="eyebrow" style="margin-top:28px">Was in 30 Tagen passiert</p>
+            <div class="timeline-strip">
+              <div class="timeline-step">
+                <div class="timeline-tag">Tag 1–5</div>
+                <h4>Use Case & Datenlage</h4>
+                <p>Use Case schärfen, Datenverfügbarkeit prüfen, wirtschaftliche Relevanz bewerten.</p>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-tag">Tag 6–12</div>
+                <h4>AI Act & Datenschutz</h4>
+                <p>Risikoklassifizierung, Datenschutzfragen, Governance-Anforderungen dokumentieren.</p>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-tag">Tag 13–20</div>
+                <h4>Prozess & Workflow</h4>
+                <p>Prozesswirkung analysieren, Übergaben und Kontrollpunkte skizzieren.</p>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-tag">Tag 21–30</div>
+                <h4>Entscheidungsbrief</h4>
+                <p>Managementtaugliche Empfehlung: investieren, absichern, prototypisieren oder stoppen.</p>
+              </div>
+            </div>
+          </div>
+          <div class="package-graphic"><img src="assets/visual-13-check.svg" alt="13%-Check mit Risk, Data, Process und Code"></div>
+          <div class="card-footer"><span class="pill">Bester Einstieg</span><button class="btn btn-primary" type="button" data-open-contact data-contact-topic="13%-Check">Anfragen</button></div>
+        </article>
+
+        <article class="package-card">
+          <div>
+            <p class="kicker">Compliance · 1-3 Wochen</p>
+            <h2>AI Act Risiko-Sprint</h2>
+            <p>Für Organisationen, die wissen müssen, welche KI-Systeme dokumentiert, klassifiziert und gesteuert werden müssen.</p>
+            <ul>
+              <li>Systeminventar und Risikoklassifizierung</li>
+              <li>Governance- und Verantwortlichkeitslogik</li>
+              <li>Dokumentationsanforderungen für Management und Teams</li>
+            </ul>
+          </div>
+          <div class="card-footer"><span class="pill">Auf Anfrage</span><button class="btn" type="button" data-open-contact data-contact-topic="AI Act Risiko-Sprint">Anfragen</button></div>
+        </article>
+
+        <article class="package-card">
+          <div>
+            <p class="kicker">Umsetzung · 2-6 Wochen</p>
+            <h2>n8n Workflow-Prototyp</h2>
+            <p>Für Prozesse, bei denen KI nicht erklärt, sondern als kontrollierbarer Ablauf getestet werden soll.</p>
+            <ul>
+              <li>Prozessaufnahme und Automatisierungshypothese</li>
+              <li>n8n-Prototyp mit Übergaben und Kontrollpunkten</li>
+              <li>Entscheidungsvorlage für Produktivsetzung</li>
+            </ul>
+          </div>
+          <div class="card-footer"><span class="pill">Auf Anfrage</span><button class="btn" type="button" data-open-contact data-contact-topic="n8n Workflow-Prototyp">Anfragen</button></div>
+        </article>
+
+        <article class="package-card">
+          <div>
+            <p class="kicker">Enablement · 1-2 Tage</p>
+            <h2>Executive KI-Schulung</h2>
+            <p>Für Führungskräfte, Fachbereiche und Verwaltungen, die KI sicher einordnen und praktisch nutzen müssen.</p>
+            <ul>
+              <li>KI-Werkzeugkoffer für echte Arbeitsabläufe</li>
+              <li>Prompting, Datenschutz, Governance und Grenzen</li>
+              <li>Transfer in konkrete Aufgaben des Teams</li>
+            </ul>
+          </div>
+          <div class="card-footer"><span class="pill">Auf Anfrage</span><button class="btn" type="button" data-open-contact data-contact-topic="Executive KI-Schulung">Anfragen</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark-band">
+      <div class="container section-header">
+        <div><h2>Ein gutes KI-Projekt braucht vier belastbare Signale.</h2></div>
+        <p>Diese vier Signale tauchen in jedem Paket wieder auf. Fehlt eines davon, ist die Umsetzung meist nur eine Demo.</p>
+      </div>
+      <div class="container signal-diagram">
+        <div class="signal-ring visual-frame">
+          <img src="assets/visual-13-check.svg" alt="Vier belastbare KI-Projektsignale: Risk, Data, Process und Code">
+        </div>
+        <div class="signal-copy">
+          <article><h3>Risk</h3><p>AI Act, Datenschutz, Haftung, Akzeptanz.</p></article>
+          <article><h3>Data</h3><p>Datenqualität, Zugriff, Systemgrenzen, Dokumentation.</p></article>
+          <article><h3>Process</h3><p>Routine, Entscheidung, Übergabe, Eskalation.</p></article>
+          <article><h3>Code</h3><p>Workflow, Prototyp, Kontrollpunkt, Betrieb.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section-header">
+        <div><p class="eyebrow">Vertiefung</p><h2>Spezialisierte Einstiege für konkrete Vorhaben.</h2></div>
+      </div>
+      <div class="container seo-link-grid">
+        <a href="ki-beratung.html"><strong>KI-Beratung Deutschland</strong><span>Strategie, Umsetzung und Entscheidungslogik</span></a>
+        <a href="eu-ai-act-beratung.html"><strong>EU AI Act Beratung</strong><span>Risiko, Governance und Dokumentation</span></a>
+        <a href="n8n-automatisierung.html"><strong>n8n Automatisierung</strong><span>Workflows, Agenten und Prozess-Prototypen</span></a>
+        <a href="ki-schulung-verwaltung.html"><strong>KI-Schulung Verwaltung</strong><span>Kompetenz, Datenschutz und Akzeptanz</span></a>
+        <a href="ki-strategie-mittelstand.html"><strong>KI-Strategie Mittelstand</strong><span>Use Cases, ROI und 30-Tage-Plan</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a><p class="muted" style="margin-top:16px">Kontakt: rm@kostenmanager.net · +49 (0) 162 4194748</p></div>
+      <nav class="legal-nav" aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener">LinkedIn</a></nav>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" data-contact-modal aria-hidden="true">
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <div class="modal-head">
+        <div class="wizard-steps" aria-label="Fortschritt">
+          <span class="wiz-step active" data-step="1">1</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="2">2</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="3">3</span>
+        </div>
+        <button class="icon-button" type="button" data-close-contact aria-label="Dialog schließen">×</button>
+      </div>
+      <div data-wizard-step="1">
+        <p class="eyebrow">Schritt 1 von 3</p>
+        <h2 id="contact-title">Womit sollen wir starten?</h2>
+        <div class="service-choices">
+          <button class="service-choice" type="button" data-choice="13%-Check"><strong>13%-Check</strong><span>KI-Vorhaben prüfen, bevor Budget freigegeben wird</span></button>
+          <button class="service-choice" type="button" data-choice="AI Act Risiko-Sprint"><strong>AI Act Risiko-Sprint</strong><span>Compliance-Status klären und Risiken dokumentieren</span></button>
+          <button class="service-choice" type="button" data-choice="n8n Workflow-Prototyp"><strong>n8n Workflow-Prototyp</strong><span>Einen Prozess als echten Workflow testen</span></button>
+          <button class="service-choice" type="button" data-choice="Executive KI-Schulung"><strong>Executive KI-Schulung</strong><span>Führungskräfte oder Teams befähigen</span></button>
+        </div>
+      </div>
+      <div data-wizard-step="2" hidden>
+        <p class="eyebrow">Schritt 2 von 3</p>
+        <h2>Drei kurze Fragen.</h2>
+        <div class="wiz-questions">
+          <fieldset class="wiz-fieldset"><legend>Organisation</legend><div class="radio-group"><label><input type="radio" name="wiz-org" value="Unternehmen / Mittelstand"> Unternehmen / Mittelstand</label><label><input type="radio" name="wiz-org" value="Verwaltung / öffentliche Stelle"> Verwaltung / Öffentlicher Sektor</label><label><input type="radio" name="wiz-org" value="Beratung / Agentur"> Beratung / Agentur</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Aktueller KI-Status</legend><div class="radio-group"><label><input type="radio" name="wiz-status" value="Erste Ideen"> Erste Ideen, noch kein konkreter Plan</label><label><input type="radio" name="wiz-status" value="Pilot läuft oder geplant"> Pilot läuft oder konkret geplant</label><label><input type="radio" name="wiz-status" value="Tools im Einsatz, Governance offen"> Tools im Einsatz, Governance noch offen</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Größtes Risiko</legend><div class="radio-group"><label><input type="radio" name="wiz-risk" value="Budget ohne Wirkung"> Budget ohne nachweisbare Wirkung</label><label><input type="radio" name="wiz-risk" value="Datenschutz / AI Act"> Datenschutz oder AI Act Compliance</label><label><input type="radio" name="wiz-risk" value="Akzeptanz im Team"> Akzeptanz im Team</label><label><input type="radio" name="wiz-risk" value="Technische Umsetzung"> Technische Umsetzung</label></div></fieldset>
+        </div>
+        <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="button" data-wizard-next>Weiter</button></div>
+      </div>
+      <div data-wizard-step="3" hidden>
+        <p class="eyebrow">Schritt 3 von 3</p>
+        <h2>Kontaktdaten.</h2>
+        <form data-contact-form>
+          <input type="hidden" name="topic">
+          <input type="hidden" name="companyType">
+          <input type="hidden" name="aiStatus">
+          <input type="hidden" name="biggestRisk">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="form-status"></div>
+          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" autocomplete="tel"></div>
+          <div class="field"><label for="appointment">Wunschtermin</label><input id="appointment" name="appointment" placeholder="z.B. Dienstagvormittag"></div>
+          <div class="field"><label for="message">Kurzbeschreibung</label><textarea id="message" name="message" rows="3"></textarea></div>
+          <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="submit">Anfrage senden</button></div>
+          <p id="form-status" data-form-status class="muted" style="margin-top:14px">Alternativ: rm@kostenmanager.net · +49 (0) 162 4194748</p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

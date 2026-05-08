@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil - Robert Meyer</title>
+  <meta name="description" content="Robert Meyer: KI-Consultant, AI-Act-Spezialist, Dozent und Autor. Code statt PowerPoints, 13%-Check und praxisnahe KI-Umsetzung.">
+  <link rel="canonical" href="https://ki13prozent.de/about.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .reject-list {
+      display: grid;
+      gap: 0;
+      margin-top: 24px;
+    }
+
+    .reject-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .reject-item:last-child { border-bottom: 0; }
+
+    .reject-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--warning);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: 2px;
+      white-space: nowrap;
+    }
+
+    .reject-item p {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .reject-item strong {
+      display: block;
+      font-size: 15px;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .why-text {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface-strong);
+      color: var(--surface);
+      padding: clamp(28px, 4vw, 48px);
+    }
+
+    .why-text p {
+      color: color-mix(in oklch, var(--surface) 75%, transparent);
+      margin-top: 16px;
+    }
+
+    .why-text p + p { margin-top: 12px; }
+
+    .why-text h2 {
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.18;
+      margin-top: 14px;
+    }
+
+    /* === WIZARD STYLES === */
+    .modal-wide { width: min(660px, 100%); }
+    .wizard-steps { display: flex; align-items: center; gap: 8px; }
+    .wiz-step {
+      width: 30px; height: 30px; display: grid; place-items: center;
+      border: 1px solid var(--border); border-radius: 50%;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      transition: background 200ms, border-color 200ms, color 200ms;
+    }
+    .wiz-step.active { background: var(--surface-strong); color: var(--surface); border-color: var(--surface-strong); }
+    .wiz-divider { width: 28px; height: 1px; background: var(--border); }
+    .service-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+    .service-choice {
+      display: grid; gap: 6px; text-align: left;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px; background: var(--surface);
+      transition: border-color 140ms, background 140ms;
+    }
+    .service-choice strong { font-size: 15px; }
+    .service-choice span { color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .service-choice:hover { border-color: var(--fg); background: color-mix(in oklch, var(--accent) 5%, var(--surface)); }
+    .service-choice.selected { border-color: var(--accent); background: color-mix(in oklch, var(--accent) 9%, var(--surface)); }
+    .wiz-questions { display: grid; gap: 14px; margin-top: 20px; }
+    .wiz-fieldset { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin: 0; }
+    .wiz-fieldset legend { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 0 4px; }
+    .radio-group { display: grid; gap: 8px; margin-top: 12px; }
+    .radio-group label { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+    .wiz-nav { display: flex; gap: 10px; margin-top: 22px; justify-content: flex-end; }
+
+    @media (max-width: 860px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .service-choices { grid-template-columns: 1fr; }
+    }
+    [data-testimonials] { display: grid; }
+    [data-testimonial] { grid-column: 1; grid-row: 1; opacity: 0; transition: opacity 700ms ease; }
+    [data-testimonial].active { opacity: 1; }
+  </style>
+  <script defer src="https://cv.rm-on.de/script.js" data-website-id="077fc84e-d4f1-4861-a26e-9604ad4954e3"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a>
+      <nav class="primary-nav" aria-label="Hauptnavigation">
+        <a href="index.html">Start</a>
+        <a href="services.html">Services</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="about.html">Profil</a>
+        <a href="oekosystem.html">Ökosystem</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <div class="nav-actions"><button class="btn btn-primary" type="button" data-open-contact>Erstgespräch</button><button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false">☰</button></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- PORTRAIT HERO -->
+    <section class="page-hero">
+      <div class="container portrait-block">
+        <figure class="portrait-card"><img src="assets/robert-meyer.jpg" alt="Robert Meyer"></figure>
+        <div>
+          <p class="eyebrow">Inhaber und KI-Consultant</p>
+          <h1 class="profile-title">
+            <span>Robert Meyer.</span>
+            <span>KI-Berater, der</span>
+            <span>liefert statt erklärt.</span>
+          </h1>
+          <p style="margin-top:22px">15 Jahre Erfahrung in IT, Projektmanagement und digitaler Transformation. Seit über zwei Jahren ausschließlich auf KI-Strategie, EU AI Act und Prozessautomatisierung spezialisiert. Nicht weil es gerade trendy ist – sondern weil ich gesehen habe, wie viel Budget in Vorhaben fließt, die nie den Betrieb erreichen.</p>
+          <div class="cert-list">
+            <span class="pill">KI-Experten Zertifizierung</span>
+            <span class="pill">KI Manager Zertifizierung</span>
+            <span class="pill">PRINCE2 zertifiziert</span>
+            <span class="pill">Scrum Master</span>
+            <span class="pill">Microsoft MCP/MCSE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WARUM ICH DAS TUE -->
+    <section class="section section-tight">
+      <div class="container why-grid">
+        <div class="why-text">
+          <p class="eyebrow">Warum ich das tue</p>
+          <h2>Ich habe zu viele Folienpakete gesehen, die nie wirkten.</h2>
+          <p>KI-Beratung ist ein überfüllter Markt. Jeder verspricht Transformation. Was ich erlebt habe: Strategie-Workshops, die Begeisterung erzeugen – und danach Stille. Kein Workflow, keine Governance, kein Kontrollpunkt.</p>
+          <p>Das ist nicht Pech. Das ist Struktur. Wer Beratung als Paketlieferung versteht, baut keine Brücke zwischen Idee und Betrieb.</p>
+          <p>Ich will diese Brücke bauen. Nicht für alle – sondern für Entscheider, die bereit sind, KI wirklich zu prüfen, bevor sie investieren.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Woran ich mich messen lasse</p>
+          <h2 style="margin-top:10px">Nach der Beratung muss etwas Entscheidbares existieren.</h2>
+          <p style="margin-top:16px;color:var(--muted)">Die Beratung ist dann gut, wenn sie Risiko senkt, Sprache klärt und den nächsten operativen Schritt sichtbar macht.</p>
+          <div class="grid-2" style="margin-top:22px">
+            <article class="card"><p class="kicker">01</p><h3>Entscheidungsbrief</h3><p>Klare Empfehlung für Geschäftsführung oder Verwaltung.</p></article>
+            <article class="card"><p class="kicker">02</p><h3>Kontrollpunkte</h3><p>Dokumentierte Risiken, Verantwortlichkeiten und Datenfragen.</p></article>
+            <article class="card"><p class="kicker">03</p><h3>Workflow-Logik</h3><p>Eine greifbare Prozessskizze statt abstrakter Strategietexte.</p></article>
+            <article class="card"><p class="kicker">04</p><h3>Umsetzungsroute</h3><p>Ein 30/60/90-Tage-Plan, der nach dem Termin weiterarbeitet.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAS ICH ABLEHNE -->
+    <section class="section">
+      <div class="container authority-strip">
+        <div>
+          <p class="eyebrow">Klare Haltung</p>
+          <h2>Was ich nicht tue – und warum.</h2>
+          <p style="margin-top:18px;color:var(--muted)">Positionierung entsteht nicht nur durch das, was man anbietet, sondern durch das, was man ablehnt.</p>
+          <div class="reject-list">
+            <div class="reject-item">
+              <span class="reject-label">Nein</span>
+              <div>
+                <strong>KI-Strategie ohne Prozessbezug</strong>
+                <p>Wenn eine Strategie nicht beschreibt, wie KI konkret Arbeit verändert, ist sie Feierabendliteratur. Ich bewerte KI dort, wo sie Verantwortung berührt: Datenflüsse, Entscheidungen, Prozessübergaben.</p>
+              </div>
+            </div>
+            <div class="reject-item">
+              <span class="reject-label">Nein</span>
+              <div>
+                <strong>Demos ohne Betriebspfad</strong>
+                <p>Eine Demo, die nicht erklärt, wie das System nach Go-Live läuft, gewartet wird und bei Fehlern eskaliert, ist Marketing – kein Ergebnis.</p>
+              </div>
+            </div>
+            <div class="reject-item">
+              <span class="reject-label">Nein</span>
+              <div>
+                <strong>Schulungen ohne Transfer</strong>
+                <p>Drei Stunden Workshop und Applaus ist kein Transfer. Transfer bedeutet, dass der Teilnehmer nach dem Termin etwas anderes tut – messbar, konkret, in seinem Arbeitsablauf.</p>
+              </div>
+            </div>
+            <div class="reject-item">
+              <span class="reject-label">Nein</span>
+              <div>
+                <strong>Governance am Projektende</strong>
+                <p>Wer Datenschutz und AI Act erst beim Deployment einbaut, hat das Projekt schon halb verloren. Compliance gehört in die Architektur, nicht ans Ende.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figure class="asset-panel">
+          <img src="assets/visual-profile-proof.svg" alt="Arbeitsmodell Code statt PowerPoints mit Diagnose, Compliance, Workflow und Training">
+        </figure>
+      </div>
+    </section>
+
+    <!-- MISSION & PRINZIP -->
+    <section class="section">
+      <div class="container grid-2 profile-cards">
+        <article class="card">
+          <p class="eyebrow">Mission</p>
+          <h2>Entscheidung vor Budget.</h2>
+          <p>Der Hub ist die Schnittstelle aus Beratung, Automatisierung und Befähigung. Das Ergebnis soll nicht beeindrucken, sondern Entscheidungen ermöglichen: investieren, stoppen, schärfen oder in einen kontrollierten Prototyp überführen.</p>
+          <p style="margin-top:16px">87% der KI-Projekte scheitern. Nicht an der Technologie – an der fehlenden Grundlage. Das ist die Lücke, die ich schließe.</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Prinzip</p>
+          <h2>Code statt PowerPoints.</h2>
+          <p>Entscheidend ist nicht die perfekte Folie, sondern der belastbare Workflow, der nach dem Workshop weiterarbeitet. Strategie, die nicht im Betrieb landet, hat ihren Job verfehlt.</p>
+          <div class="status-strip" style="margin-top:20px">
+            <span class="status-pill">Ergebnisorientiert</span>
+            <span class="status-pill">Prozessnah</span>
+            <span class="status-pill">Governance-First</span>
+            <span class="status-pill">Transfer statt Inspiration</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROOF / TESTIMONIAL -->
+    <section class="section">
+      <div class="container proof-strip">
+        <article class="card proof-quote">
+          <div data-testimonials>
+            <div data-testimonial class="active">
+              <p class="eyebrow">Stimmen aus der Praxis</p>
+              <blockquote>„Was für eine Reise. Mein KI-Werkzeugkoffer ist gut gefüllt und bereit für die Praxisanwendung. Dies war nur der Anfang, danke dir für deine Inspiration."</blockquote>
+              <p class="muted" style="margin-top:14px">Teilnehmer Executive KI-Workshop · C-Level Führungskraft</p>
+            </div>
+            <div data-testimonial>
+              <p class="eyebrow">Stimmen aus der Praxis</p>
+              <blockquote>„Danke für die gemeinsame KI-Reise, die meinen Horizont so enorm erweitert hat! Die praktischen Anwendungen sind sofort umsetzbar."</blockquote>
+              <p class="muted" style="margin-top:14px">C-Level Participant · Digitalisierungsverantwortlicher</p>
+            </div>
+            <div data-testimonial>
+              <p class="eyebrow">Stimmen aus der Praxis</p>
+              <blockquote>„Die KI-Strategieberatung hat uns geholfen, eine klare Roadmap zu entwickeln. Besonders wertvoll waren die branchenspezifischen Insights."</blockquote>
+              <p class="muted" style="margin-top:14px">Geschäftsführer · Mittelständisches Unternehmen</p>
+            </div>
+          </div>
+        </article>
+        <div class="proof-points">
+          <article class="card"><p class="kicker">Werkzeugkoffer</p><h3>Executive KI-Workshops mit direktem Praxisbezug</h3><p>Teilnehmende arbeiten mit konkreten Aufgaben, nicht mit abstrakter Inspiration.</p></article>
+          <article class="card"><p class="kicker">Roadmap</p><h3>Von KI-Vision bis produktivem Use Case</h3><p>Assessment, Strategy, Implementation und Innovation bilden den roten Faden.</p></article>
+          <article class="card"><p class="kicker">Netzwerk</p><h3>Top-Performer aus Consulting und Automatisierung</h3><p>Der Hub bündelt Kompetenz, Erfahrung und Strategie für Unternehmen jeder Größe.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 SÄULEN -->
+    <section class="section dark-band">
+      <div class="container grid-4">
+        <div class="card"><p class="kicker">Klarheit</p><h3>Entscheidung vor Budget</h3><p>Erst bewerten, dann investieren: Use Case, Risiko, Datenlage und Umsetzbarkeit werden vorab geprüft.</p></div>
+        <div class="card"><p class="kicker">Umsetzung</p><h3>Prototyp statt Folienlogik</h3><p>Wenn ein Prozess relevant ist, wird er als Ablauf, Workflow oder Entscheidungsmodell greifbar gemacht.</p></div>
+        <div class="card"><p class="kicker">Governance</p><h3>Kontrolle von Anfang an</h3><p>AI Act, Datenschutz, Verantwortung und Dokumentation gehören in die Architektur, nicht ans Projektende.</p></div>
+        <div class="card"><p class="kicker">Befähigung</p><h3>Teams müssen weiterarbeiten können</h3><p>Schulung und Transfer zielen darauf, dass Entscheider und Fachbereiche nach dem Termin handlungsfähig sind.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a><p class="muted" style="margin-top:16px">Kontakt: rm@kostenmanager.net · +49 (0) 162 4194748</p></div><nav class="legal-nav" aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener">LinkedIn</a></nav></div></footer>
+
+  <div class="modal-backdrop" data-contact-modal aria-hidden="true">
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <div class="modal-head">
+        <div class="wizard-steps" aria-label="Fortschritt">
+          <span class="wiz-step active" data-step="1">1</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="2">2</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="3">3</span>
+        </div>
+        <button class="icon-button" type="button" data-close-contact aria-label="Dialog schließen">×</button>
+      </div>
+      <div data-wizard-step="1">
+        <p class="eyebrow">Schritt 1 von 3</p>
+        <h2 id="contact-title">Womit sollen wir starten?</h2>
+        <div class="service-choices">
+          <button class="service-choice" type="button" data-choice="13%-Check"><strong>13%-Check</strong><span>KI-Vorhaben prüfen, bevor Budget freigegeben wird</span></button>
+          <button class="service-choice" type="button" data-choice="AI Act Risiko-Sprint"><strong>AI Act Risiko-Sprint</strong><span>Compliance-Status klären und Risiken dokumentieren</span></button>
+          <button class="service-choice" type="button" data-choice="n8n Workflow-Prototyp"><strong>n8n Workflow-Prototyp</strong><span>Einen Prozess als echten Workflow testen</span></button>
+          <button class="service-choice" type="button" data-choice="Executive KI-Schulung"><strong>Executive KI-Schulung</strong><span>Führungskräfte oder Teams befähigen</span></button>
+        </div>
+      </div>
+      <div data-wizard-step="2" hidden>
+        <p class="eyebrow">Schritt 2 von 3</p>
+        <h2>Drei kurze Fragen.</h2>
+        <div class="wiz-questions">
+          <fieldset class="wiz-fieldset"><legend>Organisation</legend><div class="radio-group"><label><input type="radio" name="wiz-org" value="Unternehmen / Mittelstand"> Unternehmen / Mittelstand</label><label><input type="radio" name="wiz-org" value="Verwaltung / öffentliche Stelle"> Verwaltung / Öffentlicher Sektor</label><label><input type="radio" name="wiz-org" value="Beratung / Agentur"> Beratung / Agentur</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Aktueller KI-Status</legend><div class="radio-group"><label><input type="radio" name="wiz-status" value="Erste Ideen"> Erste Ideen, noch kein konkreter Plan</label><label><input type="radio" name="wiz-status" value="Pilot läuft oder geplant"> Pilot läuft oder konkret geplant</label><label><input type="radio" name="wiz-status" value="Tools im Einsatz, Governance offen"> Tools im Einsatz, Governance noch offen</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Größtes Risiko</legend><div class="radio-group"><label><input type="radio" name="wiz-risk" value="Budget ohne Wirkung"> Budget ohne nachweisbare Wirkung</label><label><input type="radio" name="wiz-risk" value="Datenschutz / AI Act"> Datenschutz oder AI Act Compliance</label><label><input type="radio" name="wiz-risk" value="Akzeptanz im Team"> Akzeptanz im Team</label><label><input type="radio" name="wiz-risk" value="Technische Umsetzung"> Technische Umsetzung</label></div></fieldset>
+        </div>
+        <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="button" data-wizard-next>Weiter</button></div>
+      </div>
+      <div data-wizard-step="3" hidden>
+        <p class="eyebrow">Schritt 3 von 3</p>
+        <h2>Kontaktdaten.</h2>
+        <form data-contact-form>
+          <input type="hidden" name="topic">
+          <input type="hidden" name="companyType">
+          <input type="hidden" name="aiStatus">
+          <input type="hidden" name="biggestRisk">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="form-status"></div>
+          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" autocomplete="tel"></div>
+          <div class="field"><label for="appointment">Wunschtermin</label><input id="appointment" name="appointment" placeholder="z.B. Dienstagvormittag"></div>
+          <div class="field"><label for="message">Kurzbeschreibung</label><textarea id="message" name="message" rows="3"></textarea></div>
+          <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="submit">Anfrage senden</button></div>
+          <p id="form-status" data-form-status class="muted" style="margin-top:14px">Alternativ: rm@kostenmanager.net · +49 (0) 162 4194748</p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

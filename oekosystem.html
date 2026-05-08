@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ökosystem - Robert Meyer KI-Beratung</title>
+  <meta name="description" content="Das KI-Ökosystem von Robert Meyer: Fachbücher, Tools, Datenschutz-Apps und Schulungsressourcen rund um KI-Kompetenz, Automatisierung und Datenschutz.">
+  <link rel="canonical" href="https://ki13prozent.de/oekosystem.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .eco-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .eco-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 150ms, box-shadow 150ms, transform 150ms;
+    }
+
+    .eco-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px color-mix(in oklch, var(--fg) 8%, transparent);
+      transform: translateY(-2px);
+    }
+
+    .eco-tag {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      width: fit-content;
+    }
+
+    .eco-card-title {
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 730;
+      line-height: 1.2;
+    }
+
+    .eco-card p {
+      color: var(--muted);
+      font-size: 14px;
+      flex: 1;
+      line-height: 1.55;
+    }
+
+    .eco-link {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      font-family: var(--font-mono);
+      margin-top: 4px;
+    }
+
+    .eco-category-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .eco-category-line {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .eco-category-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* === WIZARD STYLES === */
+    .modal-wide { width: min(660px, 100%); }
+    .wizard-steps { display: flex; align-items: center; gap: 8px; }
+    .wiz-step {
+      width: 30px; height: 30px; display: grid; place-items: center;
+      border: 1px solid var(--border); border-radius: 50%;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      transition: background 200ms, border-color 200ms, color 200ms;
+    }
+    .wiz-step.active { background: var(--surface-strong); color: var(--surface); border-color: var(--surface-strong); }
+    .wiz-divider { width: 28px; height: 1px; background: var(--border); }
+    .service-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+    .service-choice {
+      display: grid; gap: 6px; text-align: left;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px; background: var(--surface);
+      transition: border-color 140ms, background 140ms;
+    }
+    .service-choice strong { font-size: 15px; }
+    .service-choice span { color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .service-choice:hover { border-color: var(--fg); background: color-mix(in oklch, var(--accent) 5%, var(--surface)); }
+    .service-choice.selected { border-color: var(--accent); background: color-mix(in oklch, var(--accent) 9%, var(--surface)); }
+    .wiz-questions { display: grid; gap: 14px; margin-top: 20px; }
+    .wiz-fieldset { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin: 0; }
+    .wiz-fieldset legend { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 0 4px; }
+    .radio-group { display: grid; gap: 8px; margin-top: 12px; }
+    .radio-group label { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+    .wiz-nav { display: flex; gap: 10px; margin-top: 22px; justify-content: flex-end; }
+
+    @media (max-width: 860px) {
+      .eco-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .eco-grid { grid-template-columns: 1fr; }
+      .service-choices { grid-template-columns: 1fr; }
+    }
+
+    .dark-band .card .btn {
+      color: color-mix(in oklch, var(--surface) 88%, transparent);
+      border-color: color-mix(in oklch, var(--surface) 28%, transparent);
+    }
+    .dark-band .card .btn:hover {
+      color: var(--surface);
+      border-color: color-mix(in oklch, var(--surface) 60%, transparent);
+    }
+  </style>
+  <script defer src="https://cv.rm-on.de/script.js" data-website-id="077fc84e-d4f1-4861-a26e-9604ad4954e3"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a>
+      <nav class="primary-nav" aria-label="Hauptnavigation">
+        <a href="index.html">Start</a>
+        <a href="services.html">Services</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="about.html">Profil</a>
+        <a href="oekosystem.html">Ökosystem</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-primary" type="button" data-open-contact>Erstgespräch</button>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Ökosystem</p>
+        <h1>Mehr als Beratung.</h1>
+        <p>Neben der strategischen Arbeit sind hier Tools, Bücher und Schulungsressourcen entstanden, die denselben Ansatz verfolgen: pragmatisch, datenschutznah und umsetzbar. Kein Ökosystem aus PR-Gründen – sondern weil die Lücken real sind.</p>
+      </div>
+    </section>
+
+    <!-- WISSEN & KOMPETENZ -->
+    <section class="section">
+      <div class="container">
+        <div class="eco-category-header">
+          <span class="eco-category-label">Wissen & Kompetenz</span>
+          <div class="eco-category-line"></div>
+        </div>
+        <p style="margin-bottom:32px;color:var(--muted)">Fachbücher und Schulungsformate für Entscheider, die KI nicht nur einsetzen, sondern strategisch einordnen wollen.</p>
+        <div class="eco-grid">
+          <a class="eco-card" href="https://ki-fachbuecher.de" target="_blank" rel="noopener">
+            <span class="eco-tag">Wissensarchitektur</span>
+            <span class="eco-card-title">KI-Fachbücher</span>
+            <p>Sieben thematische Fachgebiete – von Regulierung über praktische Werkzeuge bis zur persönlichen Kompetenzentwicklung. Vernetzt und strukturiert für Führungskräfte, die KI in Zusammenhang verstehen wollen.</p>
+            <span class="eco-link">ki-fachbuecher.de →</span>
+          </a>
+          <a class="eco-card" href="https://ki-fachbuecher.de/ki-kluft/" target="_blank" rel="noopener">
+            <span class="eco-tag">Buch</span>
+            <span class="eco-card-title">Die KI-Kluft</span>
+            <p>Was passiert, wenn Teammitglieder mit unterschiedlicher KI-Kompetenz zusammenarbeiten? Das Buch beschreibt das Tandem-Modell als Führungsansatz: nicht durch Vereinheitlichung, sondern durch strukturierte Zusammenarbeit.</p>
+            <span class="eco-link">ki-fachbuecher.de/ki-kluft →</span>
+          </a>
+          <a class="eco-card" href="https://ki-fachbuecher.de/verwaltung/" target="_blank" rel="noopener">
+            <span class="eco-tag">Schulungsformat</span>
+            <span class="eco-card-title">KI in der Verwaltung</span>
+            <p>Ganztages-Fortbildung für Behörden, Volkshochschulen und Bildungsträger: KI-Grundlagen, Datenschutz, EU AI Act und fünf praxisnahe Module. Inklusive Begleitmaterial und Browser-Leitfaden.</p>
+            <span class="eco-link">ki-fachbuecher.de/verwaltung →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATENSCHUTZ & TOOLS -->
+    <section class="section section-tight">
+      <div class="container">
+        <div class="eco-category-header">
+          <span class="eco-category-label">Datenschutz & Tools</span>
+          <div class="eco-category-line"></div>
+        </div>
+        <p style="margin-bottom:32px;color:var(--muted)">Praktische Werkzeuge für den KI-Alltag: lokal verarbeitend, kein Abo-Zwang, direkt in bestehende Workflows integrierbar.</p>
+        <div class="eco-grid">
+          <a class="eco-card" href="https://ki-anonymisierer.de" target="_blank" rel="noopener">
+            <span class="eco-tag">macOS · Einmalkauf</span>
+            <span class="eco-card-title">KI-Anonymisierer</span>
+            <p>Sensible Daten schützen, bevor sie in KI-Systeme fließen. Das Tool sitzt zwischen Kopieren und Einfügen, erkennt Namen, IBANs, Adressen und ersetzt sie lokal durch Platzhalter. Keine Cloud, keine Registrierung, €9,99.</p>
+            <span class="eco-link">ki-anonymisierer.de →</span>
+          </a>
+          <a class="eco-card" href="https://gpt-vault.de" target="_blank" rel="noopener">
+            <span class="eco-tag">Prompt-Management</span>
+            <span class="eco-card-title">GPT Vault</span>
+            <p>Eigene GPTs und Prompts zentral verwalten, strukturieren und wiederverwenden. Für alle, die KI produktiv nutzen und nicht jedes Mal von vorn beginnen wollen.</p>
+            <span class="eco-link">gpt-vault.de →</span>
+          </a>
+          <a class="eco-card" href="https://gpt-vault.de/promptpilot" target="_blank" rel="noopener">
+            <span class="eco-tag">Browser-Tool</span>
+            <span class="eco-card-title">PromptPilot</span>
+            <p>Browser-basiertes Prompt-Cockpit für den täglichen Umgang mit KI-Modellen. Prompts strukturieren, testen und direkt einsetzen – ohne Kontextwechsel zwischen Werkzeugen.</p>
+            <span class="eco-link">gpt-vault.de/promptpilot →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERBINDUNG ZUR BERATUNG -->
+    <section class="section dark-band">
+      <div class="container quote-grid">
+        <div>
+          <p class="eyebrow">Warum ein Ökosystem?</p>
+          <p class="quote">„Beratung endet nicht beim Termin. Sie muss als Kompetenz, Tool oder Workflow weiterarbeiten."</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Zusammenhang</p>
+          <h3>Alle Teile verfolgen dasselbe Ziel.</h3>
+          <p>Ob Fachbuch, Schulungsformat oder Datenschutz-Tool: jede Ressource hier ist aus einer realen Lücke entstanden – nicht als Produktpalette, sondern als Antwort auf konkrete Probleme in der KI-Praxis.</p>
+          <div style="margin-top:20px">
+            <a class="btn" href="services.html">Zu den Beratungsleistungen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a>
+        <p class="muted" style="margin-top:16px">© 2026 Robert Meyer. KI-Strategieberatung, EU AI Act Compliance und Prozessautomatisierung.</p>
+      </div>
+      <nav class="legal-nav" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" data-contact-modal aria-hidden="true">
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <div class="modal-head">
+        <div class="wizard-steps" aria-label="Fortschritt">
+          <span class="wiz-step active" data-step="1">1</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="2">2</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="3">3</span>
+        </div>
+        <button class="icon-button" type="button" data-close-contact aria-label="Dialog schließen">×</button>
+      </div>
+      <div data-wizard-step="1">
+        <p class="eyebrow">Schritt 1 von 3</p>
+        <h2 id="contact-title">Womit sollen wir starten?</h2>
+        <div class="service-choices">
+          <button class="service-choice" type="button" data-choice="13%-Check"><strong>13%-Check</strong><span>KI-Vorhaben prüfen, bevor Budget freigegeben wird</span></button>
+          <button class="service-choice" type="button" data-choice="AI Act Risiko-Sprint"><strong>AI Act Risiko-Sprint</strong><span>Compliance-Status klären und Risiken dokumentieren</span></button>
+          <button class="service-choice" type="button" data-choice="n8n Workflow-Prototyp"><strong>n8n Workflow-Prototyp</strong><span>Einen Prozess als echten Workflow testen</span></button>
+          <button class="service-choice" type="button" data-choice="Executive KI-Schulung"><strong>Executive KI-Schulung</strong><span>Führungskräfte oder Teams befähigen</span></button>
+        </div>
+      </div>
+      <div data-wizard-step="2" hidden>
+        <p class="eyebrow">Schritt 2 von 3</p>
+        <h2>Drei kurze Fragen.</h2>
+        <div class="wiz-questions">
+          <fieldset class="wiz-fieldset"><legend>Organisation</legend><div class="radio-group"><label><input type="radio" name="wiz-org" value="Unternehmen / Mittelstand"> Unternehmen / Mittelstand</label><label><input type="radio" name="wiz-org" value="Verwaltung / öffentliche Stelle"> Verwaltung / Öffentlicher Sektor</label><label><input type="radio" name="wiz-org" value="Beratung / Agentur"> Beratung / Agentur</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Aktueller KI-Status</legend><div class="radio-group"><label><input type="radio" name="wiz-status" value="Erste Ideen"> Erste Ideen, noch kein konkreter Plan</label><label><input type="radio" name="wiz-status" value="Pilot läuft oder geplant"> Pilot läuft oder konkret geplant</label><label><input type="radio" name="wiz-status" value="Tools im Einsatz, Governance offen"> Tools im Einsatz, Governance noch offen</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Größtes Risiko</legend><div class="radio-group"><label><input type="radio" name="wiz-risk" value="Budget ohne Wirkung"> Budget ohne nachweisbare Wirkung</label><label><input type="radio" name="wiz-risk" value="Datenschutz / AI Act"> Datenschutz oder AI Act Compliance</label><label><input type="radio" name="wiz-risk" value="Akzeptanz im Team"> Akzeptanz im Team</label><label><input type="radio" name="wiz-risk" value="Technische Umsetzung"> Technische Umsetzung</label></div></fieldset>
+        </div>
+        <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="button" data-wizard-next>Weiter</button></div>
+      </div>
+      <div data-wizard-step="3" hidden>
+        <p class="eyebrow">Schritt 3 von 3</p>
+        <h2>Kontaktdaten.</h2>
+        <form data-contact-form>
+          <input type="hidden" name="topic">
+          <input type="hidden" name="companyType">
+          <input type="hidden" name="aiStatus">
+          <input type="hidden" name="biggestRisk">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="form-status"></div>
+          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" autocomplete="tel"></div>
+          <div class="field"><label for="appointment">Wunschtermin</label><input id="appointment" name="appointment" placeholder="z.B. Dienstagvormittag"></div>
+          <div class="field"><label for="message">Kurzbeschreibung</label><textarea id="message" name="message" rows="3"></textarea></div>
+          <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="submit">Anfrage senden</button></div>
+          <p id="form-status" data-form-status class="muted" style="margin-top:14px">Alternativ: rm@kostenmanager.net · +49 (0) 162 4194748</p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
