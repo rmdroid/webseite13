@@ -877,10 +877,11 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
 
     if (avail === "no") { showActivationGuide(); return; }
 
-    if (avail === "after-download") {
-      addMsg("Gemini Nano wird einmalig heruntergeladen – einen Moment…", "system");
-      pb.hidden = false;
-    }
+    const loadingMsg = avail === "after-download"
+      ? "Gemini Nano wird einmalig heruntergeladen – einen Moment…"
+      : "KI wird initialisiert…";
+    addMsg(loadingMsg, "system");
+    if (avail === "after-download") pb.hidden = false;
 
     try {
       const pageName = location.pathname.split("/").pop() || "index.html";
