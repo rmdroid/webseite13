@@ -539,7 +539,7 @@ function initChatWidget() {
   };
 
 
-  const SYSTEM_PROMPT = `Du bist der Assistent von Robert Meyer, KI-Berater auf ki13prozent.de. Antworte ausschließlich zu Roberts Arbeit und dem Inhalt der aktuellen Seite. Niemals zu anderen Themen.
+  const SYSTEM_PROMPT = `Du bist der Assistent von Robert Meyer, KI-Berater auf ai.rm-on.de. Antworte ausschließlich zu Roberts Arbeit und dem Inhalt der aktuellen Seite. Niemals zu anderen Themen.
 
 WICHTIG – DAS IST DER 13%-ANSATZ: Nur 13% der Beschäftigten nutzen KI aktiv. 87% des Potenzials liegt brach. Das hat nichts mit Finanzen zu tun – es geht ausschließlich um KI-Nutzung in Unternehmen und Verwaltungen.
 
@@ -549,8 +549,8 @@ INHALT DER AKTUELLEN SEITE ({{PAGE}}):
 KONTAKT (exakt, niemals andere URLs erfinden):
 E-Mail: rm@kostenmanager.net
 LinkedIn: linkedin.com/in/robert-meyer-666b39315
-Webseite: ki13prozent.de
-Erstgespräch: kostenlos, 30 Minuten, über das Formular auf ki13prozent.de anfragen
+Webseite: ai.rm-on.de
+Erstgespräch: kostenlos, 30 Minuten, über das Formular auf ai.rm-on.de anfragen
 
 Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzählungszeichen, keine eckigen Klammern, konkrete Kontaktdaten nennen wenn gefragt, eine Rückfrage am Ende.`;
 
@@ -585,7 +585,7 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
     },
     {
       role: "assistant",
-      content: "Am schnellsten per E-Mail: rm@kostenmanager.net. Alternativ können Sie das Erstgespräch direkt über ki13prozent.de anfragen – kostenlos, 30 Minuten, unverbindlich. Auf LinkedIn finden Sie ihn unter linkedin.com/in/robert-meyer-666b39315. Soll ich das Erstgespräch gleich hier für Sie vorbereiten?"
+      content: "Am schnellsten per E-Mail: rm@kostenmanager.net. Alternativ können Sie das Erstgespräch direkt über ai.rm-on.de anfragen – kostenlos, 30 Minuten, unverbindlich. Auf LinkedIn finden Sie ihn unter linkedin.com/in/robert-meyer-666b39315. Soll ich das Erstgespräch gleich hier für Sie vorbereiten?"
     }
   ];
 
@@ -605,7 +605,7 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
         <div class="chat-avatar">RM</div>
         <div class="chat-header-info">
           <strong>KI-Assistent</strong>
-          <span>Robert Meyer · ki13prozent.de</span>
+          <span>Robert Meyer · ai.rm-on.de</span>
         </div>
         <div class="chat-status-dot" aria-hidden="true"></div>
       </div>
@@ -1023,7 +1023,7 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
       inputEl.placeholder = "Ihre Frage…";
 
       const typing = addTyping();
-      const msgBody = `ANFRAGE via Chat-Assistent (ki13prozent.de)
+      const msgBody = `ANFRAGE via Chat-Assistent (ai.rm-on.de)
 
 Name: ${contactData.name}
 E-Mail: ${contactData.email}
@@ -1072,7 +1072,7 @@ Zeit: ${new Date().toLocaleString("de-DE")}`;
       const statusEl = e.target.querySelector(".chat-form-status");
       submitBtn.disabled = true;
       submitBtn.textContent = "Wird gesendet…";
-      const msgBody = `ANFRAGE via /kontakt (ki13prozent.de)\n\nName: ${data.name}\nE-Mail: ${data.email}\nWunschtermin: ${data.date || "Nicht angegeben"}\nSeite: ${location.href}\nZeit: ${new Date().toLocaleString("de-DE")}`;
+      const msgBody = `ANFRAGE via /kontakt (ai.rm-on.de)\n\nName: ${data.name}\nE-Mail: ${data.email}\nWunschtermin: ${data.date || "Nicht angegeben"}\nSeite: ${location.href}\nZeit: ${new Date().toLocaleString("de-DE")}`;
       try {
         await fetch("https://n8n.top-beraternetzwerk.de/webhook/teamschat", {
           method: "POST",
