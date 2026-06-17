@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog - Robert Meyer KI-Beratung</title>
+  <meta name="description" content="Gedanken, LinkedIn-Beiträge und Praxisnotizen von Robert Meyer rund um KI-Strategie, EU AI Act und Automatisierung.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ki13prozent.de/blog.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .blog-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 36px;
+      align-items: start;
+      max-width: 1060px;
+      margin-inline: auto;
+    }
+
+    .blog-list { display: grid; gap: 18px; }
+
+    .blog-post {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: clamp(22px, 3vw, 32px);
+      scroll-margin-top: 96px;
+    }
+
+    /* === SIDEBAR / ÜBERSICHT === */
+    .blog-aside {
+      position: sticky;
+      top: 96px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .blog-search {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 0 14px;
+      font-size: 14px;
+      color: var(--fg);
+    }
+    .blog-search:focus { outline: none; border-color: var(--accent); }
+
+    .blog-toc-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 4px 0 0;
+    }
+
+    .blog-toc {
+      display: grid;
+      gap: 7px;
+      max-height: 62vh;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .blog-toc a {
+      display: block;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: color-mix(in oklch, var(--accent) 4%, var(--surface));
+      text-decoration: none;
+      color: var(--fg);
+      transition: background 120ms, border-color 120ms;
+    }
+    .blog-toc a:hover {
+      background: color-mix(in oklch, var(--accent) 11%, var(--surface));
+      border-color: var(--accent);
+    }
+
+    .blog-toc .toc-date {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .blog-toc .toc-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .blog-toc-empty { font-size: 13px; color: var(--muted); padding: 8px 11px; }
+
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 24px; }
+      .blog-aside { position: static; top: auto; order: -1; }
+      .blog-toc { max-height: 280px; }
+    }
+
+    .blog-post h2 {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .blog-post-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      margin: 8px 0 16px;
+    }
+
+    .blog-post-text {
+      white-space: pre-wrap;
+      line-height: 1.6;
+      font-size: 15px;
+      color: var(--fg);
+      margin: 0;
+    }
+
+    .blog-post-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .blog-post-link:hover { text-decoration: underline; }
+
+    .blog-empty { text-align: center; color: var(--muted); padding: 40px 0; }
+
+    /* === ADMIN-PUNKT (dezent) === */
+    .admin-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--muted);
+      opacity: 0.12;
+      margin-left: 8px;
+      cursor: pointer;
+      transition: opacity 200ms;
+      vertical-align: middle;
+    }
+    .admin-dot:hover { opacity: 0.5; }
+
+    /* === ADMIN-PANEL === */
+    .admin-post-list { display: grid; gap: 8px; margin-top: 8px; }
+
+    .admin-post-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+
+    .admin-post-row span {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .admin-del {
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      background: var(--surface);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #b42318;
+    }
+    .admin-del:hover { border-color: #b42318; }
+
+    .admin-section-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 22px 0 10px;
+    }
+
+    .admin-status { font-size: 13px; margin-top: 12px; min-height: 18px; }
+    .admin-status.error { color: #b42318; }
+    .admin-status.ok { color: #067647; }
+
+    /* === WIZARD STYLES === */
+    .modal-wide { width: min(660px, 100%); }
+    .wizard-steps { display: flex; align-items: center; gap: 8px; }
+    .wiz-step {
+      width: 30px; height: 30px; display: grid; place-items: center;
+      border: 1px solid var(--border); border-radius: 50%;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      transition: background 200ms, border-color 200ms, color 200ms;
+    }
+    .wiz-step.active { background: var(--surface-strong); color: var(--surface); border-color: var(--surface-strong); }
+    .wiz-divider { width: 28px; height: 1px; background: var(--border); }
+    .service-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+    .service-choice {
+      display: grid; gap: 6px; text-align: left;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px; background: var(--surface);
+      transition: border-color 140ms, background 140ms;
+    }
+    .service-choice strong { font-size: 15px; }
+    .service-choice span { color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .service-choice:hover { border-color: var(--fg); background: color-mix(in oklch, var(--accent) 5%, var(--surface)); }
+    .service-choice.selected { border-color: var(--accent); background: color-mix(in oklch, var(--accent) 9%, var(--surface)); }
+    .wiz-questions { display: grid; gap: 14px; margin-top: 20px; }
+    .wiz-fieldset { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin: 0; }
+    .wiz-fieldset legend { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 0 4px; }
+    .radio-group { display: grid; gap: 8px; margin-top: 12px; }
+    .radio-group label { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+    .wiz-nav { display: flex; gap: 10px; margin-top: 22px; justify-content: flex-end; }
+
+    @media (max-width: 560px) {
+      .service-choices { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script defer src="https://cv.rm-on.de/script.js" data-website-id="077fc84e-d4f1-4861-a26e-9604ad4954e3"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a>
+      <nav class="primary-nav" aria-label="Hauptnavigation">
+        <a href="index.html">Start</a>
+        <a href="services.html">Services</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="about.html">Profil</a>
+        <a href="oekosystem.html">Ökosystem</a>
+        <a href="blog.html">Blog</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-primary" type="button" data-open-contact>Erstgespräch</button>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Blog</p>
+        <h1>Gedanken aus der Praxis.</h1>
+        <p>Hier finden Sie meine LinkedIn-Beiträge und Notizen zu KI-Strategie, EU AI Act und Automatisierung – kompakt, mit Link zum Original auf LinkedIn.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="blog-layout">
+          <div class="blog-list" data-blog-list>
+            <p class="blog-empty">Beiträge werden geladen…</p>
+          </div>
+          <aside class="blog-aside" aria-label="Beitragsübersicht">
+            <input class="blog-search" type="search" data-blog-search placeholder="Beiträge durchsuchen…" aria-label="Beiträge durchsuchen">
+            <p class="blog-toc-label">Übersicht</p>
+            <nav class="blog-toc" data-blog-toc aria-label="Alle Beiträge"></nav>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a>
+        <p class="muted" style="margin-top:16px">© 2026 Robert Meyer. KI-Strategieberatung, EU AI Act Compliance und Prozessautomatisierung.<span class="admin-dot" data-admin-trigger aria-hidden="true" title=""></span></p>
+      </div>
+      <nav class="legal-nav" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- KONTAKT-WIZARD -->
+  <div class="modal-backdrop" data-contact-modal aria-hidden="true">
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <div class="modal-head">
+        <div class="wizard-steps" aria-label="Fortschritt">
+          <span class="wiz-step active" data-step="1">1</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="2">2</span>
+          <span class="wiz-divider"></span>
+          <span class="wiz-step" data-step="3">3</span>
+        </div>
+        <button class="icon-button" type="button" data-close-contact aria-label="Dialog schließen">×</button>
+      </div>
+      <div data-wizard-step="1">
+        <p class="eyebrow">Schritt 1 von 3</p>
+        <h2 id="contact-title">Womit sollen wir starten?</h2>
+        <div class="service-choices">
+          <button class="service-choice" type="button" data-choice="13%-Check"><strong>13%-Check</strong><span>KI-Vorhaben prüfen, bevor Budget freigegeben wird</span></button>
+          <button class="service-choice" type="button" data-choice="AI Act Risiko-Sprint"><strong>AI Act Risiko-Sprint</strong><span>Compliance-Status klären und Risiken dokumentieren</span></button>
+          <button class="service-choice" type="button" data-choice="n8n Workflow-Prototyp"><strong>n8n Workflow-Prototyp</strong><span>Einen Prozess als echten Workflow testen</span></button>
+          <button class="service-choice" type="button" data-choice="Executive KI-Schulung"><strong>Executive KI-Schulung</strong><span>Führungskräfte oder Teams befähigen</span></button>
+        </div>
+      </div>
+      <div data-wizard-step="2" hidden>
+        <p class="eyebrow">Schritt 2 von 3</p>
+        <h2>Drei kurze Fragen.</h2>
+        <div class="wiz-questions">
+          <fieldset class="wiz-fieldset"><legend>Organisation</legend><div class="radio-group"><label><input type="radio" name="wiz-org" value="Unternehmen / Mittelstand"> Unternehmen / Mittelstand</label><label><input type="radio" name="wiz-org" value="Verwaltung / öffentliche Stelle"> Verwaltung / Öffentlicher Sektor</label><label><input type="radio" name="wiz-org" value="Beratung / Agentur"> Beratung / Agentur</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Aktueller KI-Status</legend><div class="radio-group"><label><input type="radio" name="wiz-status" value="Erste Ideen"> Erste Ideen, noch kein konkreter Plan</label><label><input type="radio" name="wiz-status" value="Pilot läuft oder geplant"> Pilot läuft oder konkret geplant</label><label><input type="radio" name="wiz-status" value="Tools im Einsatz, Governance offen"> Tools im Einsatz, Governance noch offen</label></div></fieldset>
+          <fieldset class="wiz-fieldset"><legend>Größtes Risiko</legend><div class="radio-group"><label><input type="radio" name="wiz-risk" value="Budget ohne Wirkung"> Budget ohne nachweisbare Wirkung</label><label><input type="radio" name="wiz-risk" value="Datenschutz / AI Act"> Datenschutz oder AI Act Compliance</label><label><input type="radio" name="wiz-risk" value="Akzeptanz im Team"> Akzeptanz im Team</label><label><input type="radio" name="wiz-risk" value="Technische Umsetzung"> Technische Umsetzung</label></div></fieldset>
+        </div>
+        <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="button" data-wizard-next>Weiter</button></div>
+      </div>
+      <div data-wizard-step="3" hidden>
+        <p class="eyebrow">Schritt 3 von 3</p>
+        <h2>Kontaktdaten.</h2>
+        <form data-contact-form>
+          <input type="hidden" name="topic">
+          <input type="hidden" name="companyType">
+          <input type="hidden" name="aiStatus">
+          <input type="hidden" name="biggestRisk">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="form-status"></div>
+          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" autocomplete="tel"></div>
+          <div class="field"><label for="appointment">Wunschtermin</label><input id="appointment" name="appointment" placeholder="z.B. Dienstagvormittag"></div>
+          <div class="field"><label for="message">Kurzbeschreibung</label><textarea id="message" name="message" rows="3"></textarea></div>
+          <div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="submit">Anfrage senden</button></div>
+          <p id="form-status" data-form-status class="muted" style="margin-top:14px">Alternativ: rm@kostenmanager.net · +49 (0) 162 4194748</p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- ADMIN-LOGIN -->
+  <div class="modal-backdrop" data-admin-login aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="admin-login-title">
+      <div class="modal-head">
+        <h2 id="admin-login-title" style="margin:0">Admin-Anmeldung</h2>
+        <button class="icon-button" type="button" data-admin-close aria-label="Schließen">×</button>
+      </div>
+      <form data-admin-login-form>
+        <div class="field"><label for="admin-email">E-Mail</label><input id="admin-email" name="email" type="email" autocomplete="username" required></div>
+        <div class="field"><label for="admin-pass">Passwort</label><input id="admin-pass" name="password" type="password" autocomplete="current-password" required></div>
+        <div class="wiz-nav"><button class="btn btn-primary" type="submit">Anmelden</button></div>
+        <p class="admin-status" data-admin-login-status></p>
+      </form>
+    </section>
+  </div>
+
+  <!-- ADMIN-PANEL -->
+  <div class="modal-backdrop" data-admin-panel aria-hidden="true">
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="admin-panel-title">
+      <div class="modal-head">
+        <h2 id="admin-panel-title" style="margin:0">Blog verwalten</h2>
+        <button class="icon-button" type="button" data-admin-close aria-label="Schließen">×</button>
+      </div>
+
+      <p class="admin-section-label">Neuen Beitrag anlegen</p>
+      <form data-admin-post-form>
+        <div class="field"><label for="post-title">Überschrift / Thema</label><input id="post-title" name="title" required></div>
+        <div class="field"><label for="post-content">Post-Text</label><textarea id="post-content" name="content" rows="8" required></textarea></div>
+        <div class="field"><label for="post-link">LinkedIn-Link</label><input id="post-link" name="linkedin_url" type="url" placeholder="https://www.linkedin.com/posts/…"></div>
+        <div class="wiz-nav"><button class="btn btn-primary" type="submit">Veröffentlichen</button></div>
+        <p class="admin-status" data-admin-post-status></p>
+      </form>
+
+      <p class="admin-section-label">Vorhandene Beiträge</p>
+      <div class="admin-post-list" data-admin-post-list></div>
+
+      <div class="wiz-nav" style="margin-top:24px">
+        <button class="btn" type="button" data-admin-logout>Abmelden</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const PB = "https://pocket.ki-notch.de";
+      const COL = "blog_posts";
+      const TOKEN_KEY = "pb_admin_token";
+
+      const listEl = document.querySelector("[data-blog-list]");
+      const tocEl = document.querySelector("[data-blog-toc]");
+      const searchEl = document.querySelector("[data-blog-search]");
+      let allPosts = [];
+      const loginModal = document.querySelector("[data-admin-login]");
+      const panelModal = document.querySelector("[data-admin-panel]");
+      const loginForm = document.querySelector("[data-admin-login-form]");
+      const loginStatus = document.querySelector("[data-admin-login-status]");
+      const postForm = document.querySelector("[data-admin-post-form]");
+      const postStatus = document.querySelector("[data-admin-post-status]");
+      const adminList = document.querySelector("[data-admin-post-list]");
+
+      const getToken = () => sessionStorage.getItem(TOKEN_KEY);
+      const setToken = (t) => sessionStorage.setItem(TOKEN_KEY, t);
+      const clearToken = () => sessionStorage.removeItem(TOKEN_KEY);
+
+      function openModal(el) { el.classList.add("open"); el.setAttribute("aria-hidden", "false"); }
+      function closeModal(el) { el.classList.remove("open"); el.setAttribute("aria-hidden", "true"); }
+
+      function fmtDate(s) {
+        if (!s) return "";
+        const d = new Date(String(s).replace(" ", "T"));
+        if (isNaN(d.getTime())) return "";
+        return d.toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
+      }
+
+      async function loadPosts() {
+        try {
+          const r = await fetch(`${PB}/api/collections/${COL}/records?sort=-created&perPage=500`);
+          const d = await r.json();
+          allPosts = d.items || [];
+          applyFilter();
+        } catch (e) {
+          listEl.innerHTML = '<p class="blog-empty">Beiträge konnten gerade nicht geladen werden.</p>';
+          tocEl.innerHTML = "";
+        }
+      }
+
+      function applyFilter() {
+        const q = (searchEl.value || "").trim().toLowerCase();
+        const items = q
+          ? allPosts.filter((p) =>
+              ((p.title || "") + " " + (p.content || "")).toLowerCase().includes(q))
+          : allPosts;
+        renderPublic(items, q);
+      }
+
+      function renderPublic(items, query) {
+        listEl.innerHTML = "";
+        tocEl.innerHTML = "";
+
+        if (!items.length) {
+          listEl.innerHTML = query
+            ? '<p class="blog-empty">Keine Beiträge für „' + query + '" gefunden.</p>'
+            : '<p class="blog-empty">Noch keine Beiträge vorhanden.</p>';
+          tocEl.innerHTML = '<p class="blog-toc-empty">Keine Treffer.</p>';
+          return;
+        }
+
+        items.forEach((p) => {
+          const anchor = "post-" + p.id;
+
+          const art = document.createElement("article");
+          art.className = "blog-post";
+          art.id = anchor;
+
+          const h2 = document.createElement("h2");
+          h2.textContent = p.title || "";
+          art.appendChild(h2);
+
+          const meta = document.createElement("p");
+          meta.className = "blog-post-meta";
+          meta.textContent = fmtDate(p.created);
+          if (meta.textContent) art.appendChild(meta);
+
+          const txt = document.createElement("p");
+          txt.className = "blog-post-text";
+          txt.textContent = p.content || "";
+          art.appendChild(txt);
+
+          if (p.linkedin_url) {
+            const a = document.createElement("a");
+            a.className = "blog-post-link";
+            a.href = p.linkedin_url;
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.textContent = "Auf LinkedIn ansehen →";
+            art.appendChild(a);
+          }
+          listEl.appendChild(art);
+
+          const tocLink = document.createElement("a");
+          tocLink.href = "#" + anchor;
+          const tocDate = document.createElement("span");
+          tocDate.className = "toc-date";
+          tocDate.textContent = fmtDate(p.created) || "—";
+          const tocTitle = document.createElement("span");
+          tocTitle.className = "toc-title";
+          tocTitle.textContent = p.title || "(ohne Titel)";
+          tocLink.appendChild(tocDate);
+          tocLink.appendChild(tocTitle);
+          tocEl.appendChild(tocLink);
+        });
+      }
+
+      searchEl.addEventListener("input", applyFilter);
+
+      async function openAdmin() {
+        if (getToken()) {
+          openModal(panelModal);
+          await loadAdminList();
+        } else {
+          openModal(loginModal);
+        }
+      }
+
+      document.querySelectorAll("[data-admin-trigger]").forEach((el) => {
+        el.addEventListener("click", openAdmin);
+      });
+      if (location.hash === "#admin") openAdmin();
+
+      document.querySelectorAll("[data-admin-close]").forEach((btn) => {
+        btn.addEventListener("click", () => { closeModal(loginModal); closeModal(panelModal); });
+      });
+      [loginModal, panelModal].forEach((m) => {
+        m.addEventListener("click", (e) => { if (e.target === m) closeModal(m); });
+      });
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        loginStatus.className = "admin-status";
+        loginStatus.textContent = "Anmeldung läuft…";
+        const fd = new FormData(loginForm);
+        try {
+          const r = await fetch(`${PB}/api/collections/_superusers/auth-with-password`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ identity: fd.get("email"), password: fd.get("password") }),
+          });
+          const d = await r.json();
+          if (!r.ok || !d.token) throw new Error(d.message || "Anmeldung fehlgeschlagen");
+          setToken(d.token);
+          loginForm.reset();
+          loginStatus.textContent = "";
+          closeModal(loginModal);
+          openModal(panelModal);
+          await loadAdminList();
+        } catch (err) {
+          loginStatus.className = "admin-status error";
+          loginStatus.textContent = "Anmeldung fehlgeschlagen. Bitte Zugangsdaten prüfen.";
+        }
+      });
+
+      async function loadAdminList() {
+        adminList.innerHTML = '<p class="muted" style="font-size:13px">Wird geladen…</p>';
+        try {
+          const r = await fetch(`${PB}/api/collections/${COL}/records?sort=-created&perPage=50`);
+          const d = await r.json();
+          renderAdminList(d.items || []);
+        } catch (e) {
+          adminList.innerHTML = '<p class="admin-status error">Liste konnte nicht geladen werden.</p>';
+        }
+      }
+
+      function renderAdminList(items) {
+        adminList.innerHTML = "";
+        if (!items.length) {
+          adminList.innerHTML = '<p class="muted" style="font-size:13px">Noch keine Beiträge.</p>';
+          return;
+        }
+        items.forEach((p) => {
+          const row = document.createElement("div");
+          row.className = "admin-post-row";
+          const label = document.createElement("span");
+          label.textContent = (fmtDate(p.created) ? fmtDate(p.created) + " · " : "") + (p.title || "(ohne Titel)");
+          const del = document.createElement("button");
+          del.className = "admin-del";
+          del.type = "button";
+          del.textContent = "Löschen";
+          del.addEventListener("click", () => deletePost(p.id, p.title));
+          row.appendChild(label);
+          row.appendChild(del);
+          adminList.appendChild(row);
+        });
+      }
+
+      postForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const token = getToken();
+        if (!token) { openModal(loginModal); return; }
+        postStatus.className = "admin-status";
+        postStatus.textContent = "Wird veröffentlicht…";
+        const fd = new FormData(postForm);
+        const body = { title: fd.get("title"), content: fd.get("content") };
+        const link = (fd.get("linkedin_url") || "").trim();
+        if (link) body.linkedin_url = link;
+        try {
+          const r = await fetch(`${PB}/api/collections/${COL}/records`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Authorization": token },
+            body: JSON.stringify(body),
+          });
+          if (r.status === 401 || r.status === 403) { clearToken(); throw new Error("auth"); }
+          if (!r.ok) throw new Error("fail");
+          postForm.reset();
+          postStatus.className = "admin-status ok";
+          postStatus.textContent = "Beitrag veröffentlicht.";
+          await loadAdminList();
+          await loadPosts();
+        } catch (err) {
+          postStatus.className = "admin-status error";
+          postStatus.textContent = err.message === "auth"
+            ? "Sitzung abgelaufen – bitte erneut anmelden."
+            : "Veröffentlichen fehlgeschlagen.";
+          if (err.message === "auth") { closeModal(panelModal); openModal(loginModal); }
+        }
+      });
+
+      async function deletePost(id, title) {
+        const token = getToken();
+        if (!token) { openModal(loginModal); return; }
+        if (!window.confirm(`Beitrag „${title || ""}" wirklich löschen?`)) return;
+        try {
+          const r = await fetch(`${PB}/api/collections/${COL}/records/${id}`, {
+            method: "DELETE",
+            headers: { "Authorization": token },
+          });
+          if (r.status === 401 || r.status === 403) { clearToken(); closeModal(panelModal); openModal(loginModal); return; }
+          await loadAdminList();
+          await loadPosts();
+        } catch (e) {
+          postStatus.className = "admin-status error";
+          postStatus.textContent = "Löschen fehlgeschlagen.";
+        }
+      }
+
+      document.querySelector("[data-admin-logout]").addEventListener("click", () => {
+        clearToken();
+        closeModal(panelModal);
+      });
+
+      loadPosts();
+    })();
+  </script>
+</body>
+</html>
