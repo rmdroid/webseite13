@@ -174,11 +174,24 @@
     }
 
     .admin-post-row span {
+      flex: 1;
       font-size: 14px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
+    .admin-date {
+      flex-shrink: 0;
+      width: 138px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 8px;
+      font-size: 12px;
+      background: var(--surface);
+      color: var(--fg);
+    }
+    .admin-date:focus { outline: none; border-color: var(--accent); }
 
     .admin-del {
       flex-shrink: 0;
@@ -382,6 +395,7 @@
       <form data-admin-post-form>
         <div class="field"><label for="post-title">Überschrift / Thema</label><input id="post-title" name="title" required></div>
         <div class="field"><label for="post-content">Post-Text</label><textarea id="post-content" name="content" rows="8" required></textarea></div>
+        <div class="field"><label for="post-date-input">Datum (bestimmt die Reihenfolge – neueste oben)</label><input id="post-date-input" name="post_date" type="date"></div>
         <div class="field"><label for="post-link">LinkedIn-Link</label><input id="post-link" name="linkedin_url" type="url" placeholder="https://www.linkedin.com/posts/…"></div>
         <div class="wiz-nav"><button class="btn btn-primary" type="submit">Veröffentlichen</button></div>
         <p class="admin-status" data-admin-post-status></p>
@@ -414,6 +428,7 @@
       const postForm = document.querySelector("[data-admin-post-form]");
       const postStatus = document.querySelector("[data-admin-post-status]");
       const adminList = document.querySelector("[data-admin-post-list]");
+      const postDateInput = document.querySelector("#post-date-input");
 
       const getToken = () => sessionStorage.getItem(TOKEN_KEY);
       const setToken = (t) => sessionStorage.setItem(TOKEN_KEY, t);
@@ -421,6 +436,13 @@
 
       function openModal(el) { el.classList.add("open"); el.setAttribute("aria-hidden", "false"); }
       function closeModal(el) { el.classList.remove("open"); el.setAttribute("aria-hidden", "true"); }
+
+      function todayStr() {
+        const d = new Date();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        return `${d.getFullYear()}-${m}-${day}`;
+      }
 
       function fmtDate(s) {
         if (!s) return "";
@@ -431,7 +453,7 @@
 
       async function loadPosts() {
         try {
-          const r = await fetch(`${PB}/api/collections/${COL}/records?sort=-created&perPage=500`);
+          const r = await fetch(`${PB}/api/collections/${COL}/records?sort=-post_date,-created&perPage=500`);
           const d = await r.json();
           allPosts = d.items || [];
           applyFilter();
@@ -475,7 +497,7 @@
 
           const meta = document.createElement("p");
           meta.className = "blog-post-meta";
-          meta.textContent = fmtDate(p.created);
+          meta.textContent = fmtDate(p.post_date || p.created);
           if (meta.textContent) art.appendChild(meta);
 
           const txt = document.createElement("p");
@@ -498,7 +520,7 @@
           tocLink.href = "#" + anchor;
           const tocDate = document.createElement("span");
           tocDate.className = "toc-date";
-          tocDate.textContent = fmtDate(p.created) || "—";
+          tocDate.textContent = fmtDate(p.post_date || p.created) || "—";
           const tocTitle = document.createElement("span");
           tocTitle.className = "toc-title";
           tocTitle.textContent = p.title || "(ohne Titel)";
@@ -512,6 +534,7 @@
 
       async function openAdmin() {
         if (getToken()) {
+          if (!postDateInput.value) postDateInput.value = todayStr();
           openModal(panelModal);
           await loadAdminList();
         } else {
@@ -559,7 +582,7 @@
       async function loadAdminList() {
         adminList.innerHTML = '<p class="muted" style="font-size:13px">Wird geladen…</p>';
         try {
-          const r = await fetch(`${PB}/api/collections/${COL}/records?sort=-created&perPage=50`);
+          const r = await fetch(`${PB}/api/collections/${COL}/records?sort=-post_date,-created&perPage=500`);
           const d = await r.json();
           renderAdminList(d.items || []);
         } catch (e) {
@@ -576,17 +599,49 @@
         items.forEach((p) => {
           const row = document.createElement("div");
           row.className = "admin-post-row";
+
+          const dateInput = document.createElement("input");
+          dateInput.className = "admin-date";
+          dateInput.type = "date";
+          dateInput.title = "Datum ändern – verschiebt den Beitrag";
+          dateInput.value = (p.post_date || p.created || "").slice(0, 10);
+          dateInput.addEventListener("change", () => updatePostDate(p.id, dateInput.value));
+
           const label = document.createElement("span");
-          label.textContent = (fmtDate(p.created) ? fmtDate(p.created) + " · " : "") + (p.title || "(ohne Titel)");
+          label.textContent = p.title || "(ohne Titel)";
+
           const del = document.createElement("button");
           del.className = "admin-del";
           del.type = "button";
           del.textContent = "Löschen";
           del.addEventListener("click", () => deletePost(p.id, p.title));
+
+          row.appendChild(dateInput);
           row.appendChild(label);
           row.appendChild(del);
           adminList.appendChild(row);
         });
+      }
+
+      async function updatePostDate(id, dateStr) {
+        const token = getToken();
+        if (!token || !dateStr) { if (!token) openModal(loginModal); return; }
+        try {
+          const r = await fetch(`${PB}/api/collections/${COL}/records/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json", "Authorization": token },
+            body: JSON.stringify({ post_date: dateStr + " 12:00:00.000Z" }),
+          });
+          if (r.status === 401 || r.status === 403) { clearToken(); closeModal(panelModal); openModal(loginModal); return; }
+          if (!r.ok) throw new Error("fail");
+          postStatus.className = "admin-status ok";
+          postStatus.textContent = "Datum aktualisiert – Reihenfolge angepasst.";
+          await loadAdminList();
+          await loadPosts();
+        } catch (e) {
+          postStatus.className = "admin-status error";
+          postStatus.textContent = "Datum konnte nicht geändert werden.";
+        }
       }
 
       postForm.addEventListener("submit", async (e) => {
@@ -599,6 +654,8 @@
         const body = { title: fd.get("title"), content: fd.get("content") };
         const link = (fd.get("linkedin_url") || "").trim();
         if (link) body.linkedin_url = link;
+        const dateStr = (fd.get("post_date") || "").trim() || todayStr();
+        body.post_date = dateStr + " 12:00:00.000Z";
         try {
           const r = await fetch(`${PB}/api/collections/${COL}/records`, {
             method: "POST",
@@ -608,6 +665,7 @@
           if (r.status === 401 || r.status === 403) { clearToken(); throw new Error("auth"); }
           if (!r.ok) throw new Error("fail");
           postForm.reset();
+          postDateInput.value = todayStr();
           postStatus.className = "admin-status ok";
           postStatus.textContent = "Beitrag veröffentlicht.";
           await loadAdminList();
