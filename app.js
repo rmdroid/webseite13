@@ -618,8 +618,11 @@ Regeln: Deutsch, maximal 3 Sätze, kein Markdown, keine Sternchen, keine Aufzäh
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2L2 8l5 2 2 5 5-12z"/></svg>
         </button>
       </div>
+      <p class="chat-disclosure" role="note" style="margin:0;padding:0 16px 11px;font-size:10.5px;line-height:1.45;opacity:.5;text-align:center">
+        KI-generierte Antworten, Fehler möglich. Verbindliches klären wir persönlich.
+      </p>
     </div>
-    <button class="chat-trigger" id="chat-trigger" aria-label="KI-Assistent öffnen" aria-expanded="false" data-tooltip="Gemini Nano · läuft lokal · nur Chrome">
+    <button class="chat-trigger" id="chat-trigger" aria-label="KI-Assistent öffnen" aria-expanded="false" data-tooltip="KI-Assistent · Gemini Nano · läuft lokal in Chrome">
       <svg class="icon-chat" width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       <svg class="icon-close" width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4L4 14M4 4l10 10"/></svg>
     </button>
