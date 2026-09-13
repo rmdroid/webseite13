@@ -3,24 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>13%-Check - Robert Meyer KI-Strategieberatung, EU AI Act und Automatisierung</title>
-  <meta name="description" content="Der 13%-Check von Robert Meyer prüft in 30 Tagen, ob ein KI-Vorhaben belastbar ist: Risiko, Daten, Prozess, Umsetzung, AI Act und n8n Automatisierung.">
-  <meta name="keywords" content="KI Beratung, KI Strategieberatung, EU AI Act, Robert Meyer, Prozessautomatisierung, n8n, KI Training, LLM Integration, KI Governance">
+  <title>13%-Check – KI-Vorhaben in 30 Tagen prüfen | Robert Meyer, KI-Beratung</title>
+  <meta name="description" content="Nur 13 % der KI-Projekte erreichen den Betrieb. Der 13%-Check von Robert Meyer prüft in 30 Tagen Use Case, Datenlage, AI-Act-Risiko und Umsetzungspfad. Ergebnis: ein Entscheidungsbrief für die Geschäftsführung.">
   <meta name="author" content="Robert Meyer">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://ki13prozent.de/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="13%-Check - KI-Umsetzungsprüfung in 30 Tagen">
-  <meta property="og:description" content="KI-Vorhaben vor Budgetverlust schützen: Risiko, Daten, Prozess und Umsetzung in einem belastbaren Entscheidungsbrief verdichten.">
+  <meta property="og:title" content="13%-Check – KI-Vorhaben in 30 Tagen prüfen">
+  <meta property="og:description" content="Nur 13 % der KI-Projekte erreichen den Betrieb. Der 13%-Check prüft vorher, ob Ihres dazugehört.">
   <meta property="og:url" content="https://ki13prozent.de/">
-  <meta property="og:site_name" content="Robert Meyer KI-Beratung">
+  <meta property="og:site_name" content="Robert Meyer · KI-Beratung">
   <meta property="og:locale" content="de_DE">
-  <meta property="og:image" content="https://ki13prozent.de/assets/ai-governance-hero.jpg">
+  <meta property="og:image" content="https://ki13prozent.de/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="13%-Check - KI-Umsetzungsprüfung">
-  <meta name="twitter:description" content="KI-Strategie, EU AI Act Compliance und Prozessautomatisierung als 30-Tage-Prüfung.">
-  <meta name="twitter:image" content="https://ki13prozent.de/assets/ai-governance-hero.jpg">
+  <meta name="twitter:title" content="13%-Check – KI-Vorhaben in 30 Tagen prüfen">
+  <meta name="twitter:description" content="Nur 13 % der KI-Projekte erreichen den Betrieb. Der 13%-Check prüft vorher, ob Ihres dazugehört.">
+  <meta name="twitter:image" content="https://ki13prozent.de/assets/og-image.png">
+  <meta name="theme-color" content="#14171a">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -30,8 +32,8 @@
         "@type": "WebSite",
         "@id": "https://ki13prozent.de/#website",
         "url": "https://ki13prozent.de/",
-        "name": "Robert Meyer KI-Beratung",
-        "description": "13%-Check, KI-Strategieberatung, EU AI Act Compliance und n8n Automatisierung mit Robert Meyer",
+        "name": "Robert Meyer · KI-Beratung",
+        "description": "13%-Check, EU AI Act Risiko-Sprint, n8n Workflow-Prototypen und Executive KI-Schulung.",
         "publisher": { "@id": "https://ki13prozent.de/#person" },
         "inLanguage": "de-DE"
       },
@@ -40,661 +42,482 @@
         "@id": "https://ki13prozent.de/#person",
         "name": "Robert Meyer",
         "url": "https://ki13prozent.de/",
-        "jobTitle": "KI-Strategieberater",
+        "jobTitle": "KI-Consultant und Dozent",
         "email": "rm@kostenmanager.net",
         "telephone": "+49 162 4194748",
+        "address": { "@type": "PostalAddress", "addressLocality": "Friedberg", "postalCode": "61169", "addressCountry": "DE" },
         "sameAs": ["https://www.linkedin.com/in/robert-meyer-666b39315"]
+      },
+      {
+        "@type": "Service",
+        "name": "13%-Check",
+        "serviceType": "KI-Umsetzungsprüfung",
+        "provider": { "@id": "https://ki13prozent.de/#person" },
+        "areaServed": "DE",
+        "description": "30-Tage-Prüfung eines KI-Vorhabens: Use Case, Datenlage, AI-Act-Risiko, Prozesswirkung, Umsetzungspfad. Ergebnis ist ein Entscheidungsbrief."
       }
     ]
   }
   </script>
-  <style>
-    /* === WIZARD MODAL === */
-    .modal-wide { width: min(660px, 100%); }
-
-    .wizard-steps {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .wiz-step {
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--muted);
-      transition: background 200ms, border-color 200ms, color 200ms;
-    }
-
-    .wiz-step.active {
-      background: var(--surface-strong);
-      color: var(--surface);
-      border-color: var(--surface-strong);
-    }
-
-    .wiz-divider {
-      width: 28px;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .service-choices {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .service-choice {
-      display: grid;
-      gap: 6px;
-      text-align: left;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-      background: var(--surface);
-      transition: border-color 140ms, background 140ms;
-    }
-
-    .service-choice strong { font-size: 15px; }
-    .service-choice span { color: var(--muted); font-size: 13px; line-height: 1.4; }
-
-    .service-choice:hover {
-      border-color: var(--fg);
-      background: color-mix(in oklch, var(--accent) 5%, var(--surface));
-    }
-
-    .service-choice.selected {
-      border-color: var(--accent);
-      background: color-mix(in oklch, var(--accent) 9%, var(--surface));
-    }
-
-    .wiz-questions { display: grid; gap: 14px; margin-top: 20px; }
-
-    .wiz-fieldset {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      margin: 0;
-    }
-
-    .wiz-fieldset legend {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0 4px;
-    }
-
-    .radio-group { display: grid; gap: 8px; margin-top: 12px; }
-
-    .radio-group label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .wiz-nav {
-      display: flex;
-      gap: 10px;
-      margin-top: 22px;
-      justify-content: flex-end;
-    }
-
-    /* === DIAGNOSE TOOL === */
-    .diagnose-card {
-      max-width: 700px;
-      margin-inline: auto;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-      padding: clamp(24px, 4vw, 44px);
-    }
-
-    .diagnose-progress-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 30px;
-    }
-
-    .diagnose-step-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .diagnose-question {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2.4vw, 28px);
-      line-height: 1.24;
-      margin-bottom: 24px !important;
-      max-width: 100% !important;
-    }
-
-    .diagnose-options { display: grid; gap: 10px; }
-
-    .diagnose-option {
-      text-align: left;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 15px 20px;
-      background: var(--surface);
-      font-size: 15px;
-      transition: border-color 120ms, background 120ms;
-    }
-
-    .diagnose-option:hover {
-      border-color: var(--fg);
-      background: color-mix(in oklch, var(--accent) 7%, var(--surface));
-    }
-
-    .diagnose-result-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 18px;
-      max-width: 900px;
-      margin-inline: auto;
-    }
-
-    .diagnose-result-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-      padding: clamp(24px, 4vw, 40px);
-    }
-
-    .diagnose-score-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-
-    .diagnose-result-h3 {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 42px);
-      line-height: 1.08;
-    }
-
-    .diagnose-result-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 26px;
-    }
-
-    .diagnose-score-panel {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface-strong);
-      color: var(--surface);
-      padding: 22px;
-    }
-
-    .diagnose-score-number {
-      font-family: var(--font-display);
-      font-size: clamp(64px, 7vw, 92px);
-      line-height: 0.9;
-      margin-top: 10px;
-    }
-
-    .diagnose-score-number span {
-      font-size: 0.3em;
-      color: color-mix(in oklch, var(--surface) 44%, transparent);
-    }
-
-    .diagnose-score-legend { display: grid; gap: 6px; margin-top: 18px; }
-
-    .diagnose-legend-item {
-      font-size: 13px;
-      color: color-mix(in oklch, var(--surface) 44%, transparent);
-      padding: 5px 8px;
-      border-radius: 4px;
-    }
-
-    .diagnose-legend-item.current {
-      color: var(--surface);
-      background: color-mix(in oklch, var(--surface) 14%, transparent);
-      font-weight: 700;
-    }
-
-    /* === MANIFEST === */
-    .manifest-list { display: grid; gap: 0; }
-
-    .manifest-item {
-      display: flex;
-      align-items: baseline;
-      gap: 18px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .manifest-item:last-child { border-bottom: 0; }
-
-    .manifest-num {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-      min-width: 22px;
-    }
-
-    .manifest-item strong {
-      font-family: var(--font-display);
-      font-size: clamp(17px, 1.7vw, 22px);
-      line-height: 1.2;
-    }
-
-    /* === RESPONSIVE === */
-    @media (max-width: 640px) {
-      .service-choices { grid-template-columns: 1fr; }
-      .diagnose-result-wrapper { grid-template-columns: 1fr; }
-    }
-    [data-testimonials] { display: grid; }
-    [data-testimonial] { grid-column: 1; grid-row: 1; opacity: 0; transition: opacity 700ms ease; }
-    [data-testimonial].active { opacity: 1; }
-  </style>
   <script defer src="https://cv.rm-on.de/script.js" data-website-id="077fc84e-d4f1-4861-a26e-9604ad4954e3"></script>
 </head>
 <body>
-  <header class="site-header">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header" data-header>
     <div class="container nav-shell">
       <a class="brand" href="index.html" aria-label="Startseite Robert Meyer">
-        <span class="brand-mark">RM</span>
-        <span>Robert Meyer<small>KI Transformation Hub</small></span>
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><g fill="#6b737b"><circle cx="4" cy="4" r="1.7"/><circle cx="9.33" cy="4" r="1.7"/><circle cx="14.67" cy="4" r="1.7"/><circle cx="4" cy="9.33" r="1.7"/><circle cx="9.33" cy="9.33" r="1.7"/><circle cx="14.67" cy="9.33" r="1.7"/><circle cx="20" cy="9.33" r="1.7"/><circle cx="4" cy="14.67" r="1.7"/><circle cx="14.67" cy="14.67" r="1.7"/><circle cx="20" cy="14.67" r="1.7"/><circle cx="4" cy="20" r="1.7"/><circle cx="9.33" cy="20" r="1.7"/><circle cx="14.67" cy="20" r="1.7"/><circle cx="20" cy="20" r="1.7"/></g><g fill="#e39a1c"><circle cx="20" cy="4" r="1.7"/><circle cx="9.33" cy="14.67" r="1.7"/></g></svg>
+        </span>
+        <span>Robert Meyer<small>13%-Check · KI-Beratung</small></span>
       </a>
-      <nav class="primary-nav" aria-label="Hauptnavigation">
+      <nav class="primary-nav" id="primary-nav" aria-label="Hauptnavigation">
         <a href="index.html">Start</a>
-        <a href="services.html">Services</a>
-        <a href="roadmap.html">Roadmap</a>
+        <a href="services.html">Leistungen</a>
+        <a href="roadmap.html">Vorgehen</a>
         <a href="about.html">Profil</a>
         <a href="oekosystem.html">Ökosystem</a>
         <a href="blog.html">Blog</a>
-        <a href="datenschutz.html">Datenschutz</a>
       </nav>
       <div class="nav-actions">
-        <button class="btn btn-primary" type="button" data-open-contact>Erstgespräch</button>
-        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false">☰</button>
+        <button class="btn primary sm" type="button" data-open-contact>Erstgespräch</button>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav"><span></span></button>
       </div>
     </div>
   </header>
 
-  <main>
+  <main id="main">
+
     <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
-        <div class="mobile-hero-image" aria-hidden="true"></div>
         <div>
-          <p class="eyebrow">13%-Check · KI-Strategieberatung · EU AI Act · n8n Automation</p>
-          <h1>87% der KI-Projekte scheitern. Gehören Sie zu den 13%?</h1>
-          <p class="lead">Der 13%-Check verdichtet in 30 Tagen, ob Ihr Vorhaben zu den Ausnahmen gehört: Use Case, Datenlage, AI-Act-Risiko, Prozesswirkung und umsetzbarer Workflow – in einem managementtauglichen Entscheidungsbrief.</p>
+          <p class="eyebrow">KI-Beratung · EU AI Act · Prozessautomatisierung</p>
+          <h1>Nur <span class="accent">13 %</span> der KI-Projekte kommen im Betrieb an. Gehört Ihres dazu?</h1>
+          <p class="lead">Der 13%-Check prüft in 30 Tagen, ob Ihr Vorhaben trägt: Use Case, Datenlage, AI-Act-Risiko, Prozesswirkung und Umsetzungspfad. Am Ende liegt ein Entscheidungsbrief auf dem Tisch, kein Foliensatz.</p>
           <div class="hero-actions">
-            <button class="btn btn-primary btn-icon" type="button" data-open-contact data-contact-topic="13%-Check">
-              <span>13%-Check starten</span>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <a class="btn" href="#diagnose">Selbst prüfen</a>
-          </div>
-          <div class="status-strip" aria-label="Kernsignale">
-            <span class="status-pill">13%-Check in 30 Tagen</span>
-            <span class="status-pill">Code statt PowerPoints</span>
-            <span class="status-pill">PRINCE2 zertifiziert</span>
-            <span class="status-pill">15+ Jahre Erfahrung</span>
-            <span class="status-pill">24+ Monate KI-Spezialisierung</span>
+            <a class="btn primary lg" href="#check">
+              Schnellcheck starten
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <button class="btn lg" type="button" data-open-contact data-contact-topic="13%-Check">Erstgespräch anfragen</button>
           </div>
         </div>
 
-        <aside class="signal-panel" data-tabs aria-label="Interaktive Leistungsübersicht">
-          <div class="signal-head">
-            <strong>Transformation Cockpit</strong>
-            <span class="status-pill"><span class="live-dot" aria-hidden="true"></span>Live Beratungspfad</span>
+        <aside class="grid-panel" aria-label="100 KI-Vorhaben, 13 erreichen den Betrieb">
+          <div class="grid-panel-head">
+            <strong>100 KI-Vorhaben</strong>
+            <span class="num">13 erreichen den Betrieb</span>
           </div>
-          <div class="tabs" role="tablist" aria-label="Cockpit Ansichten">
-            <button class="tab" role="tab" id="tab-risk" aria-controls="panel-risk" aria-selected="true">Risiko</button>
-            <button class="tab" role="tab" id="tab-agent" aria-controls="panel-agent" aria-selected="false">Agent</button>
-            <button class="tab" role="tab" id="tab-roi" aria-controls="panel-roi" aria-selected="false">ROI</button>
+          <div class="dots" data-dots role="group" aria-label="Raster aus 100 Punkten"></div>
+          <div class="grid-legend">
+            <span><i></i>scheitert oder versandet</span>
+            <span><i class="on"></i>läuft im Regelbetrieb</span>
           </div>
-          <div class="tab-panel active" role="tabpanel" id="panel-risk" aria-labelledby="tab-risk">
-            <div class="metrics">
-              <div class="metric"><span>AI Act</span><strong>4</strong><span>Risikoklassen</span></div>
-              <div class="metric"><span>Governance</span><strong>12</strong><span>Kontrollpunkte</span></div>
-              <div class="metric"><span>Dokumentation</span><strong>EU</strong><span>konform denken</span></div>
-            </div>
+          <div class="grid-note" data-dots-note aria-live="polite">
+            <span class="num">Interaktiv</span>
+            Bewegen Sie den Zeiger über einen Punkt. Jeder steht für ein typisches Vorhaben und den Grund, warum es lief oder nicht.
           </div>
-          <div class="tab-panel" role="tabpanel" id="panel-agent" aria-labelledby="tab-agent">
-            <div class="mini-list">
-              <div class="mini-row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12M6 12h8M6 16h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><strong>Chatbot-Modus</strong><span>strukturierte Beratung</span></div>
-              <div class="mini-row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M4 11h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><strong>Agent-Modus</strong><span>n8n Tools und Workflows</span></div>
-              <div class="mini-row"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Toggle</strong><span>passend zum Bedarf</span></div>
-            </div>
-          </div>
-          <div class="tab-panel" role="tabpanel" id="panel-roi" aria-labelledby="tab-roi">
-            <div class="metrics">
-              <div class="metric"><span>Potenzial</span><strong>Use</strong><span>Cases priorisieren</span></div>
-              <div class="metric"><span>Wert</span><strong>ROI</strong><span>transparent machen</span></div>
-              <div class="metric"><span>Tempo</span><strong>30</strong><span>bis 90 Tage Fokus</span></div>
-            </div>
-          </div>
+          <p class="grid-source">Richtwert aus Branchenstudien und eigener Projekterfahrung. Als Größenordnung gemeint, nicht als Messwert.</p>
         </aside>
       </div>
     </section>
 
-    <!-- SIGNATURE OFFER -->
-    <section class="section section-tight">
-      <div class="container signature-offer">
-        <div class="method-card">
-          <p class="eyebrow">Signature-Angebot</p>
-          <h2>13%-Check in 30 Tagen.</h2>
-          <p>Die KI-Umsetzungsprüfung zeigt, ob ein Vorhaben Budget, Risiko, Datenlage und Betrieb wirklich besteht.</p>
-          <div class="offer-actions">
-            <button class="btn btn-primary" type="button" data-open-contact data-contact-topic="13%-Check">Check anfragen</button>
-            <a class="btn" href="services.html#pakete">Lieferumfang</a>
+    <!-- 01 SCHNELLCHECK -->
+    <section class="section" id="check">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">01 · Schnellcheck</p>
+            <h2>Gehören Sie zu den 13 %?</h2>
+          </div>
+          <p class="lead">Fünf Fragen, zwei Minuten. Das Ergebnis ist eine erste Einordnung mit klarer Empfehlung: investieren, prototypisieren, absichern oder stoppen.</p>
+        </div>
+        <div class="check-shell">
+          <div data-check></div>
+          <aside class="check-side reveal" style="--d:2">
+            <h4>So lesen Sie das Ergebnis</h4>
+            <p>Die Punkte bilden ab, wie belastbar Use Case, Datenlage, Risiko und Verantwortung heute sind.</p>
+            <ul>
+              <li><i class="go"></i><span><strong>Investieren.</strong> Die Grundlagen tragen. Der Check verdichtet sie zur Entscheidung.</span></li>
+              <li><i class="proto"></i><span><strong>Prototyp.</strong> Die Idee ist konkret. Jetzt zeigt ein Workflow, ob sie im Alltag funktioniert.</span></li>
+              <li><i class="hold"></i><span><strong>Absichern.</strong> Compliance und Verantwortung sind offen. Erst klären, dann bauen.</span></li>
+              <li><i class="stop"></i><span><strong>Stoppen.</strong> Zu viele Voraussetzungen fehlen. Ein schneller Start erhöht das Risiko.</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 LEISTUNGEN -->
+    <section class="section" id="leistungen">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">02 · Leistungen</p>
+            <h2>Vier Einstiege. Jeder beantwortet eine Frage.</h2>
+          </div>
+          <p class="lead">Sie kaufen keine „KI“. Sie kaufen eine Antwort, die Sie im Betrieb verwenden können.</p>
+        </div>
+        <div class="offers">
+          <article class="card offer featured reveal">
+            <div>
+              <span class="tag on">30 Tage · Empfohlener Einstieg</span>
+              <p class="question">Lohnt sich das?</p>
+              <h3>13%-Check</h3>
+              <p class="answer">Use Case, Datenlage, AI-Act-Risiko, Prozesswirkung und Umsetzungsfähigkeit in einer Prüfung. Ergebnis: ein Entscheidungsbrief mit Ja, Nein oder Noch nicht.</p>
+              <div class="meta"><span class="tag">Entscheidungsbrief</span><span class="tag">Risiko- und Datenmatrix</span><span class="tag">30/60/90-Plan</span></div>
+            </div>
+            <div class="card-foot">
+              <a class="link-arrow" href="services.html#check">Ablauf ansehen <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <button class="btn primary sm" type="button" data-open-contact data-contact-topic="13%-Check">Anfragen</button>
+            </div>
+          </article>
+          <article class="card offer hover reveal" style="--d:1">
+            <div>
+              <span class="tag">1 bis 3 Wochen</span>
+              <p class="question">Dürfen wir das so?</p>
+              <h3>AI Act Risiko-Sprint</h3>
+              <p class="answer">Systeminventar, Risikoklassifizierung, Verantwortlichkeiten und Dokumentationslogik. Ergebnis: eine Compliance-Entscheidung, die vor der Geschäftsführung Bestand hat.</p>
+              <div class="meta"><span class="tag">Systeminventar</span><span class="tag">Risikoklassen</span><span class="tag">Kontrollpunkte</span></div>
+            </div>
+            <div class="card-foot">
+              <a class="link-arrow" href="eu-ai-act-beratung.html">Mehr dazu <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <button class="btn sm" type="button" data-open-contact data-contact-topic="AI Act Risiko-Sprint">Anfragen</button>
+            </div>
+          </article>
+          <article class="card offer hover reveal" style="--d:2">
+            <div>
+              <span class="tag">2 bis 6 Wochen</span>
+              <p class="question">Funktioniert das im Alltag?</p>
+              <h3>n8n Workflow-Prototyp</h3>
+              <p class="answer">Ein realer Prozess wird als Workflow mit Übergaben und Kontrollpunkten gebaut und getestet. Ergebnis: eine Vorlage für die Produktivsetzung, kein Demo-Video.</p>
+              <div class="meta"><span class="tag">Prozessaufnahme</span><span class="tag">n8n-Prototyp</span><span class="tag">Betriebsentscheidung</span></div>
+            </div>
+            <div class="card-foot">
+              <a class="link-arrow" href="n8n-automatisierung.html">Mehr dazu <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <button class="btn sm" type="button" data-open-contact data-contact-topic="n8n Workflow-Prototyp">Anfragen</button>
+            </div>
+          </article>
+          <article class="card offer hover reveal" style="--d:3">
+            <div>
+              <span class="tag">1 bis 2 Tage</span>
+              <p class="question">Können wir das selbst?</p>
+              <h3>Executive KI-Schulung</h3>
+              <p class="answer">KI-Kompetenz für Geschäftsführung, Fachbereiche und Verwaltungen, an eigenen Aufgaben statt an Beispielen. Ergebnis: Teams, die am nächsten Tag anders arbeiten.</p>
+              <div class="meta"><span class="tag">Werkzeugkoffer</span><span class="tag">Datenschutz und Grenzen</span><span class="tag">Transfer</span></div>
+            </div>
+            <div class="card-foot">
+              <a class="link-arrow" href="ki-schulung-verwaltung.html">Mehr dazu <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <button class="btn sm" type="button" data-open-contact data-contact-topic="Executive KI-Schulung">Anfragen</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 ARBEITSPRINZIP -->
+    <section class="section dark" id="prinzip">
+      <div class="container principle">
+        <div class="sticky">
+          <p class="eyebrow">03 · Arbeitsprinzip</p>
+          <h2 style="margin-top:18px">Code statt PowerPoints.</h2>
+          <p class="lead" style="margin-top:22px">Beratung endet nicht auf einer Folie. Sie muss als Workflow, Entscheidungslogik oder Governance-Regel im Betrieb ankommen. Sonst war sie Unterhaltung.</p>
+        </div>
+        <ul class="manifest">
+          <li class="reveal"><span class="num">01</span><strong>Keine KI ohne Prozess.</strong><p>Wenn niemand sagen kann, welche Arbeit sich konkret ändert, gibt es nichts zu automatisieren.</p></li>
+          <li class="reveal" style="--d:1"><span class="num">02</span><strong>Keine Demo ohne Betriebspfad.</strong><p>Wer wartet das System, wer eskaliert bei Fehlern, was kostet der Betrieb im dritten Jahr?</p></li>
+          <li class="reveal" style="--d:2"><span class="num">03</span><strong>Keine Automatisierung ohne Kontrollpunkt.</strong><p>Jeder Workflow bekommt Stellen, an denen ein Mensch prüft, stoppt oder freigibt.</p></li>
+          <li class="reveal" style="--d:3"><span class="num">04</span><strong>Keine Schulung ohne Transfer.</strong><p>Nach dem Termin muss jemand etwas anders tun. Messbar, an der eigenen Aufgabe.</p></li>
+          <li class="reveal" style="--d:4"><span class="num">05</span><strong>Keine Strategie ohne Entscheidung.</strong><p>Ein Strategiedokument, das keine Entscheidung erzwingt, ist Feierabendliteratur.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 04 30 TAGE -->
+    <section class="section dark" id="ablauf">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">04 · Der 13%-Check</p>
+            <h2>Was in 30 Tagen passiert.</h2>
+          </div>
+          <p class="lead">Vier Phasen, je ein greifbares Ergebnis. Am Ende steht eine Entscheidung, nicht ein weiterer Workshop-Termin.</p>
+        </div>
+        <div class="days" data-days>
+          <div class="days-sticky">
+            <div class="day-counter"><span data-day-label>Tag 1–5</span><small>von 30</small></div>
+            <div class="day-bar" data-day-bar aria-hidden="true"></div>
+            <h3 class="day-phase-title" data-day-title>Use Case und Datenlage</h3>
+            <p class="day-phase-text" data-day-text>Welche Entscheidung oder welcher Prozess steht im Zentrum? Welche Daten gibt es, wer hat Zugriff, wie gut sind sie?</p>
+          </div>
+          <div class="phase-list">
+            <article class="phase" data-phase data-from="1" data-to="5" data-title="Use Case und Datenlage" data-text="Welche Entscheidung oder welcher Prozess steht im Zentrum? Welche Daten gibt es, wer hat Zugriff, wie gut sind sie?">
+              <span class="num">Tag 1–5</span>
+              <h3>Use Case und Datenlage</h3>
+              <p>Welche Entscheidung oder welcher Prozess steht im Zentrum? Welche Daten gibt es, wer hat Zugriff, wie gut sind sie? Die wirtschaftliche Relevanz wird beziffert, nicht behauptet.</p>
+              <div class="artifact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span><span class="num">Ergebnis</span> · Use-Case-Steckbrief und Datenlandkarte</span></div>
+            </article>
+            <article class="phase" data-phase data-from="6" data-to="12" data-title="AI Act und Datenschutz" data-text="Risikoklasse, Datenschutzfragen, Betroffene, menschliche Aufsicht. Was dokumentiert werden muss und wer dafür verantwortlich ist.">
+              <span class="num">Tag 6–12</span>
+              <h3>AI Act und Datenschutz</h3>
+              <p>Risikoklasse, Datenschutzfragen, Betroffene, menschliche Aufsicht. Was dokumentiert werden muss, wer dafür verantwortlich ist und wo ein Vorhaben regulatorisch gar nicht erst starten sollte.</p>
+              <div class="artifact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4.2 2.8 7.2 7 9 4.2-1.8 7-4.8 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg><span><span class="num">Ergebnis</span> · Risiko- und Datenmatrix</span></div>
+            </article>
+            <article class="phase" data-phase data-from="13" data-to="20" data-title="Prozess und Workflow" data-text="Der Zielprozess als Ablauf: Eingaben, Entscheidungen, Übergaben, Eskalation. Wo KI hilft, wo sie stört, wo ein Mensch bleiben muss.">
+              <span class="num">Tag 13–20</span>
+              <h3>Prozess und Workflow</h3>
+              <p>Der Zielprozess als Ablauf: Eingaben, Entscheidungen, Übergaben, Eskalation. Wo KI hilft, wo sie stört, wo ein Mensch bleiben muss. Wenn es sich lohnt, wird ein Kernstück als n8n-Workflow gebaut.</p>
+              <div class="artifact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="15" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><path d="M9 6.5h6M6 9v6a2 2 0 0 0 2 2h7"/></svg><span><span class="num">Ergebnis</span> · Workflow-Skizze, bei Bedarf Prototyp</span></div>
+            </article>
+            <article class="phase" data-phase data-from="21" data-to="30" data-title="Entscheidungsbrief" data-text="Alles verdichtet auf zwei Seiten für die Geschäftsführung: Ja, Nein oder Noch nicht. Mit Begründung und 30/60/90-Tage-Plan.">
+              <span class="num">Tag 21–30</span>
+              <h3>Entscheidungsbrief</h3>
+              <p>Alles verdichtet auf zwei Seiten für die Geschäftsführung: Ja, Nein oder Noch nicht. Mit Begründung, offenen Risiken und einem 30/60/90-Tage-Plan, der am Tag nach der Übergabe beginnt.</p>
+              <div class="artifact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18" cy="16" r="3"/></svg><span><span class="num">Ergebnis</span> · Entscheidungsbrief und 30/60/90-Plan</span></div>
+            </article>
           </div>
         </div>
-        <div class="method-map visual-frame" aria-label="13%-Check Methodik">
-          <img src="assets/visual-13-check.svg" alt="13%-Check Methodik mit Risiko, Daten, Prozess und Umsetzung">
-        </div>
       </div>
     </section>
 
-    <!-- CODE STATT POWERPOINTS – MANIFEST -->
-    <section class="section section-tight">
-      <div class="container code-principle">
-        <div>
-          <p class="eyebrow">Arbeitsprinzip</p>
-          <h2>Code statt PowerPoints.</h2>
-          <p>Beratung endet nicht bei einer Folie. Sie muss als lauffähiger Workflow, Entscheidungslogik oder Governance-Artefakt im Betrieb landen.</p>
-        </div>
-        <div class="principle-grid">
-          <div class="manifest-list">
-            <div class="manifest-item">
-              <span class="manifest-num">01</span>
-              <strong>Keine KI ohne Prozess.</strong>
-            </div>
-            <div class="manifest-item">
-              <span class="manifest-num">02</span>
-              <strong>Keine Demo ohne Betriebspfad.</strong>
-            </div>
-            <div class="manifest-item">
-              <span class="manifest-num">03</span>
-              <strong>Keine Automatisierung ohne Kontrollpunkt.</strong>
-            </div>
-            <div class="manifest-item">
-              <span class="manifest-num">04</span>
-              <strong>Keine Schulung ohne Transfer.</strong>
-            </div>
-            <div class="manifest-item">
-              <span class="manifest-num">05</span>
-              <strong>Keine Strategie ohne Entscheidung.</strong>
-            </div>
+    <!-- 05 AI ACT -->
+    <section class="section" id="ai-act">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">05 · EU AI Act</p>
+            <h2>Welche Risikoklasse hätte Ihr Vorhaben?</h2>
           </div>
+          <p class="lead">Drei Fragen, eine erste Einordnung nach den vier Klassen der KI-Verordnung. Keine Rechtsberatung, aber genug, um zu wissen, worüber Sie sprechen.</p>
+        </div>
+        <div class="aiact">
+          <form class="aiact-form" data-aiact>
+            <fieldset class="aiact-q">
+              <legend>1. Wofür soll das System eingesetzt werden?</legend>
+              <div class="seg">
+                <label><input type="radio" name="use" value="internal"><i></i><span>Interne Textarbeit, Recherche, Zusammenfassungen, Assistenz für Mitarbeitende</span></label>
+                <label><input type="radio" name="use" value="customer"><i></i><span>Kontakt mit Kunden oder Bürgern: Chatbot, Auskunft, Empfehlungen, generierte Inhalte</span></label>
+                <label><input type="radio" name="use" value="decision"><i></i><span>Entscheidungen über Menschen: Bewerbung, Kredit, Sozialleistungen, Bildung, kritische Infrastruktur</span></label>
+                <label><input type="radio" name="use" value="prohibited"><i></i><span>Emotionserkennung am Arbeitsplatz, biometrische Kategorisierung, Social Scoring, gezielte Manipulation</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="aiact-q">
+              <legend>2. Welche Wirkung hat es auf Personen?</legend>
+              <div class="seg">
+                <label><input type="radio" name="impact" value="none"><i></i><span>Keine direkte. Ergebnisse bleiben intern und werden von Menschen weiterverarbeitet.</span></label>
+                <label><input type="radio" name="impact" value="interact"><i></i><span>Personen interagieren mit dem System oder sehen seine Ausgaben.</span></label>
+                <label><input type="radio" name="impact" value="legal"><i></i><span>Es beeinflusst Entscheidungen mit rechtlicher oder wesentlicher Wirkung für Personen.</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="aiact-q">
+              <legend>3. Wie viel menschliche Kontrolle ist vorgesehen?</legend>
+              <div class="seg">
+                <label><input type="radio" name="control" value="every"><i></i><span>Ein Mensch prüft jedes Ergebnis, bevor es wirkt.</span></label>
+                <label><input type="radio" name="control" value="sample"><i></i><span>Stichproben und Eskalation bei Auffälligkeiten.</span></label>
+                <label><input type="radio" name="control" value="auto"><i></i><span>Läuft weitgehend automatisch.</span></label>
+              </div>
+            </fieldset>
+          </form>
+          <aside class="aiact-result" data-aiact-result aria-live="polite">
+            <span class="class-label"><i></i>Noch keine Einordnung</span>
+            <h3>Beantworten Sie die drei Fragen.</h3>
+            <p>Die Einordnung erscheint hier, sobald alle drei Angaben vorliegen. Sie ändert sich sofort, wenn Sie eine Antwort wechseln.</p>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES GRID -->
-    <section class="section">
-      <div class="container section-header">
-        <div>
-          <p class="eyebrow">Leistungsarchitektur</p>
-          <h2>Vier Einstiege. Ein Ziel: KI muss den Betrieb erreichen.</h2>
-        </div>
-        <p>Sie kaufen nicht „KI", sondern Klarheit, Compliance, einen Workflow oder handlungsfähige Teams.</p>
-      </div>
-      <div class="container grid-4">
-        <article class="card">
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V5m0 14h16M8 16V9m4 7V7m4 9v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <h3>13%-Check</h3>
-          <p>30-Tage-Prüfung für Use Case, Risiko, Datenlage, Prozesswirkung und Umsetzungsfähigkeit.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.8 7.2 7 9 4.2-1.8 7-4.8 7-9V6l-7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-          <h3>AI Act Risiko-Sprint</h3>
-          <p>Risikoklassifizierung, Governance, Dokumentationslogik und executive-taugliche Compliance-Entscheidung.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h4v4H7zM13 13h4v4h-4zM11 9h4a2 2 0 0 1 2 2v2M13 15H9a2 2 0 0 1-2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-          <h3>n8n Workflow-Prototyp</h3>
-          <p>Ein realer Prozess wird als kontrollierbarer Workflow sichtbar, testbar und entscheidbar.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M8 6v12m8-12v12M6 18h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <h3>Executive KI-Schulung</h3>
-          <p>KI-Kompetenz für Entscheider, Fachbereiche und Verwaltungen mit direktem Praxisbezug.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ARTIFACTS -->
-    <section class="section">
-      <div class="container section-header">
-        <div>
-          <p class="eyebrow">Proof ohne Fantasie-Cases</p>
-          <h2>Was nach 30 Tagen auf dem Tisch liegt.</h2>
-        </div>
-        <p>Solange keine freigegebenen Kundenartefakte vorliegen, bleibt der Proof ehrlich: konkrete Liefergegenstände statt erfundener Fallstudien.</p>
-      </div>
-      <div class="container artifact-grid">
-        <article class="artifact-card"><img src="assets/visual-decision-brief.svg" alt="Visualisierung eines KI-Entscheidungsbriefs"><span>01</span><h3>KI-Entscheidungsbrief</h3><p>Eine managementtaugliche Ja/Nein/Noch-nicht-Empfehlung mit Begründung.</p></article>
-        <article class="artifact-card"><img src="assets/visual-risk-matrix.svg" alt="Visualisierung einer Risiko- und Datenmatrix"><span>02</span><h3>Risiko- und Datenmatrix</h3><p>AI-Act-Einordnung, Datenschutzfragen, Datenlücken und Kontrollpunkte.</p></article>
-        <article class="artifact-card"><img src="assets/visual-workflow.svg" alt="Visualisierung einer Workflow-Skizze"><span>03</span><h3>Workflow-Skizze</h3><p>Der Zielprozess als Ablaufgrafik: Eingaben, Entscheidungen, Übergaben, Verantwortung.</p></article>
-        <article class="artifact-card"><img src="assets/visual-90day-plan.svg" alt="Visualisierung eines 30 60 90 Tage Plans"><span>04</span><h3>30/60/90-Tage-Plan</h3><p>Konkrete nächste Umsetzungsschritte, nicht nur ein Strategiedokument.</p></article>
-      </div>
-    </section>
-
-    <!-- TESTIMONIAL -->
-    <section class="section dark-band">
-      <div class="container quote-grid">
-        <div data-testimonials>
-          <div data-testimonial class="active">
-            <p class="eyebrow">Stimmen aus der Praxis</p>
-            <p class="quote">„Was für eine Reise. Mein KI-Werkzeugkoffer ist gut gefüllt und bereit für die Praxisanwendung. Dies war nur der Anfang, danke dir für deine Inspiration."</p>
-            <p class="muted" style="margin-top:18px">Teilnehmer Executive KI-Workshop · C-Level Führungskraft</p>
-          </div>
-          <div data-testimonial>
-            <p class="eyebrow">Stimmen aus der Praxis</p>
-            <p class="quote">„Danke für die gemeinsame KI-Reise, die meinen Horizont so enorm erweitert hat! Die praktischen Anwendungen sind sofort umsetzbar."</p>
-            <p class="muted" style="margin-top:18px">C-Level Participant · Digitalisierungsverantwortlicher</p>
-          </div>
-          <div data-testimonial>
-            <p class="eyebrow">Stimmen aus der Praxis</p>
-            <p class="quote">„Die KI-Strategieberatung hat uns geholfen, eine klare Roadmap zu entwickeln. Besonders wertvoll waren die branchenspezifischen Insights."</p>
-            <p class="muted" style="margin-top:18px">Geschäftsführer · Mittelständisches Unternehmen</p>
-          </div>
-        </div>
-        <div class="card">
-          <p class="kicker">Ihr Ergebnis</p>
-          <h3>Aus KI-Interesse wird eine belastbare Entscheidung.</h3>
-          <p>Sie erhalten keine Toolshow, sondern Klarheit über Nutzen, Risiken, Datenlage und den nächsten umsetzbaren Schritt für Ihre Organisation.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- DIAGNOSE TOOL -->
-    <section class="section" id="diagnose">
-      <div class="container section-header">
-        <div>
-          <p class="eyebrow">Kostenloser Schnellcheck</p>
-          <h2>Gehören Sie zu den 13%?</h2>
-        </div>
-        <p>Fünf Fragen. Zwei Minuten. Sie erhalten ein klares Profil mit einer konkreten Empfehlung – ob investieren, absichern, prototypisieren oder stoppen.</p>
-      </div>
-      <div class="container" data-diagnose-tool></div>
-    </section>
-
-    <!-- ROI -->
+    <!-- 06 ROI -->
     <section class="section" id="roi">
-      <div class="container section-header">
-        <div>
-          <p class="eyebrow">Orientierungsrechner</p>
-          <h2>ROI greifbar machen, bevor das Projekt startet.</h2>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">06 · Orientierung</p>
+            <h2>Was Routinearbeit kostet, bevor jemand von ROI spricht.</h2>
+          </div>
+          <p class="lead">Der Rechner ersetzt keine Wirtschaftlichkeitsrechnung. Er zeigt in Bandbreiten, ab wann Automatisierung ein Thema ist, und macht die Annahmen sichtbar, die Sie dafür treffen.</p>
         </div>
-        <p>Der Rechner ist als Orientierung gebaut, kein Versprechen. Er zeigt aber sofort, wo Automatisierung wirtschaftlich relevant wird.</p>
+        <div class="roi">
+          <form class="roi-form" data-roi>
+            <div class="range-field">
+              <label for="roi-people">Betroffene Mitarbeitende <output for="roi-people" data-out="people">24</output></label>
+              <input id="roi-people" type="range" min="2" max="300" step="1" value="24" name="people">
+            </div>
+            <div class="range-field">
+              <label for="roi-hours">Stunden Routinearbeit pro Woche und Person <output for="roi-hours" data-out="hours">4 h</output></label>
+              <input id="roi-hours" type="range" min="1" max="20" step="0.5" value="4" name="hours">
+              <p class="hint">Kopieren, Abtippen, Zusammenfassen, Nachfragen, Weiterleiten. Was niemand vermissen würde.</p>
+            </div>
+            <div class="range-field">
+              <label for="roi-rate">Interner Stundensatz <output for="roi-rate" data-out="rate">68 €</output></label>
+              <input id="roi-rate" type="range" min="25" max="160" step="1" value="68" name="rate">
+              <p class="hint">Vollkosten, nicht Bruttolohn.</p>
+            </div>
+            <div class="range-field">
+              <label for="roi-invest">Initiale Investition <output for="roi-invest" data-out="invest">38.000 €</output></label>
+              <input id="roi-invest" type="range" min="5000" max="250000" step="1000" value="38000" name="invest">
+              <p class="hint">Prototyp, Integration, Schulung, Governance. Ohne laufende Kosten.</p>
+            </div>
+          </form>
+          <aside class="roi-result" aria-live="polite">
+            <p class="eyebrow">Jährliche Entlastung</p>
+            <div class="roi-big"><span class="count" data-roi-mid>0</span><small>€ / Jahr</small></div>
+            <p>Bei realistisch 25 % automatisierbarem Anteil. Die Bandbreite darunter reicht von vorsichtig (15 %) bis ambitioniert (40 %).</p>
+            <div class="roi-range">
+              <div class="track"><div class="band" data-roi-band></div></div>
+              <div class="ticks"><span data-roi-lo>0 €</span><span data-roi-hi>0 €</span></div>
+            </div>
+            <div class="roi-kpis">
+              <div><span class="num">Amortisation</span><strong data-roi-payback>–</strong><small>Monate, realistisch</small></div>
+              <div><span class="num">Freigesetzte Zeit</span><strong data-roi-hours>–</strong><small>Stunden pro Jahr</small></div>
+            </div>
+            <p class="roi-assumptions">Rechnung: Personen × Stunden × 46 Arbeitswochen × Stundensatz × Anteil. Laufende Lizenz- und Betriebskosten sind nicht enthalten. Ob die Zeit tatsächlich frei wird, entscheidet der Prozess, nicht das Tool.</p>
+          </aside>
+        </div>
       </div>
-      <div class="container roi-tool">
-        <form class="card" data-roi>
-          <div class="field"><label for="employees">Betroffene Mitarbeitende</label><input id="employees" type="number" min="1" value="24"></div>
-          <div class="field"><label for="hours">Stunden Routinearbeit pro Woche und Person</label><input id="hours" type="number" min="1" value="4"></div>
-          <div class="field"><label for="rate">Interner Stundensatz in EUR</label><input id="rate" type="number" min="1" value="68"></div>
-          <div class="field">
-            <label for="automation">Automatisierbarer Anteil</label>
-            <select id="automation">
-              <option value="15">15% vorsichtig</option>
-              <option value="25" selected>25% realistisch</option>
-              <option value="40">40% ambitioniert</option>
-            </select>
+    </section>
+
+    <!-- 07 LIEFERGEGENSTÄNDE -->
+    <section class="section" id="ergebnis">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">07 · Ergebnis</p>
+            <h2>Was nach 30 Tagen auf dem Tisch liegt.</h2>
           </div>
-          <div class="field"><label for="investment">Initiale Investition in EUR</label><input id="investment" type="number" min="1" value="38000"></div>
-        </form>
-        <aside class="result-panel" aria-live="polite">
-          <p class="eyebrow">Schätzung</p>
-          <div class="result-main" data-roi-value>0%</div>
-          <p>Projektrendite im ersten Jahr nach angenommener Einsparung und Initialinvestition.</p>
-          <div><div class="bar" aria-hidden="true"><span data-roi-bar></span></div></div>
-          <div class="grid-2">
-            <div class="metric"><span>Jährliche Entlastung</span><strong data-saving-value>0 EUR</strong><span>orientierend</span></div>
-            <div class="metric"><span>Amortisation</span><strong data-payback-value>0 Monate</strong><span>modelliert</span></div>
+          <p class="lead">Keine erfundenen Fallstudien. Solange Kunden ihre Artefakte nicht freigeben, zeige ich, was Sie tatsächlich bekommen.</p>
+        </div>
+        <div class="artifacts">
+          <article class="card artifact-card hover reveal">
+            <div class="pic" aria-hidden="true">
+              <svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="28" y="8" width="64" height="76" rx="3"/><path d="M38 22h44M38 30h44M38 38h30M38 50h44M38 58h36"/><circle class="a" cx="78" cy="66" r="9" stroke="currentColor" stroke-width="2"/><path class="a" d="m73.5 66 3 3 6-6" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <span class="num">01</span>
+            <h3>Entscheidungsbrief</h3>
+            <p>Zwei Seiten für die Geschäftsführung: Ja, Nein oder Noch nicht. Mit Begründung, nicht mit Ausblick.</p>
+          </article>
+          <article class="card artifact-card hover reveal" style="--d:1">
+            <div class="pic" aria-hidden="true">
+              <svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="22" y="14" width="76" height="62" rx="3"/><path d="M22 34h76M22 55h76M47 14v62M73 14v62"/><rect class="a" x="49" y="36" width="22" height="17" fill="currentColor" stroke="none" opacity=".9"/><rect class="a" x="75" y="16" width="21" height="16" fill="currentColor" stroke="none" opacity=".5"/><rect x="24" y="57" width="21" height="17" fill="currentColor" stroke="none" opacity=".15"/></svg>
+            </div>
+            <span class="num">02</span>
+            <h3>Risiko- und Datenmatrix</h3>
+            <p>AI-Act-Einordnung, Datenschutzfragen, Datenlücken und Kontrollpunkte. Wer verantwortet was.</p>
+          </article>
+          <article class="card artifact-card hover reveal" style="--d:2">
+            <div class="pic" aria-hidden="true">
+              <svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="10" y="36" width="22" height="16" rx="2"/><path d="M32 44h12"/><path d="M60 30 74 44 60 58 46 44Z" class="a" stroke="currentColor" stroke-width="2"/><path d="M74 44h12M60 58v14h20M60 30V18h20"/><rect x="86" y="10" width="22" height="16" rx="2"/><rect x="86" y="36" width="22" height="16" rx="2"/><rect x="86" y="64" width="22" height="16" rx="2"/></svg>
+            </div>
+            <span class="num">03</span>
+            <h3>Workflow-Skizze</h3>
+            <p>Der Zielprozess als Ablauf: Eingaben, Entscheidungen, Übergaben, Eskalation. Wo ein Mensch bleibt.</p>
+          </article>
+          <article class="card artifact-card hover reveal" style="--d:3">
+            <div class="pic" aria-hidden="true">
+              <svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 74h88"/><rect x="24" y="52" width="18" height="22" rx="2"/><rect x="51" y="38" width="18" height="36" rx="2"/><rect x="78" y="20" width="18" height="54" rx="2" class="a" stroke="currentColor" stroke-width="2"/><path d="M33 48v-6M60 34v-6M87 16v-6" stroke-dasharray="2 3"/><text x="26" y="84" font-family="JetBrains Mono, monospace" font-size="7" fill="currentColor" stroke="none">30</text><text x="53" y="84" font-family="JetBrains Mono, monospace" font-size="7" fill="currentColor" stroke="none">60</text><text x="80" y="84" font-family="JetBrains Mono, monospace" font-size="7" fill="currentColor" stroke="none">90</text></svg>
+            </div>
+            <span class="num">04</span>
+            <h3>30/60/90-Tage-Plan</h3>
+            <p>Konkrete nächste Schritte mit Verantwortlichen und Kontrollpunkten. Beginnt am Tag nach der Übergabe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 STIMMEN -->
+    <section class="section" id="stimmen">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">08 · Stimmen</p>
+            <h2>Aus Workshops und Projekten.</h2>
           </div>
-        </aside>
+        </div>
+        <div class="quotes">
+          <figure class="quote reveal">
+            <span class="mark" aria-hidden="true">„</span>
+            <blockquote>Was für eine Reise. Mein KI-Werkzeugkoffer ist gut gefüllt und bereit für die Praxisanwendung. Dies war nur der Anfang, danke dir für deine Inspiration.</blockquote>
+            <footer>Teilnehmer Executive KI-Workshop · C-Level Führungskraft</footer>
+          </figure>
+          <figure class="quote reveal" style="--d:1">
+            <span class="mark" aria-hidden="true">„</span>
+            <blockquote>Danke für die gemeinsame KI-Reise, die meinen Horizont so enorm erweitert hat! Die praktischen Anwendungen sind sofort umsetzbar.</blockquote>
+            <footer>C-Level Participant · Digitalisierungsverantwortlicher</footer>
+          </figure>
+          <figure class="quote reveal" style="--d:2">
+            <span class="mark" aria-hidden="true">„</span>
+            <blockquote>Die KI-Strategieberatung hat uns geholfen, eine klare Roadmap zu entwickeln. Besonders wertvoll waren die branchenspezifischen Insights.</blockquote>
+            <footer>Geschäftsführer · Mittelständisches Unternehmen</footer>
+          </figure>
+        </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="section section-tight">
-      <div class="container cta-band">
+    <section class="section tight">
+      <div class="container cta-band reveal">
         <div>
-          <p class="eyebrow">Nächster Schritt</p>
-          <h2>Ein Erstgespräch sollte keine Folien verkaufen, sondern eine Entscheidung vorbereiten.</h2>
-          <p style="margin-top:16px">Starten Sie mit dem 13%-Check oder wählen Sie direkt Risiko-Sprint, Workflow-Prototyp oder Schulung.</p>
+          <p class="eyebrow" style="color:#9aa1a9">Nächster Schritt</p>
+          <h2 style="margin-top:14px">Ein Erstgespräch soll keine Folien verkaufen, sondern eine Entscheidung vorbereiten.</h2>
+          <p>30 Minuten, kostenlos. Wir klären, ob und welcher Einstieg passt. Wenn keiner passt, sage ich das.</p>
         </div>
-        <button class="btn btn-accent" type="button" data-open-contact data-contact-topic="13%-Check">Erstgespräch anfragen</button>
+        <div class="actions">
+          <button class="btn accent lg" type="button" data-open-contact data-contact-topic="13%-Check">Erstgespräch anfragen</button>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div>
-        <a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a>
-        <p class="muted" style="margin-top:16px">© 2026 Robert Meyer. KI-Strategieberatung, EU AI Act Compliance und Prozessautomatisierung.</p>
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><g fill="#6b737b"><circle cx="4" cy="4" r="1.7"/><circle cx="9.33" cy="4" r="1.7"/><circle cx="14.67" cy="4" r="1.7"/><circle cx="4" cy="9.33" r="1.7"/><circle cx="9.33" cy="9.33" r="1.7"/><circle cx="14.67" cy="9.33" r="1.7"/><circle cx="20" cy="9.33" r="1.7"/><circle cx="4" cy="14.67" r="1.7"/><circle cx="14.67" cy="14.67" r="1.7"/><circle cx="20" cy="14.67" r="1.7"/><circle cx="4" cy="20" r="1.7"/><circle cx="9.33" cy="20" r="1.7"/><circle cx="14.67" cy="20" r="1.7"/><circle cx="20" cy="20" r="1.7"/></g><g fill="#e39a1c"><circle cx="20" cy="4" r="1.7"/><circle cx="9.33" cy="14.67" r="1.7"/></g></svg>
+          </span>
+          <span>Robert Meyer<small>13%-Check · KI-Beratung</small></span>
+        </a>
+        <p>KI-Beratung für Unternehmen und Verwaltungen. Erst prüfen, dann investieren. Code statt PowerPoints.</p>
+        <div class="footer-dots" data-dots-mini aria-hidden="true"></div>
       </div>
-      <nav class="legal-nav" aria-label="Rechtliches">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener">LinkedIn</a>
-      </nav>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="services.html#check">13%-Check</a></li>
+          <li><a href="eu-ai-act-beratung.html">AI Act Risiko-Sprint</a></li>
+          <li><a href="n8n-automatisierung.html">n8n Workflow-Prototyp</a></li>
+          <li><a href="ki-schulung-verwaltung.html">Executive KI-Schulung</a></li>
+          <li><a href="ki-strategie-mittelstand.html">KI-Strategie Mittelstand</a></li>
+          <li><a href="ki-beratung.html">KI-Beratung Deutschland</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Seiten</h4>
+        <ul>
+          <li><a href="roadmap.html">Vorgehen</a></li>
+          <li><a href="about.html">Profil</a></li>
+          <li><a href="oekosystem.html">Ökosystem</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:rm@kostenmanager.net">rm@kostenmanager.net</a></li>
+          <li><a href="tel:+491624194748">+49 162 4194748</a></li>
+          <li><a href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><span class="muted small">Bertolt-Brecht-Straße 8<br>61169 Friedberg</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Robert Meyer</span>
     </div>
   </footer>
-
-  <!-- WIZARD MODAL -->
-  <div class="modal-backdrop" data-contact-modal aria-hidden="true">
-    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="contact-title">
-      <div class="modal-head">
-        <div class="wizard-steps" aria-label="Fortschritt">
-          <span class="wiz-step active" data-step="1">1</span>
-          <span class="wiz-divider"></span>
-          <span class="wiz-step" data-step="2">2</span>
-          <span class="wiz-divider"></span>
-          <span class="wiz-step" data-step="3">3</span>
-        </div>
-        <button class="icon-button" type="button" data-close-contact aria-label="Dialog schließen">×</button>
-      </div>
-
-      <!-- Schritt 1: Service-Auswahl -->
-      <div data-wizard-step="1">
-        <p class="eyebrow">Schritt 1 von 3</p>
-        <h2 id="contact-title">Womit sollen wir starten?</h2>
-        <div class="service-choices">
-          <button class="service-choice" type="button" data-choice="13%-Check">
-            <strong>13%-Check</strong>
-            <span>KI-Vorhaben prüfen, bevor Budget freigegeben wird</span>
-          </button>
-          <button class="service-choice" type="button" data-choice="AI Act Risiko-Sprint">
-            <strong>AI Act Risiko-Sprint</strong>
-            <span>Compliance-Status klären und Risiken dokumentieren</span>
-          </button>
-          <button class="service-choice" type="button" data-choice="n8n Workflow-Prototyp">
-            <strong>n8n Workflow-Prototyp</strong>
-            <span>Einen Prozess als echten Workflow testen</span>
-          </button>
-          <button class="service-choice" type="button" data-choice="Executive KI-Schulung">
-            <strong>Executive KI-Schulung</strong>
-            <span>Führungskräfte oder Teams befähigen</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Schritt 2: Qualifikation -->
-      <div data-wizard-step="2" hidden>
-        <p class="eyebrow">Schritt 2 von 3</p>
-        <h2>Drei kurze Fragen.</h2>
-        <div class="wiz-questions">
-          <fieldset class="wiz-fieldset">
-            <legend>Organisation</legend>
-            <div class="radio-group">
-              <label><input type="radio" name="wiz-org" value="Unternehmen / Mittelstand"> Unternehmen / Mittelstand</label>
-              <label><input type="radio" name="wiz-org" value="Verwaltung / öffentliche Stelle"> Verwaltung / Öffentlicher Sektor</label>
-              <label><input type="radio" name="wiz-org" value="Beratung / Agentur"> Beratung / Agentur</label>
-            </div>
-          </fieldset>
-          <fieldset class="wiz-fieldset">
-            <legend>Aktueller KI-Status</legend>
-            <div class="radio-group">
-              <label><input type="radio" name="wiz-status" value="Erste Ideen"> Erste Ideen, noch kein konkreter Plan</label>
-              <label><input type="radio" name="wiz-status" value="Pilot läuft oder geplant"> Pilot läuft oder konkret geplant</label>
-              <label><input type="radio" name="wiz-status" value="Tools im Einsatz, Governance offen"> Tools im Einsatz, Governance noch offen</label>
-            </div>
-          </fieldset>
-          <fieldset class="wiz-fieldset">
-            <legend>Größtes Risiko</legend>
-            <div class="radio-group">
-              <label><input type="radio" name="wiz-risk" value="Budget ohne Wirkung"> Budget ohne nachweisbare Wirkung</label>
-              <label><input type="radio" name="wiz-risk" value="Datenschutz / AI Act"> Datenschutz oder AI Act Compliance</label>
-              <label><input type="radio" name="wiz-risk" value="Akzeptanz im Team"> Akzeptanz im Team</label>
-              <label><input type="radio" name="wiz-risk" value="Technische Umsetzung"> Technische Umsetzung</label>
-            </div>
-          </fieldset>
-        </div>
-        <div class="wiz-nav">
-          <button class="btn" type="button" data-wizard-back>Zurück</button>
-          <button class="btn btn-primary" type="button" data-wizard-next>Weiter</button>
-        </div>
-      </div>
-
-      <!-- Schritt 3: Kontaktdaten -->
-      <div data-wizard-step="3" hidden>
-        <p class="eyebrow">Schritt 3 von 3</p>
-        <h2>Kontaktdaten.</h2>
-        <form data-contact-form>
-          <input type="hidden" name="topic">
-          <input type="hidden" name="companyType">
-          <input type="hidden" name="aiStatus">
-          <input type="hidden" name="biggestRisk">
-          <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
-          <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="form-status"></div>
-          <div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" autocomplete="tel"></div>
-          <div class="field"><label for="appointment">Wunschtermin</label><input id="appointment" name="appointment" placeholder="z.B. Dienstagvormittag oder kommende Woche"></div>
-          <div class="field"><label for="message">Kurzbeschreibung</label><textarea id="message" name="message" rows="3"></textarea></div>
-          <div class="wiz-nav">
-            <button class="btn" type="button" data-wizard-back>Zurück</button>
-            <button class="btn btn-primary" type="submit">Anfrage senden</button>
-          </div>
-          <p id="form-status" data-form-status class="muted" style="margin-top:14px">Alternativ direkt: rm@kostenmanager.net · +49 (0) 162 4194748</p>
-        </form>
-      </div>
-    </section>
-  </div>
 
   <script src="app.js"></script>
 </body>

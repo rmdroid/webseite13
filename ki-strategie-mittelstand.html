@@ -3,49 +3,305 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KI-Strategie Mittelstand - Use Cases, ROI und Umsetzung</title>
-  <meta name="description" content="KI-Strategie für den Mittelstand: Use Cases priorisieren, ROI prüfen, Risiken senken und konkrete Umsetzungsschritte planen.">
+  <title>KI-Strategie Mittelstand – Use Cases, Nutzen und Umsetzung in 30 Tagen | Robert Meyer</title>
+  <meta name="description" content="KI-Strategie für den Mittelstand: Use Cases nach Nutzen, Datenlage, Risiko und Machbarkeit priorisieren und in 30 Tagen zu einer Entscheidung kommen. Ohne KI-Abteilung, ohne Folienpaket.">
   <link rel="canonical" href="https://ki13prozent.de/ki-strategie-mittelstand.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KI-Strategie Mittelstand – Use Cases, Nutzen und Umsetzung">
+  <meta property="og:description" content="KI-Strategie für den Mittelstand: Use Cases nach Nutzen, Datenlage, Risiko und Machbarkeit priorisieren und in 30 Tagen zu einer Entscheidung kommen. Ohne KI-Abteilung, ohne Folienpaket.">
+  <meta property="og:url" content="https://ki13prozent.de/ki-strategie-mittelstand.html">
+  <meta property="og:image" content="https://ki13prozent.de/assets/og-image.png">
+  <meta property="og:locale" content="de_DE">
+  <meta name="theme-color" content="#14171a">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    .modal-wide{width:min(660px,100%)}
-    .wizard-steps{display:flex;align-items:center;gap:8px}
-    .wiz-step{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--border);border-radius:50%;font-size:13px;font-weight:700;color:var(--muted);transition:background 200ms,border-color 200ms,color 200ms}
-    .wiz-step.active{background:var(--surface-strong);color:var(--surface);border-color:var(--surface-strong)}
-    .wiz-divider{width:28px;height:1px;background:var(--border)}
-    .service-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-    .service-choice{display:grid;gap:6px;text-align:left;border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:var(--surface);transition:border-color 140ms,background 140ms}
-    .service-choice strong{font-size:15px}
-    .service-choice span{color:var(--muted);font-size:13px;line-height:1.4}
-    .service-choice:hover{border-color:var(--fg);background:color-mix(in oklch,var(--accent) 5%,var(--surface))}
-    .service-choice.selected{border-color:var(--accent);background:color-mix(in oklch,var(--accent) 9%,var(--surface))}
-    .wiz-questions{display:grid;gap:14px;margin-top:20px}
-    .wiz-fieldset{border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin:0}
-    .wiz-fieldset legend{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:0 4px}
-    .radio-group{display:grid;gap:8px;margin-top:12px}
-    .radio-group label{display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer}
-    .wiz-nav{display:flex;gap:10px;margin-top:22px;justify-content:flex-end}
-    @media(max-width:440px){.service-choices{grid-template-columns:1fr}}
-    .page-hero h1 {
-      font-size: clamp(30px, 3.4vw, 50px);
-      max-width: none;
-      overflow-wrap: normal;
-      word-break: normal;
-      hyphens: none;
-    }
-  </style>
   <script defer src="https://cv.rm-on.de/script.js" data-website-id="077fc84e-d4f1-4861-a26e-9604ad4954e3"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie viele Use Cases sollten wir am Anfang betrachten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "So viele, wie die Fachbereiche nennen, meist zwischen fünf und fünfzehn. Bewertet werden alle nach denselben Kriterien, weiterverfolgt wird einer, höchstens zwei. Die Liste der bewusst zurückgestellten Ideen ist Teil der Strategie: Sie verhindert, dass in drei Monaten die gleiche Diskussion von vorn beginnt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Müssen wir erst unsere Daten aufräumen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nicht pauschal. Die Datenlage wird pro Use Case geprüft. Oft reichen die Daten für den einen Prozess, der zählt, völlig aus, während ein groß angelegtes Datenprojekt Monate kosten würde, ohne dass ein Use Case näher rückt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was, wenn kein Use Case trägt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dann ist das das Ergebnis, und zwar ein wertvolles. Sie wissen, warum, und was sich ändern müsste, damit es in einem Jahr anders aussieht. Das ist deutlich günstiger, als es an einem Pilotprojekt herauszufinden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauchen wir eigene IT-Leute für die Umsetzung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für einen Workflow-Prototyp nicht. Eine Person im Haus, die den Prozess kennt und den Workflow nach der Übergabe versteht, reicht. Wer das ist, wird in der Strategie festgelegt, nicht nach dem Projekt gesucht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie geht es nach den 30 Tagen weiter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mit dem, was im Entscheidungsbrief steht: einem Prototyp, einer Absicherung der Compliance, einer Investitionsentscheidung oder einem Stopp. Wenn Sie mich für den nächsten Schritt dabeihaben wollen, gern. Wenn nicht, ist der Plan so geschrieben, dass Sie ihn mit anderen Partnern umsetzen können."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "KI-Strategie Mittelstand (13%-Check)",
+    "serviceType": "KI-Strategieberatung",
+    "provider": { "@type": "Person", "name": "Robert Meyer", "url": "https://ki13prozent.de/" },
+    "areaServed": "DE",
+    "url": "https://ki13prozent.de/ki-strategie-mittelstand.html",
+    "description": "KI-Strategie für den Mittelstand: Use Cases nach Nutzen, Datenlage, Risiko und Machbarkeit priorisieren und in 30 Tagen zu einer Entscheidung kommen. Ohne KI-Abteilung, ohne Folienpaket."
+  }
+  </script>
 </head>
 <body>
-  <header class="site-header"><div class="container nav-shell"><a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a><nav class="primary-nav" aria-label="Hauptnavigation"><a href="index.html">Start</a><a href="services.html">Services</a><a href="roadmap.html">Roadmap</a><a href="about.html">Profil</a><a href="oekosystem.html">Ökosystem</a><a href="blog.html">Blog</a><a href="datenschutz.html">Datenschutz</a></nav><div class="nav-actions"><button class="btn btn-primary" type="button" data-open-contact>Erstgespräch</button><button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false">☰</button></div></div></header>
-  <main>
-    <section class="page-hero"><div class="container"><p class="eyebrow">KI-Strategie Mittelstand</p><h1>Mittelstand braucht keine KI-Roadmap ohne Umsetzungsfilter.</h1><p>Der 13%-Check priorisiert Use Cases nach Nutzen, Datenlage, Risiko und operativer Machbarkeit.</p></div></section>
-    <section class="section"><div class="container grid-3"><article class="card"><p class="kicker">Nutzen</p><h3>Wert statt Hype</h3><p>Use Cases werden nach Zeitgewinn, Entscheidungsqualität und Prozesswirkung sortiert.</p></article><article class="card"><p class="kicker">Risiko</p><h3>AI Act und Daten früh klären</h3><p>Keine Umsetzung ohne Blick auf Klassifizierung, Datenlage und Verantwortlichkeiten.</p></article><article class="card"><p class="kicker">Route</p><h3>30/60/90 Tage</h3><p>Die Strategie endet mit einem konkreten Pfad zu Pilot, Prototyp oder Stopp-Entscheidung.</p></article></div></section>
-    <section class="section section-tight"><div class="container cta-band"><div><p class="eyebrow">Mittelstand</p><h2>KI-Strategie muss in der Organisation landen.</h2></div><button class="btn btn-accent" type="button" data-open-contact data-contact-topic="KI-Strategie Mittelstand">Strategie anfragen</button></div></section>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header" data-header>
+    <div class="container nav-shell">
+      <a class="brand" href="index.html" aria-label="Startseite Robert Meyer">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><g fill="#6b737b"><circle cx="4" cy="4" r="1.7"/><circle cx="9.33" cy="4" r="1.7"/><circle cx="14.67" cy="4" r="1.7"/><circle cx="4" cy="9.33" r="1.7"/><circle cx="9.33" cy="9.33" r="1.7"/><circle cx="14.67" cy="9.33" r="1.7"/><circle cx="20" cy="9.33" r="1.7"/><circle cx="4" cy="14.67" r="1.7"/><circle cx="14.67" cy="14.67" r="1.7"/><circle cx="20" cy="14.67" r="1.7"/><circle cx="4" cy="20" r="1.7"/><circle cx="9.33" cy="20" r="1.7"/><circle cx="14.67" cy="20" r="1.7"/><circle cx="20" cy="20" r="1.7"/></g><g fill="#e39a1c"><circle cx="20" cy="4" r="1.7"/><circle cx="9.33" cy="14.67" r="1.7"/></g></svg>
+        </span>
+        <span>Robert Meyer<small>13%-Check · KI-Beratung</small></span>
+      </a>
+      <nav class="primary-nav" id="primary-nav" aria-label="Hauptnavigation">
+        <a href="index.html">Start</a>
+        <a href="services.html">Leistungen</a>
+        <a href="roadmap.html">Vorgehen</a>
+        <a href="about.html">Profil</a>
+        <a href="oekosystem.html">Ökosystem</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn primary sm" type="button" data-open-contact>Erstgespräch</button>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">KI-Strategie Mittelstand</p>
+        <h1>Der Mittelstand braucht keine KI-Roadmap ohne Umsetzungsfilter.</h1>
+        <p class="lead">Der 13%-Check priorisiert Use Cases nach Nutzen, Datenlage, Risiko und operativer Machbarkeit. Für Geschäftsführer und Inhaber, die mit begrenztem Budget die eine Sache finden wollen, die trägt, und die anderen bewusst liegen lassen.</p>
+        <div class="hero-actions" style="margin-top:28px">
+          <button class="btn primary" type="button" data-open-contact data-contact-topic="13%-Check">Strategie anfragen</button>
+          <a class="btn" href="index.html#roi">Was Automatisierung bringen kann</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DREI SCHRITTE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">So entsteht die Strategie</p>
+            <h2>Nutzen, Risiko, Route. Drei Filter für Ihre Ideenliste.</h2>
+          </div>
+          <p class="lead">Die meisten Mittelständler haben keine Ideenknappheit, sondern ein Priorisierungsproblem. Die Strategie ist der Filter, nicht der Katalog.</p>
+        </div>
+        <div class="steps-3">
+          <article class="reveal"><span class="num">Nutzen</span><h3>Wert statt Hype</h3><p>Use Cases werden nach Zeitgewinn, Entscheidungsqualität und Prozesswirkung sortiert. In Stunden und Euro, nicht in Adjektiven. Was sich nicht beziffern lässt, wandert nach hinten.</p></article>
+          <article class="reveal" style="--d:1"><span class="num">Risiko</span><h3>AI Act und Daten früh klären</h3><p>Keine Umsetzung ohne Blick auf Klassifizierung, Datenlage und Verantwortlichkeiten. Was hier scheitert, scheitert früh und billig. Was hier trägt, hat später keine bösen Überraschungen.</p></article>
+          <article class="reveal" style="--d:2"><span class="num">Route</span><h3>30/60/90 Tage</h3><p>Die Strategie endet mit einem konkreten Pfad zu Pilot, Prototyp oder Stopp-Entscheidung, mit Namen, Terminen und dem ersten Kontrollpunkt. Ein Plan, der nach dem Termin weiterarbeitet.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="principle">
+          <div class="sticky">
+            <p class="eyebrow">Was im Mittelstand anders ist</p>
+            <h2>Konzernrezepte funktionieren hier nicht. Das ist ein Vorteil.</h2>
+            <p class="lead" style="margin-top:18px">Keine KI-Abteilung, keine Data-Science-Stelle, die IT besteht aus zwei Personen und einem Dienstleister. Dafür kurze Wege, eine Person, die entscheidet, und Prozesse, die man an einem Tag komplett verstehen kann.</p>
+            <div class="hero-actions" style="margin-top:28px">
+              <a class="btn primary" href="services.html#check">Zum 13%-Check</a>
+            </div>
+          </div>
+          <ul class="manifest">
+            <li><span class="num">01</span><span><strong>Die Daten liegen im ERP, in Excel und im Postfach.</strong> Das ist kein Hindernis, sondern der Normalfall. Die Frage ist, welcher Use Case mit genau diesen Daten funktioniert.</span></li>
+            <li><span class="num">02</span><span><strong>Das Budget muss sich in einem Jahr rechnen.</strong> Deshalb zuerst der Prozess mit Volumen und Regeln, nicht das strategische Leuchtturmprojekt.</span></li>
+            <li><span class="num">03</span><span><strong>Eine Person entscheidet.</strong> Das macht die Strategie schnell. Sie braucht aber eine Begründung, die auch dem Beirat und dem Steuerberater standhält.</span></li>
+            <li><span class="num">04</span><span><strong>Der Betrieb ist die Hürde.</strong> Wer den Workflow nach dem Dienstleister betreibt, ist die wichtigste Frage der Strategie. Sie wird vor dem ersten Euro beantwortet.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASSUNG -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Passung</p>
+            <h2>Für wen die Strategie gedacht ist.</h2>
+          </div>
+          <p class="lead">Die Strategie ist der Filter für Unternehmen, die zu viele Ideen und zu wenig Zeit haben.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card reveal">
+            <span class="num" style="color:var(--go)">Passt, wenn</span>
+            <ul class="signal-list">
+              <li><i class="go"></i><span>Inhaber- oder geschäftsführergeführtes Unternehmen, grob zwischen 20 und 500 Mitarbeitenden.</span></li>
+              <li><i class="go"></i><span>Es gibt konkrete Ideen aus den Fachbereichen, aber keine Priorität und keine Begründung.</span></li>
+              <li><i class="go"></i><span>Die IT ist klein oder extern, und die Entscheidung soll trotzdem fundiert sein.</span></li>
+              <li><i class="go"></i><span>Sie wollen in 30 Tagen wissen, wo Sie anfangen, und nicht in sechs Monaten.</span></li>
+            </ul>
+          </article>
+          <article class="card reveal" style="--d:1">
+            <span class="num" style="color:var(--stop)">Passt nicht, wenn</span>
+            <ul class="signal-list">
+              <li><i class="stop"></i><span>Sie suchen einen Umsetzer für ein bereits gekauftes Werkzeug. Dann brauchen Sie einen Integrationspartner.</span></li>
+              <li><i class="stop"></i><span>KI soll eingeführt werden, weil der Wettbewerb es tut, ohne dass ein Prozess dahintersteht.</span></li>
+              <li><i class="stop"></i><span>Konzern mit eigener Data-Science-Abteilung. Dort sind andere Fragen offen und meist andere Partner die richtigen.</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WERKZEUG -->
+    <section class="section tight">
+      <div class="container">
+        <a class="card hover reveal tool-card" href="index.html#roi">
+          <div>
+            <span class="num">Selbst ausprobieren</span>
+            <h3 style="margin-top:10px;font-size:22px">Was Automatisierung bringen kann</h3>
+            <p style="margin-top:8px">Vier Regler, eine Spanne: Wie viele Stunden und Euro ein automatisierter Prozess im Jahr freisetzen kann. Ein erster Filter für Ihre Use-Case-Liste.</p>
+          </div>
+          <span class="link-arrow">Öffnen <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Häufige Fragen</p>
+            <h2>Was Geschäftsführer vor der KI-Strategie fragen.</h2>
+          </div>
+        </div>
+        <div class="faq reveal">
+          <details><summary>Wie viele Use Cases sollten wir am Anfang betrachten?</summary><div class="faq-body"><p>So viele, wie die Fachbereiche nennen, meist zwischen fünf und fünfzehn. Bewertet werden alle nach denselben Kriterien, weiterverfolgt wird einer, höchstens zwei. Die Liste der bewusst zurückgestellten Ideen ist Teil der Strategie: Sie verhindert, dass in drei Monaten die gleiche Diskussion von vorn beginnt.</p></div></details>
+          <details><summary>Müssen wir erst unsere Daten aufräumen?</summary><div class="faq-body"><p>Nicht pauschal. Die Datenlage wird pro Use Case geprüft. Oft reichen die Daten für den einen Prozess, der zählt, völlig aus, während ein groß angelegtes Datenprojekt Monate kosten würde, ohne dass ein Use Case näher rückt.</p></div></details>
+          <details><summary>Was, wenn kein Use Case trägt?</summary><div class="faq-body"><p>Dann ist das das Ergebnis, und zwar ein wertvolles. Sie wissen, warum, und was sich ändern müsste, damit es in einem Jahr anders aussieht. Das ist deutlich günstiger, als es an einem Pilotprojekt herauszufinden.</p></div></details>
+          <details><summary>Brauchen wir eigene IT-Leute für die Umsetzung?</summary><div class="faq-body"><p>Für einen Workflow-Prototyp nicht. Eine Person im Haus, die den Prozess kennt und den Workflow nach der Übergabe versteht, reicht. Wer das ist, wird in der Strategie festgelegt, nicht nach dem Projekt gesucht.</p></div></details>
+          <details><summary>Wie geht es nach den 30 Tagen weiter?</summary><div class="faq-body"><p>Mit dem, was im Entscheidungsbrief steht: einem Prototyp, einer Absicherung der Compliance, einer Investitionsentscheidung oder einem Stopp. Wenn Sie mich für den nächsten Schritt dabeihaben wollen, gern. Wenn nicht, ist der Plan so geschrieben, dass Sie ihn mit anderen Partnern umsetzen können.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERWANDT -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Weiterlesen</p>
+            <h2>Verwandte Einstiege.</h2>
+          </div>
+        </div>
+        <div class="related">
+          <a href="ki-beratung.html"><strong>KI-Beratung Deutschland</strong><span>Strategie, Umsetzung, Entscheidungslogik</span></a>
+          <a href="eu-ai-act-beratung.html"><strong>EU AI Act Beratung</strong><span>Risiko, Governance, Dokumentation</span></a>
+          <a href="n8n-automatisierung.html"><strong>n8n Automatisierung</strong><span>Workflows, Agenten, Prototypen</span></a>
+          <a href="ki-schulung-verwaltung.html"><strong>KI-Schulung Verwaltung</strong><span>Kompetenz, Datenschutz, Akzeptanz</span></a>
+          <a href="services.html"><strong>Alle Leistungen</strong><span>Vier Einstiege im Überblick</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="container cta-band reveal">
+        <div>
+          <p class="eyebrow" style="color:#9aa1a9">Mittelstand</p>
+          <h2 style="margin-top:14px">KI-Strategie muss in der Organisation landen.</h2>
+          <p>Bringen Sie Ihre Ideenliste mit, ich bringe den Filter. Erstgespräch kostenlos, 30 Minuten.</p>
+        </div>
+        <div class="actions">
+          <button class="btn accent lg" type="button" data-open-contact data-contact-topic="13%-Check">Strategie anfragen</button>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">RM</span><span>Robert Meyer<small>KI Transformation Hub</small></span></a></div><nav class="legal-nav" aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="services.html#pakete">Pakete</a></nav></div></footer>
-  <div class="modal-backdrop" data-contact-modal aria-hidden="true"><section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="contact-title"><div class="modal-head"><div class="wizard-steps" aria-label="Fortschritt"><span class="wiz-step active" data-step="1">1</span><span class="wiz-divider"></span><span class="wiz-step" data-step="2">2</span><span class="wiz-divider"></span><span class="wiz-step" data-step="3">3</span></div><button class="icon-button" type="button" data-close-contact aria-label="Dialog schließen">×</button></div><div data-wizard-step="1"><p class="eyebrow">Schritt 1 von 3</p><h2 id="contact-title">Womit sollen wir starten?</h2><div class="service-choices"><button class="service-choice" type="button" data-choice="13%-Check"><strong>13%-Check</strong><span>KI-Vorhaben prüfen, bevor Budget freigegeben wird</span></button><button class="service-choice" type="button" data-choice="AI Act Risiko-Sprint"><strong>AI Act Risiko-Sprint</strong><span>Compliance-Status klären und Risiken dokumentieren</span></button><button class="service-choice" type="button" data-choice="n8n Workflow-Prototyp"><strong>n8n Workflow-Prototyp</strong><span>Einen Prozess als echten Workflow testen</span></button><button class="service-choice" type="button" data-choice="Executive KI-Schulung"><strong>Executive KI-Schulung</strong><span>Führungskräfte oder Teams befähigen</span></button></div></div><div data-wizard-step="2" hidden><p class="eyebrow">Schritt 2 von 3</p><h2>Drei kurze Fragen.</h2><div class="wiz-questions"><fieldset class="wiz-fieldset"><legend>Organisation</legend><div class="radio-group"><label><input type="radio" name="wiz-org" value="Unternehmen / Mittelstand"> Unternehmen / Mittelstand</label><label><input type="radio" name="wiz-org" value="Verwaltung / öffentliche Stelle"> Verwaltung / Öffentlicher Sektor</label><label><input type="radio" name="wiz-org" value="Beratung / Agentur"> Beratung / Agentur</label></div></fieldset><fieldset class="wiz-fieldset"><legend>Aktueller KI-Status</legend><div class="radio-group"><label><input type="radio" name="wiz-status" value="Erste Ideen"> Erste Ideen, noch kein konkreter Plan</label><label><input type="radio" name="wiz-status" value="Pilot läuft oder geplant"> Pilot läuft oder konkret geplant</label><label><input type="radio" name="wiz-status" value="Tools im Einsatz, Governance offen"> Tools im Einsatz, Governance noch offen</label></div></fieldset><fieldset class="wiz-fieldset"><legend>Größtes Risiko</legend><div class="radio-group"><label><input type="radio" name="wiz-risk" value="Budget ohne Wirkung"> Budget ohne nachweisbare Wirkung</label><label><input type="radio" name="wiz-risk" value="Datenschutz / AI Act"> Datenschutz oder AI Act Compliance</label><label><input type="radio" name="wiz-risk" value="Akzeptanz im Team"> Akzeptanz im Team</label><label><input type="radio" name="wiz-risk" value="Technische Umsetzung"> Technische Umsetzung</label></div></fieldset></div><div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="button" data-wizard-next>Weiter</button></div></div><div data-wizard-step="3" hidden><p class="eyebrow">Schritt 3 von 3</p><h2>Kontaktdaten.</h2><form data-contact-form><input type="hidden" name="topic"><input type="hidden" name="companyType"><input type="hidden" name="aiStatus"><input type="hidden" name="biggestRisk"><div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div><div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required aria-describedby="form-status"></div><div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" autocomplete="tel"></div><div class="field"><label for="appointment">Wunschtermin</label><input id="appointment" name="appointment" placeholder="z.B. Dienstagvormittag oder kommende Woche"></div><div class="field"><label for="message">Kurzbeschreibung</label><textarea id="message" name="message" rows="3"></textarea></div><div class="wiz-nav"><button class="btn" type="button" data-wizard-back>Zurück</button><button class="btn btn-primary" type="submit">Anfrage senden</button></div><p id="form-status" data-form-status class="muted" style="margin-top:14px">Alternativ direkt: rm@kostenmanager.net &middot; +49 (0) 162 4194748</p></form></div></section></div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><g fill="#6b737b"><circle cx="4" cy="4" r="1.7"/><circle cx="9.33" cy="4" r="1.7"/><circle cx="14.67" cy="4" r="1.7"/><circle cx="4" cy="9.33" r="1.7"/><circle cx="9.33" cy="9.33" r="1.7"/><circle cx="14.67" cy="9.33" r="1.7"/><circle cx="20" cy="9.33" r="1.7"/><circle cx="4" cy="14.67" r="1.7"/><circle cx="14.67" cy="14.67" r="1.7"/><circle cx="20" cy="14.67" r="1.7"/><circle cx="4" cy="20" r="1.7"/><circle cx="9.33" cy="20" r="1.7"/><circle cx="14.67" cy="20" r="1.7"/><circle cx="20" cy="20" r="1.7"/></g><g fill="#e39a1c"><circle cx="20" cy="4" r="1.7"/><circle cx="9.33" cy="14.67" r="1.7"/></g></svg>
+          </span>
+          <span>Robert Meyer<small>13%-Check · KI-Beratung</small></span>
+        </a>
+        <p>KI-Beratung für Unternehmen und Verwaltungen. Erst prüfen, dann investieren. Code statt PowerPoints.</p>
+        <div class="footer-dots" data-dots-mini aria-hidden="true"></div>
+      </div>
+      <div>
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="services.html#check">13%-Check</a></li>
+          <li><a href="eu-ai-act-beratung.html">AI Act Risiko-Sprint</a></li>
+          <li><a href="n8n-automatisierung.html">n8n Workflow-Prototyp</a></li>
+          <li><a href="ki-schulung-verwaltung.html">Executive KI-Schulung</a></li>
+          <li><a href="ki-strategie-mittelstand.html">KI-Strategie Mittelstand</a></li>
+          <li><a href="ki-beratung.html">KI-Beratung Deutschland</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Seiten</h4>
+        <ul>
+          <li><a href="roadmap.html">Vorgehen</a></li>
+          <li><a href="about.html">Profil</a></li>
+          <li><a href="oekosystem.html">Ökosystem</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:rm@kostenmanager.net">rm@kostenmanager.net</a></li>
+          <li><a href="tel:+491624194748">+49 162 4194748</a></li>
+          <li><a href="https://www.linkedin.com/in/robert-meyer-666b39315" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><span class="muted small">Bertolt-Brecht-Straße 8<br>61169 Friedberg</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Robert Meyer</span>
+    </div>
+  </footer>
+
   <script src="app.js"></script>
 </body>
 </html>
